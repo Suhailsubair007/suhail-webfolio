@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import me from "../assets/img/me.webp";
 import suhail from "../assets/img/suhail.webp";
 import { aboutMeData } from "../assets/lib/data";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
