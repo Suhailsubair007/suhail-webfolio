@@ -6,7 +6,6 @@ import aws from '../icons/aws.svg'
 import git from '../icons/git.svg'
 import kuber from '../icons/kubernatis.svg'
 import nginx from '../icons/nginx.svg'
-import bootstrap from '../icons/bootsrap.svg'
 import vercel from '../icons/vercel.svg'
 import python from '../icons/python.svg'
 import htmlicon from "../../assets/icons/htmlicon.svg";
@@ -356,12 +355,13 @@ export const sideBarLeftSocials = [
 export const quotesData = [
   {
     de: '"Writing code is like solving a puzzle; it’s not about speed but creating a solution that’s clean, efficient, and truly works."',
-    en: `"Code isn’t just about syntax; it’s about solving problems, building systems, and crafting logic that’s as elegant as it is functional."`,
-    // author: "Andrew Hunt",
+    en: `"From the first API call to the final user interaction, every layer of the stack is an opportunity to deliver excellence."`,
+    author: "Suhail Subair",
   },
   {
     de: '"Das Web ist wie eine Leinwand und der Code ist die Farbe. Erschaffe dein Meisterwerk."',
     en: `"The web is like a canvas, and code is the paint. Create your masterpiece."`,
+    author: "Suhail Subair",
   },
 ] as const;
 
