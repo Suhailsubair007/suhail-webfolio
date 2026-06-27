@@ -20,19 +20,28 @@
   src: url("./assets/fonts/font1.woff2");
 }
 
-/* GENERAL COLORS */
+/* ============================================================
+   THEME — change colors here only, everything else follows
+   ============================================================ */
 :root {
-  --black: #000000;
-  --white: #ffffff;
-  --icewhite: #ebebeb;
-  --grey: #5d5d5d;
-  --lightblue: #9daaf2;
-  --darkblue: #1a2238;
-  --blackblue: #0c1220;
-  --orange: #ff6a3d;
+  /* backgrounds */
+  --blackblue: #0a0f0a;   /* darkest bg  */
+  --darkblue:  #0f1f12;   /* dark bg / card surfaces */
+
+  /* accents */
+  --orange:    #f59e0b;   /* primary accent (buttons, highlights) */
+  --lightblue: #22c55e;   /* secondary accent (borders, lines) */
+
+  /* neutrals */
+  --icewhite:  #ecfdf5;   /* light mode bg / subtle text */
+  --grey:      #6b7280;   /* muted text */
+  --white:     #ffffff;
+  --black:     #000000;
+
   --box-shadow-color: inherit;
   --transparent: transparent;
 }
+/* ============================================================ */
 
 /* GENERAL STYLES */
 * {
@@ -124,13 +133,6 @@ input:focus {
   outline-color: var(--orange);
   outline-style: solid;
 }
-/* textarea:hover,
-input:hover {
-  outline: 0;
-  box-shadow: rgba(240, 101, 46, 0.4) 5px 5px, rgba(240, 133, 46, 0.3) 10px 10px,
-    rgba(240, 149, 46, 0.2) 15px 15px;
-  transform: translate(-0.9rem, -0.9rem);
-} */
 
 pre {
   background-color: unset !important;
@@ -202,11 +204,16 @@ a {
 }
 
 .secondary-btn {
-  background-color: var(--darkblue);
+  background-color: transparent;
+  border: 1.5px solid rgba(139, 156, 255, 0.35) !important;
+  color: var(--lightblue);
+  backdrop-filter: blur(8px);
 }
 
 .secondary-btn:hover {
-  background-color: var(--lightblue);
+  background-color: rgba(139, 156, 255, 0.1);
+  border-color: var(--orange) !important;
+  color: var(--orange);
 }
 
 .dark body,
@@ -218,18 +225,12 @@ a {
 .light body {
   transition: all ease-in 200ms;
 }
-/* .dark a {
-  color: var(--white);
-} */
 .dark p,
 .dark h1,
 .dark h2,
 .dark h3,
 .dark button {
   color: var(--white);
-}
-.dark .privacy-checkbox .checkbox {
-  border: 3px solid var(--white);
 }
 .dark input,
 .dark textarea {
@@ -276,11 +277,6 @@ a {
     rgba(0, 0, 0, 0.3) 0px 1px 35px 8px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
-/* .dark .quote-outer-container {
-  box-shadow: rgba(59, 46, 240, 0.4) 5px 5px, rgba(59, 46, 240, 0.3) 10px 10px,
-    rgba(82, 46, 240, 0.2) 15px 15px, rgba(59, 46, 240, 0.1) 20px 20px,
-    rgba(59, 46, 240, 0.05) 25px 25px;
-} */
 .swiper-pagination-bullet {
   background-color: var(--orange);
   width: 1rem;
@@ -295,38 +291,6 @@ a {
 .dark-mode-shadow {
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 12px,
     rgba(0, 0, 0, 0.3) 0px 1px 35px 8px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-}
-
-.privacy-checkbox label {
-  display: block;
-  width: 35px;
-  height: 35px;
-  cursor: pointer;
-}
-
-.privacy-checkbox input {
-  visibility: hidden;
-  display: none;
-}
-
-.privacy-checkbox input:checked ~ .checkbox {
-  transform: rotate(45deg);
-  width: 14px;
-  margin-left: 12px;
-  border-color: var(--orange);
-  border-top-color: transparent;
-  border-left-color: transparent;
-  border-radius: 0;
-  margin-right: 21px;
-}
-
-.privacy-checkbox .checkbox {
-  display: block;
-  width: inherit;
-  height: inherit;
-  border: 3px solid var(--darkblue);
-  border-radius: 6px;
-  transition: all 0.375s;
 }
 
 .language-switch-container .tgl {
@@ -503,3 +467,95 @@ a {
   animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
   -webkit-animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
 }
+
+@keyframes code-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(139, 156, 255, 0.25), 0 0 60px rgba(139, 156, 255, 0.08); }
+  50% { box-shadow: 0 0 30px rgba(255, 138, 61, 0.3), 0 0 80px rgba(255, 138, 61, 0.1); }
+}
+.code-panel-glow {
+  animation: code-glow 4s ease-in-out infinite;
+}
+
+@keyframes scan-line {
+  0% { top: 0%; opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { top: 100%; opacity: 0; }
+}
+.scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(139, 156, 255, 0.5), rgba(255, 138, 61, 0.3), transparent);
+  animation: scan-line 5s linear infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+@keyframes terminal-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.terminal-cursor {
+  display: inline-block;
+  width: 0.8rem;
+  height: 1.6rem;
+  background: var(--orange);
+  animation: terminal-blink 1s step-end infinite;
+  vertical-align: text-bottom;
+  border-radius: 1px;
+}
+
+@keyframes dot-ping {
+  0% { transform: scale(1); opacity: 1; }
+  70% { transform: scale(2); opacity: 0; }
+  100% { transform: scale(1); opacity: 0; }
+}
+.live-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #28c840;
+  animation: dot-ping 1.5s ease-out infinite;
+}
+
+/* HERO SECTION */
+@keyframes slow-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes slow-spin-reverse {
+  from { transform: rotate(360deg); }
+  to   { transform: rotate(0deg); }
+}
+.animate-slow-spin         { animation: slow-spin         25s linear infinite; }
+.animate-slow-spin-reverse { animation: slow-spin-reverse 18s linear infinite; }
+
+.hero-grid-bg {
+  background-image: radial-gradient(circle, rgba(139,156,255,0.10) 1px, transparent 1px);
+  background-size: 34px 34px;
+}
+
+.gradient-name {
+  background: linear-gradient(135deg, var(--orange) 0%, var(--lightblue) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@keyframes badge-float {
+  0%, 100% { transform: translateY(0px);   }
+  50%       { transform: translateY(-8px);  }
+}
+.badge-float-1 { animation: badge-float 3.5s ease-in-out infinite; }
+.badge-float-2 { animation: badge-float 3.5s ease-in-out infinite 0.7s; }
+.badge-float-3 { animation: badge-float 3.5s ease-in-out infinite 1.4s; }
+.badge-float-4 { animation: badge-float 3.5s ease-in-out infinite 2.1s; }
+.badge-float-5 { animation: badge-float 3.5s ease-in-out infinite 2.8s; }
+
+@keyframes avail-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(40, 200, 64, 0.6); }
+  50%       { box-shadow: 0 0 0 6px rgba(40, 200, 64, 0); }
+}
+.avail-dot { animation: avail-pulse 1.8s ease-in-out infinite; }

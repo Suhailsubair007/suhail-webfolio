@@ -40,8 +40,8 @@ const RadialGradient: React.FC<RadialGradientProps> = ({
   }, []);
 
   const radialGradientStyle: React.CSSProperties = {
-    background: `radial-gradient(at ${mouseXpercentage}% ${mouseYpercentage}%, #ff6a3d, ${
-      theme === "light" ? "#9daaf2" : "#0c1220"
+    background: `radial-gradient(at ${mouseXpercentage}% ${mouseYpercentage}%, var(--orange), ${
+      theme === "light" ? "var(--lightblue)" : "var(--blackblue)"
     })`,
   };
 
