@@ -43,10 +43,10 @@ export const headerIntroData = {
     de: "Hi, ich bin Suhail",
     en: "Hi, I'm Suhail",
   },
-  subtitle: "Fullstack Developer ",
+  subtitle: "Software Engineer",
   description: {
     de: "Ich bin Alpay, ein Fullstack-Entwickler mit dem Ziel, meine Karriere voranzutreiben und an inspirierenden Projekten teilzunehmen. Hier präsentiere ich meine Arbeiten und meine Leidenschaft für die Webentwicklung. Lassen Sie uns gemeinsam digitale Lösungen gestalten und die Zukunft formen!",
-    en: "I'm Suhail Subair, a fullstack developer with the goal of advancing my career and participating in inspiring projects. Here I present my work and my passion for web development. Let's shape digital solutions together and shape the future!",
+    en: "Lead Software Engineer with 2+ years of experience. I specialise in scalable backend systems, full-stack web development, and React Native mobile apps — while mentoring junior developers and driving teams toward production-grade solutions.",
   },
   buttons: [
     {
@@ -61,8 +61,8 @@ export const headerIntroData = {
     {
       name: "Projects",
       label: {
-        de: "Meine Projekte",
-        en: "My Projects",
+        de: "GitHub",
+        en: "GitHub",
       },
       icon: FiGithub,
       color: "secondary-btn",
@@ -330,8 +330,8 @@ export const FooterLinks = [
 ] as const;
 
 export const sideBarRightMail = {
-  link: "mailto:myemail@com",
-  text: "suhailsubair0406@gmail.com",
+  link: "mailto:suhailsubair04@gmail.com",
+  text: "suhailsubair04@gmail.com",
 } as const;
 
 export const sideBarLeftSocials = [
@@ -346,7 +346,7 @@ export const sideBarLeftSocials = [
     altimgname: "github",
   },
   {
-    link: "mailto:suhailsubair0406@gmail.com",
+    link: "mailto:suhailsubair04@gmail.com",
     icon: FiMail,
     altimgname: "mail",
   },

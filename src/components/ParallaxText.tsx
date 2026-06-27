@@ -12,7 +12,6 @@ import {
 } from "framer-motion";
 import { wrap } from "@motionone/utils";
 import { Link } from "react-router-dom";
-import { useLanguage } from "../context/language-context";
 import { sideBarLeftSocials, liveTickerData } from "../assets/lib/data";
 
 interface ParallaxProps {
@@ -123,7 +122,6 @@ function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
 }
 
 export default function LiveTicker() {
-  const { language } = useLanguage();
   return (
     <>
       <div className="bg-[--lightblue] h-[4.8vh] -rotate-3 flex justify-center items-center scale-110 relative z-[1] w-full min-[1921px]:h-[3.3vh]">
@@ -134,9 +132,7 @@ export default function LiveTicker() {
             rel="noopener noreferrer"
           >
             <span className="text-[--orange]">&lt;</span>
-            {language === "DE"
-              ? liveTickerData.content.de
-              : liveTickerData.content.en}
+            {liveTickerData.content.en}
             <span className="text-[--orange]">/&gt;</span>
           </Link>
         </ParallaxText>

@@ -31,20 +31,8 @@ export default function LanguageContextProvider({
   };
 
   useEffect(() => {
-    const localLanguage = window.localStorage.getItem(
-      "language"
-    ) as language | null;
-
-    if (localLanguage) {
-      setLanguage(localLanguage);
-
-      if (localLanguage === "DE") {
-        document.documentElement.classList.add("DE");
-      }
-    } else if (window.matchMedia("(prefers-color-scheme: DE)").matches) {
-      setLanguage("DE");
-      document.documentElement.classList.add("DE");
-    }
+    window.localStorage.removeItem("language");
+    document.documentElement.classList.remove("DE");
   }, []);
 
   return (

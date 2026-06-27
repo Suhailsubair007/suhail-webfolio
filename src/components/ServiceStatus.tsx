@@ -3,26 +3,21 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const ServiceStatus: React.FC = () => {
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState<string>("");
   const apiServiceStatusURL = import.meta.env.VITE_API_SERVICESTATUS_URL || "";
 
-  const statusColor = () => {
-    if (status === "operational") {
-      return "!text-green-500";
-    } else if (status === "downtime") {
-      return "!text-yellow-500";
-    } else if (status === "degraded") {
-      return "!text-red-500";
-    }
+  const dotColor = () => {
+    if (status === "operational") return "bg-green-400 shadow-[0_0_8px_#4ade80]";
+    if (status === "downtime") return "bg-yellow-400 shadow-[0_0_8px_#facc15]";
+    if (status === "degraded") return "bg-red-400 shadow-[0_0_8px_#f87171]";
+    return "bg-white/20";
   };
-  const iconColor = () => {
-    if (status === "operational") {
-      return "bg-green-500";
-    } else if (status === "downtime") {
-      return "bg-yellow-500";
-    } else if (status === "degraded") {
-      return "bg-red-500";
-    }
+
+  const textColor = () => {
+    if (status === "operational") return "text-green-400";
+    if (status === "downtime") return "text-yellow-400";
+    if (status === "degraded") return "text-red-400";
+    return "text-white/30";
   };
 
   useEffect(() => {
@@ -30,29 +25,30 @@ const ServiceStatus: React.FC = () => {
       try {
         const response = await axios.get(apiServiceStatusURL);
         setStatus(response.data.heartbeatResponse.serviceStatus);
-      } catch (error) {
-        console.error("Failed to get status from backend:", error);
+      } catch {
+        // silently fail
       }
     }
-
     getStatusData();
   }, []);
+
   return (
-    <React.Fragment>
-      <Link to="https://status.alpaycelik.dev">
-        <div className="status p-4 rounded-xl flex flex-row items-center">
-          <div className="status-icon w-[2rem] h-[2rem] rounded-3xl relative mr-4">
-            <div
-              className={`status-icon-inner absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 ${iconColor()} rounded-[inherit]`}
-            ></div>
-            <div
-              className={`status-icon-wave  w-[inherit] h-[inherit] rounded-[inherit] ${iconColor()}   animate-ping `}
-            ></div>
-          </div>
-          <p className={`status-text ${statusColor()} `}>Status: {status}</p>
-        </div>
-      </Link>
-    </React.Fragment>
+    <Link
+      to="https://status.alpaycelik.dev"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center gap-3 px-5 py-3 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 transition-all duration-200 group"
+    >
+      <span className="relative flex-shrink-0">
+        <span className={`block w-[1rem] h-[1rem] rounded-full ${dotColor()} transition-all duration-300`} />
+        {status === "operational" && (
+          <span className="absolute inset-0 rounded-full bg-green-400 animate-ping opacity-50" />
+        )}
+      </span>
+      <span className={`font-mono text-[1.35rem] ${textColor()} transition-colors duration-300`}>
+        {status ? `${status}` : "checking..."}
+      </span>
+    </Link>
   );
 };
 
