@@ -133,13 +133,6 @@ input:focus {
   outline-color: var(--orange);
   outline-style: solid;
 }
-/* textarea:hover,
-input:hover {
-  outline: 0;
-  box-shadow: rgba(240, 101, 46, 0.4) 5px 5px, rgba(240, 133, 46, 0.3) 10px 10px,
-    rgba(240, 149, 46, 0.2) 15px 15px;
-  transform: translate(-0.9rem, -0.9rem);
-} */
 
 pre {
   background-color: unset !important;
@@ -232,9 +225,6 @@ a {
 .light body {
   transition: all ease-in 200ms;
 }
-/* .dark a {
-  color: var(--white);
-} */
 .dark p,
 .dark h1,
 .dark h2,
@@ -287,11 +277,6 @@ a {
     rgba(0, 0, 0, 0.3) 0px 1px 35px 8px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
-/* .dark .quote-outer-container {
-  box-shadow: rgba(59, 46, 240, 0.4) 5px 5px, rgba(59, 46, 240, 0.3) 10px 10px,
-    rgba(82, 46, 240, 0.2) 15px 15px, rgba(59, 46, 240, 0.1) 20px 20px,
-    rgba(59, 46, 240, 0.05) 25px 25px;
-} */
 .swiper-pagination-bullet {
   background-color: var(--orange);
   width: 1rem;
