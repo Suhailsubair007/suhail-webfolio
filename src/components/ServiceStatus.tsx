@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 const ServiceStatus: React.FC = () => {
   const [status, setStatus] = useState<string>("");
@@ -33,12 +32,7 @@ const ServiceStatus: React.FC = () => {
   }, []);
 
   return (
-    <Link
-      to="https://status.alpaycelik.dev"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="flex items-center gap-3 px-5 py-3 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 transition-all duration-200 group"
-    >
+    <div className="flex items-center gap-3 px-5 py-3 rounded-xl bg-white/5 border border-white/10">
       <span className="relative flex-shrink-0">
         <span className={`block w-[1rem] h-[1rem] rounded-full ${dotColor()} transition-all duration-300`} />
         {status === "operational" && (
@@ -46,9 +40,9 @@ const ServiceStatus: React.FC = () => {
         )}
       </span>
       <span className={`font-mono text-[1.35rem] ${textColor()} transition-colors duration-300`}>
-        {status ? `${status}` : "checking..."}
+        {status ? status : "checking..."}
       </span>
-    </Link>
+    </div>
   );
 };
 

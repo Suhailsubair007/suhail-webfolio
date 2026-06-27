@@ -233,9 +233,6 @@ a {
 .dark button {
   color: var(--white);
 }
-.dark .privacy-checkbox .checkbox {
-  border: 3px solid var(--white);
-}
 .dark input,
 .dark textarea {
   color: var(--icewhite);
@@ -300,38 +297,6 @@ a {
 .dark-mode-shadow {
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 12px,
     rgba(0, 0, 0, 0.3) 0px 1px 35px 8px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-}
-
-.privacy-checkbox label {
-  display: block;
-  width: 35px;
-  height: 35px;
-  cursor: pointer;
-}
-
-.privacy-checkbox input {
-  visibility: hidden;
-  display: none;
-}
-
-.privacy-checkbox input:checked ~ .checkbox {
-  transform: rotate(45deg);
-  width: 14px;
-  margin-left: 12px;
-  border-color: var(--orange);
-  border-top-color: transparent;
-  border-left-color: transparent;
-  border-radius: 0;
-  margin-right: 21px;
-}
-
-.privacy-checkbox .checkbox {
-  display: block;
-  width: inherit;
-  height: inherit;
-  border: 3px solid var(--darkblue);
-  border-radius: 6px;
-  transition: all 0.375s;
 }
 
 .language-switch-container .tgl {

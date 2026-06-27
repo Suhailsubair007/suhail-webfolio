@@ -324,20 +324,6 @@ const res = await sendMessage({
                 />
               </div>
 
-              <div className="privacy-checkbox flex items-start gap-6">
-                <label className="block cursor-pointer flex-shrink-0 mt-1" htmlFor="checkbox-label">
-                  <input type="checkbox" required name="checkbox-label" id="checkbox-label" />
-                  <span className="checkbox"></span>
-                </label>
-                <p className={`text-[1.5rem] leading-relaxed ${theme === "dark" ? "text-[--icewhite]" : ""}`}>
-                  {contactData.privacyOptIn.checkbox.en}
-                </p>
-              </div>
-
-              <p className="text-[1.35rem] text-center text-[--grey]">
-                {contactData.privacyOptIn.description.en}
-              </p>
-
               <Button
                 value={isSending ? "Sending..." : contactData.button.value.en}
                 iconSVG={contactData.icon}
