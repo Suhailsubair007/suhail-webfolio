@@ -59,27 +59,30 @@ const HeaderIntro: React.FC = () => {
 
   return (
     <section
-      className="hero flex flex-col justify-center gap-10 items-center h-full max-lg:h-full max-lg:gap-6"
+      className="hero flex flex-col justify-center items-center h-full gap-8 px-6 text-center sm:gap-10 lg:gap-10"
       ref={ref}
       id="home"
     >
       <RadialGradient scale="scale-y-125" opacity="opacity-30" />
 
+      {/* Profile image */}
       <img
         src={headerIntroData.profilepicture}
         alt="Suhail Subair"
-        className="w-1/6 drop-shadow-2xl rounded-full shadow-2xl avatar-img max-lg:w-3/4"
+        className="w-[14rem] h-[14rem] sm:w-[16rem] sm:h-[16rem] lg:w-[18rem] lg:h-[18rem] rounded-full object-cover drop-shadow-2xl shadow-2xl avatar-img"
+        style={{ objectPosition: "center 15%" }}
       />
 
-      <h1>
+      {/* Name */}
+      <h1 className="text-[3rem] sm:text-[3.6rem] lg:text-[4.2rem] leading-tight">
         {headerIntroData.title}
-        <span className="wave text-7xl">&#128075;&#127997;</span>
+        <span className="wave ml-2">&#128075;&#127997;</span>
       </h1>
 
-      {/* Typewriter role */}
-      <h2 className="font-mono flex items-center gap-2">
+      {/* Typewriter */}
+      <h2 className="font-mono flex items-center gap-2 text-[2rem] sm:text-[2.4rem] lg:text-[3rem]">
         <span className="text-[--orange]">&lt;</span>
-        <span>
+        <span className="min-w-[18rem] sm:min-w-[22rem] lg:min-w-[28rem] text-left">
           {displayed}
           <span
             className="inline-block w-[2px] h-[1em] bg-[--orange] align-middle ml-[3px]"
@@ -89,11 +92,13 @@ const HeaderIntro: React.FC = () => {
         <span className="text-[--orange]">/&gt;</span>
       </h2>
 
-      <p className="w-1/2 text-center max-lg:hidden">
+      {/* Description */}
+      <p className="text-[1.5rem] sm:text-[1.6rem] leading-relaxed max-w-[90%] sm:max-w-[60rem] lg:max-w-[55rem] text-center opacity-70">
         {headerIntroData.description.en}
       </p>
 
-      <div className="button-container flex items-center justify-center mr-8 gap-10 mb-12 max-lg:flex-col max-lg:items-center">
+      {/* CTA Buttons */}
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-6 w-full sm:w-auto [&>*]:w-full [&>*>button]:w-full sm:[&>*]:w-auto sm:[&>*>button]:w-auto">
         {headerIntroData.buttons.map((button, index) => (
           <Button
             key={index}
@@ -117,8 +122,9 @@ const HeaderIntro: React.FC = () => {
         ))}
       </div>
 
-      <div className="scroll-down-container animate-bounce flex gap-6">
-        <BsMouse className="text-[2.6rem]" />
+      {/* Scroll hint — hidden on mobile */}
+      <div className="hidden sm:flex animate-bounce">
+        <BsMouse className="text-[2.6rem] opacity-40" />
       </div>
     </section>
   );
