@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Button from "./Button";
-import axios from "axios";
+import emailjs from "@emailjs/browser";
 import { Highlight, themes } from "prism-react-renderer";
 import { contactData, toastMessages } from "../assets/lib/data.tsx";
 import { useSectionInView } from "../assets/lib/hooks";
@@ -10,7 +10,9 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import "react-toastify/dist/ReactToastify.css";
 
 const Contact: React.FC = () => {
-  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || "";
+  const serviceId  = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+  const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+  const publicKey  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -33,10 +35,24 @@ const Contact: React.FC = () => {
   const notifySentForm: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     setIsSending(true);
-    const data = new FormData(e.currentTarget);
     try {
-      await axios.post(apiBaseUrl, data);
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          name,
+          email,
+          subject,
+          message,
+          time: new Date().toLocaleString(),
+        },
+        publicKey
+      );
       toast.success(toastMessages.successEmailSent.en);
+      setName("");
+      setEmail("");
+      setSubject("");
+      setMessage("");
     } catch {
       toast.error(toastMessages.failedEmailSent.en);
     } finally {

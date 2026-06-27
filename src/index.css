@@ -20,19 +20,28 @@
   src: url("./assets/fonts/font1.woff2");
 }
 
-/* GENERAL COLORS */
+/* ============================================================
+   THEME — change colors here only, everything else follows
+   ============================================================ */
 :root {
-  --black: #000000;
-  --white: #ffffff;
-  --icewhite: #ebebeb;
-  --grey: #5d5d5d;
-  --lightblue: #9daaf2;
-  --darkblue: #1a2238;
-  --blackblue: #0c1220;
-  --orange: #ff6a3d;
+  /* backgrounds */
+  --blackblue: #0a0f0a;   /* darkest bg  */
+  --darkblue:  #0f1f12;   /* dark bg / card surfaces */
+
+  /* accents */
+  --orange:    #f59e0b;   /* primary accent (buttons, highlights) */
+  --lightblue: #22c55e;   /* secondary accent (borders, lines) */
+
+  /* neutrals */
+  --icewhite:  #ecfdf5;   /* light mode bg / subtle text */
+  --grey:      #6b7280;   /* muted text */
+  --white:     #ffffff;
+  --black:     #000000;
+
   --box-shadow-color: inherit;
   --transparent: transparent;
 }
+/* ============================================================ */
 
 /* GENERAL STYLES */
 * {
