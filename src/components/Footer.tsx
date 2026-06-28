@@ -3,6 +3,7 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import { sideBarLeftSocials, navLinks } from "../assets/lib/data";
+import { useTheme } from "../context/theme-context";
 
 const LazyServiceStatus = dynamic(() => import("../components/ServiceStatus"), { ssr: false });
 
@@ -13,14 +14,24 @@ interface SocialLink {
 }
 
 const Footer: React.FC = () => {
-  return (
-    <footer className="relative z-[1] bg-[--darkblue] max-lg:pb-36 overflow-hidden">
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
 
-      {/* Glow blobs */}
-      <div className="absolute -top-24 left-1/4 w-[30rem] h-[30rem] rounded-full opacity-[0.07] blur-[80px] pointer-events-none"
-        style={{ background: "var(--orange)" }} />
-      <div className="absolute -top-16 right-1/4 w-[24rem] h-[24rem] rounded-full opacity-[0.06] blur-[70px] pointer-events-none"
-        style={{ background: "var(--lightblue)" }} />
+  return (
+    <footer
+      className="relative z-[1] max-lg:pb-36 overflow-hidden transition-colors duration-300"
+      style={{ background: isDark ? "var(--darkblue)" : "var(--icewhite)" }}
+    >
+
+      {/* Glow blobs — only in dark mode */}
+      {isDark && (
+        <>
+          <div className="absolute -top-24 left-1/4 w-[30rem] h-[30rem] rounded-full opacity-[0.07] blur-[80px] pointer-events-none"
+            style={{ background: "var(--orange)" }} />
+          <div className="absolute -top-16 right-1/4 w-[24rem] h-[24rem] rounded-full opacity-[0.06] blur-[70px] pointer-events-none"
+            style={{ background: "var(--lightblue)" }} />
+        </>
+      )}
 
       {/* Gradient top accent */}
       <div className="w-full h-[2px]"
@@ -39,7 +50,10 @@ const Footer: React.FC = () => {
                 Lead Software Engineer
               </p>
             </div>
-            <p className="text-white/40 text-[1.5rem] leading-[1.8]">
+            <p
+              className="text-[1.5rem] leading-[1.8]"
+              style={{ color: isDark ? "rgba(255,255,255,0.4)" : "rgba(0,0,0,0.45)" }}
+            >
               Crafting scalable systems and seamless experiences —
               <br />
               from backend APIs to mobile-first UIs.
@@ -51,7 +65,8 @@ const Footer: React.FC = () => {
                 <a
                   key={i}
                   href={link.hash}
-                  className="font-mono text-[1.35rem] text-white/30 hover:text-[--orange] transition-colors duration-200"
+                  className="font-mono text-[1.35rem] hover:text-[--orange] transition-colors duration-200"
+                  style={{ color: isDark ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.35)" }}
                 >
                   {link.en}
                 </a>
@@ -64,7 +79,10 @@ const Footer: React.FC = () => {
 
             {/* Email CTA */}
             <div className="flex flex-col gap-3 items-end max-lg:items-center">
-              <p className="text-white/30 font-mono text-[1.25rem] uppercase tracking-widest">
+              <p
+                className="font-mono text-[1.25rem] uppercase tracking-widest"
+                style={{ color: isDark ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.35)" }}
+              >
                 // say hello
               </p>
               <a
@@ -78,7 +96,10 @@ const Footer: React.FC = () => {
 
             {/* Socials */}
             <div className="flex flex-col gap-3 items-end max-lg:items-center">
-              <p className="text-white/30 font-mono text-[1.25rem] uppercase tracking-widest">
+              <p
+                className="font-mono text-[1.25rem] uppercase tracking-widest"
+                style={{ color: isDark ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.35)" }}
+              >
                 // connect
               </p>
               <div className="flex gap-4">
@@ -88,11 +109,18 @@ const Footer: React.FC = () => {
                     href={social.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative flex items-center justify-center w-[5rem] h-[5rem] rounded-2xl border border-white/10 bg-white/5 hover:border-[--orange] hover:bg-[--orange]/10 transition-all duration-300"
-                    style={{ fontSize: "2.2rem" }}
+                    className="group relative flex items-center justify-center w-[5rem] h-[5rem] rounded-2xl transition-all duration-300 hover:border-[--orange] hover:bg-[--orange]/10"
+                    style={{
+                      fontSize: "2.2rem",
+                      border: isDark ? "1px solid rgba(255,255,255,0.10)" : "1px solid rgba(0,0,0,0.10)",
+                      background: isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.04)",
+                    }}
                   >
                     {typeof social.icon === "function" ? (
-                      <social.icon className="text-white/50 group-hover:text-[--orange] transition-colors duration-300" />
+                      <social.icon
+                        className="group-hover:text-[--orange] transition-colors duration-300"
+                        style={{ color: isDark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.45)" } as React.CSSProperties}
+                      />
                     ) : (
                       <img src={social.icon} alt={social.altimgname}
                         className="w-[2.4rem] h-[2.4rem] opacity-50 group-hover:opacity-100 transition-opacity duration-300" />
@@ -107,15 +135,20 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Divider */}
-        <div className="w-full h-[1px] my-10"
-          style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)" }} />
+        <div
+          className="w-full h-[1px] my-10"
+          style={{ background: isDark ? "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)" : "linear-gradient(90deg, transparent, rgba(0,0,0,0.10), transparent)" }}
+        />
 
         {/* Bottom bar */}
         <div className="flex flex-row justify-between items-center gap-6 max-lg:flex-col max-lg:items-center">
 
           <div className="flex items-center gap-3">
             <span className="w-[0.6rem] h-[0.6rem] rounded-full bg-[--orange] opacity-60" />
-            <p className="text-white/25 text-[1.4rem] font-mono">
+            <p
+              className="text-[1.4rem] font-mono"
+              style={{ color: isDark ? "rgba(255,255,255,0.25)" : "rgba(0,0,0,0.35)" }}
+            >
               © {new Date().getFullYear()} Suhail Subair
             </p>
           </div>
