@@ -267,7 +267,9 @@ await send({
               className="flex items-center gap-2 px-4 py-[0.6rem] rounded-t-lg"
               style={{
                 background: ec.codeArea,
-                border: `1px solid ${ec.border}`,
+                borderTop: `1px solid ${ec.border}`,
+                borderLeft: `1px solid ${ec.border}`,
+                borderRight: `1px solid ${ec.border}`,
                 borderBottom: "none",
               }}
             >
