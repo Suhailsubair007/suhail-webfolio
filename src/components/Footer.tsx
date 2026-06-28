@@ -1,8 +1,10 @@
-// @ts-nocheck
-import React, { lazy, Suspense } from "react";
+'use client';
+
+import React from "react";
+import dynamic from "next/dynamic";
 import { sideBarLeftSocials, navLinks } from "../assets/lib/data";
 
-const LazyServiceStatus = lazy(() => import("../components/ServiceStatus"));
+const LazyServiceStatus = dynamic(() => import("../components/ServiceStatus"), { ssr: false });
 
 interface SocialLink {
   link: string;
@@ -118,14 +120,7 @@ const Footer: React.FC = () => {
             </p>
           </div>
 
-          <Suspense fallback={
-            <div className="flex items-center gap-3 px-5 py-3 rounded-xl bg-white/5 border border-white/10">
-              <span className="w-[1rem] h-[1rem] rounded-full bg-white/20 animate-pulse" />
-              <span className="text-white/30 text-[1.4rem] font-mono">checking...</span>
-            </div>
-          }>
-            <LazyServiceStatus />
-          </Suspense>
+          <LazyServiceStatus />
         </div>
       </div>
     </footer>

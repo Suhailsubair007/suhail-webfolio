@@ -1,9 +1,11 @@
+'use client';
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const ServiceStatus: React.FC = () => {
   const [status, setStatus] = useState<string>("");
-  const apiServiceStatusURL = import.meta.env.VITE_API_SERVICESTATUS_URL || "";
+  const apiServiceStatusURL = process.env.NEXT_PUBLIC_API_SERVICESTATUS_URL || "";
 
   const dotColor = () => {
     if (status === "operational") return "bg-green-400 shadow-[0_0_8px_#4ade80]";

@@ -1,5 +1,6 @@
+'use client';
+
 import React from "react";
-import { Link } from "react-router-dom";
 
 interface ButtonProps {
   onClick?: () => void;
@@ -57,9 +58,9 @@ const Button: React.FC<ButtonProps> = ({
     );
   } else {
     return (
-      <Link to={link || ""} className="no-underline">
+      <a href={link || ""} className="no-underline">
         {inner}
-      </Link>
+      </a>
     );
   }
 };

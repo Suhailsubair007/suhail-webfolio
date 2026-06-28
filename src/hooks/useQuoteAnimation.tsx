@@ -1,11 +1,13 @@
+'use client';
+
 import { useEffect } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
-
 export function useQuoteAnimation(quoteElementSelector: string) {
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
     const h2Element = document.querySelector(quoteElementSelector);
 
     if (h2Element) {
@@ -66,6 +68,10 @@ export function useQuoteAnimation(quoteElementSelector: string) {
           }
         },
       });
+
+      return () => {
+        ScrollTrigger.getAll().forEach((t) => t.kill());
+      };
     }
   }, [quoteElementSelector]);
 }

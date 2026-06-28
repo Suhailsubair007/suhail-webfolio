@@ -1,5 +1,6 @@
+'use client';
+
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import { navLinks } from "../assets/lib/data";
 import ScrollToAnchor from "./Listener";
@@ -64,8 +65,8 @@ const NavBar: React.FC = () => {
     );
 
     return (
-      <NavLink
-        to={link}
+      <a
+        href={link}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         className={`relative ${linkClasses}`}
@@ -75,7 +76,7 @@ const NavBar: React.FC = () => {
           {children}
           {rightArrow}
         </span>
-      </NavLink>
+      </a>
     );
   };
 
@@ -139,9 +140,9 @@ const NavBar: React.FC = () => {
               const isActive = link.en === activeSection;
 
               return (
-                <NavLink
+                <a
                   key={i}
-                  to={link.hash}
+                  href={link.hash}
                   onClick={() => {
                     setActiveSection(link.en);
                     setTimeOfLastClick(Date.now());
@@ -152,6 +153,7 @@ const NavBar: React.FC = () => {
                   className="flex flex-col items-center relative"
                   style={{ minWidth: "5.5rem" }}
                 >
+
                   {/* Icon */}
                   <motion.div
                     animate={
@@ -183,7 +185,7 @@ const NavBar: React.FC = () => {
                   >
                     {link.en}
                   </motion.span>
-                </NavLink>
+                </a>
               );
             })}
           </div>

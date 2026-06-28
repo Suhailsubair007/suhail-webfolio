@@ -1,13 +1,14 @@
+'use client';
+
 import React, { useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom";
 
 const ScrollToAnchor: React.FC = () => {
-  const location = useLocation();
   const lastHash = useRef<string>("");
 
   useEffect(() => {
-    if (location.hash) {
-      lastHash.current = location.hash.slice(1);
+    const hash = window.location.hash;
+    if (hash) {
+      lastHash.current = hash.slice(1);
     }
 
     if (lastHash.current && document.getElementById(lastHash.current)) {
@@ -19,7 +20,7 @@ const ScrollToAnchor: React.FC = () => {
         }
       }, 100);
     }
-  }, [location]);
+  }, []);
 
   return null;
 };

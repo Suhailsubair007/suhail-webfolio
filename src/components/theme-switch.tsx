@@ -1,3 +1,5 @@
+'use client';
+
 import { useTheme } from "../context/theme-context";
 import {
   BsMoon,
@@ -8,7 +10,6 @@ import {
 } from "react-icons/bs";
 import { sideBarLeftSocials } from "../assets/lib/data";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 
 export default function ThemeSwitch() {
   const { theme, toggleTheme } = useTheme();
@@ -76,13 +77,13 @@ export default function ThemeSwitch() {
         }`}
         aria-label="My Github Profile"
       >
-        <Link
-          to={sideBarLeftSocials[1].link}
+        <a
+          href={sideBarLeftSocials[1].link}
           target="_blank"
           rel="noopener noreferrer"
         >
           <BsGithub />
-        </Link>
+        </a>
       </button>
       <button
         className={`shortcut-btn fixed -z-10  right-10  w-[4rem] h-[4rem] bg-opacity-80 backdrop-blur-[0.5rem] border border-white border-opacity-40 shadow-2xl rounded-full flex items-center justify-center hover:scale-[1.15] active:scale-105 transition-all dark:bg-gray-950 ${
@@ -101,13 +102,13 @@ export default function ThemeSwitch() {
         }`}
         aria-label="My Linkedin Profile"
       >
-        <Link
-          to={sideBarLeftSocials[0].link}
+        <a
+          href={sideBarLeftSocials[0].link}
           target="_blank"
           rel="noopener noreferrer"
         >
           <BsLinkedin />
-        </Link>
+        </a>
       </button>
       <button
         className={`shortcut-btn fixed -z-10  right-10  w-[4rem] h-[4rem] bg-opacity-80 backdrop-blur-[0.5rem] border border-white border-opacity-40 shadow-2xl rounded-full flex items-center justify-center hover:scale-[1.15] active:scale-105 transition-all dark:bg-gray-950 ${
@@ -128,13 +129,13 @@ export default function ThemeSwitch() {
         `}
         aria-label="Send me an Email"
       >
-        <Link
-          to={sideBarLeftSocials[2].link}
+        <a
+          href={sideBarLeftSocials[2].link}
           target="_blank"
           rel="noopener noreferrer"
         >
           <BsFillEnvelopeAtFill />
-        </Link>
+        </a>
       </button>
     </div>
   );
