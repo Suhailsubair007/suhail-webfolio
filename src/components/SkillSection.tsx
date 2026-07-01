@@ -21,29 +21,13 @@ interface SkillSectionProps {
 
 const SkillSection: React.FC<SkillSectionProps> = ({ skillsData, theme }) => {
   const getSkillIconSrc = (theme: string, skill: Skill) => {
-    if (
-      theme === "dark" &&
-      (skill.title.includes("Next") || skill.title.includes("Express"))
-    ) {
-      return skill.icon[1];
-    } else if (skill.title !== "Next.js" && skill.title !== "Express") {
-      return skill.icon;
-    } else {
-      return skill.icon[0];
-    }
+    if (!Array.isArray(skill.icon)) return skill.icon;
+    return theme === "dark" ? skill.icon[1] : skill.icon[0];
   };
 
   const getSkillColor = (theme: string, skill: Skill) => {
-    if (
-      theme === "dark" &&
-      (skill.title.includes("Next") || skill.title.includes("Express"))
-    ) {
-      return skill.color[1];
-    } else if (skill.title !== "Next.js" && skill.title !== "Express") {
-      return skill.color;
-    } else {
-      return skill.color[0];
-    }
+    if (!Array.isArray(skill.color)) return skill.color;
+    return theme === "dark" ? skill.color[1] : skill.color[0];
   };
 
   return (
