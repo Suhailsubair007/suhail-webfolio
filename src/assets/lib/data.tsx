@@ -1,46 +1,62 @@
-const canvaicon = "/icons/canvaicon.svg";
-const vite = "/icons/vite.svg";
-const psql = "/icons/psql.svg";
-const docker = "/icons/docker.svg";
-const aws = "/icons/aws.svg";
-const git = "/icons/git.svg";
-const kuber = "/icons/kubernatis.svg";
-const nginx = "/icons/nginx.svg";
-const vercel = "/icons/vercel.svg";
-const python = "/icons/python.svg";
-const htmlicon = "/icons/htmlicon.svg";
-const cssicon = "/icons/cssicon.svg";
-const javascripticon = "/icons/javascripticon.svg";
-const typescripticon = "/icons/typescripticon.svg";
-const reacticon = "/icons/reacticon.svg";
-const nodejsicon = "/icons/nodejsicon.svg";
+// — icons used in skills (resume-aligned) —
+const javascripticon  = "/icons/javascripticon.svg";
+const typescripticon  = "/icons/typescripticon.svg";
+const reacticon       = "/icons/reacticon.svg";
+const nextjsicon      = "/icons/nextjsicon.svg";
+const nextjsiconwhite = "/icons/nextjsiconwhite.svg";
+const reactnativeicon = "/icons/reactnativeicon.svg";
+const redux           = "/icons/redux.svg";
+const reactqueryicon  = "/icons/reactqueryicon.svg";
 const tailwindcssicon = "/icons/tailwindicon.svg";
-const mongodbicon = "/icons/mongoicon.svg";
-const expressicon = "/icons/expressicon.svg";
-const trelloicon = "/icons/trelloicon.svg";
-const apiicon = "/icons/apiicon.svg";
-const axiosicon = "/icons/axiosicon.svg";
-const spotifyicon = "/icons/spotifyicon.svg";
-const netlifyicon = "/icons/netlifyicon.svg";
-const rendericon = "/icons/rendericon.svg";
-const jwticon = "/icons/jwticon.svg";
-const tastyMockup = "/img/tasty_mockup.webp";
-const instorMockup = "/img/instor_mockup.webp";
+const nodejsicon      = "/icons/nodejsicon.svg";
+const expressicon     = "/icons/expressicon.svg";
+const expressiconwhite= "/icons/expressiconwhite.svg";
+const bunicon         = "/icons/bunicon.svg";
+const graphqlicon     = "/icons/graphqlicon.svg";
+const apiicon         = "/icons/apiicon.svg";
+const websocketicon   = "/icons/websocketicon.svg";
+const jwticon         = "/icons/jwticon.svg";
+const oauthicon       = "/icons/oauthicon.svg";
+const mongodbicon     = "/icons/mongoicon.svg";
+const psql            = "/icons/psql.svg";
+const redisicon       = "/icons/redisicon.svg";
+const aws             = "/icons/aws.svg";
+const digitaloceanicon= "/icons/digitaloceanicon.svg";
+const gcpicon         = "/icons/gcpicon.svg";
+const docker          = "/icons/docker.svg";
+const nginx           = "/icons/nginx.svg";
+const cicdicon        = "/icons/cicdicon.svg";
+const git             = "/icons/git.svg";
+const firebaseicon    = "/icons/firebaseicon.svg";
+const figmaicon       = "/icons/figmaicon.svg";
+const jiraicon        = "/icons/jiraicon.svg";
+const postmanicon     = "/icons/postmanicon.svg";
+// — legacy icons used in project tech lists —
+const htmlicon     = "/icons/htmlicon.svg";
+const cssicon      = "/icons/cssicon.svg";
+const axiosicon    = "/icons/axiosicon.svg";
+const spotifyicon  = "/icons/spotifyicon.svg";
+const netlifyicon  = "/icons/netlifyicon.svg";
+const rendericon   = "/icons/rendericon.svg";
+const trelloicon   = "/icons/trelloicon.svg";
+const canvaicon    = "/icons/canvaicon.svg";
+// — project assets —
+const tastyMockup    = "/img/tasty_mockup.webp";
+const instorMockup   = "/img/instor_mockup.webp";
 const silentmoonMockup = "/img/silentmoon_mockup.webp";
-const redux = "/icons/redux.svg";
 const profilepicture = "/img/me2.webp";
-const caricon = "/icons/car-icon.svg";
-const travelicon = "/icons/travel-icon.svg";
+// — about me icons —
+const caricon      = "/icons/car-icon.svg";
+const travelicon   = "/icons/travel-icon.svg";
 const hardwareicon = "/icons/hardware-icon.svg";
-const expressiconwhite = "/icons/expressiconwhite.svg";
 import { GoHome, GoPerson, GoMail, GoStack, GoProject } from "react-icons/go";
 import { FiGithub, FiLink, FiLinkedin, FiMail } from "react-icons/fi";
 
 export const headerIntroData = {
   title: "Hi, I'm Suhail",
-  subtitle: "Software Engineer",
+  subtitle: "Lead Full Stack Engineer",
   description: {
-    en: "Lead Software Engineer with 2+ years of experience. I specialise in scalable backend systems, full-stack web development, and React Native mobile apps — while mentoring junior developers and driving teams toward production-grade solutions.",
+    en: "Full Stack Developer with 2+ years of experience building scalable web and mobile applications using React.js, Next.js, React Native, Node.js, TypeScript, GraphQL, and MongoDB. Experienced in architecting backend systems, cloud infrastructure, and CI/CD pipelines — delivering production-grade products from concept to deployment.",
   },
   buttons: [
     {
@@ -157,45 +173,54 @@ export const liveTickerData = {
 
 export const skillsDataWeb = [
   {
-    skillsTitle: "WebDevelopment",
+    skillsTitle: "Frontend",
     skills: [
-      { title: "HTML",       hash: "#html",       icon: htmlicon,       color: "#F1662A" },
-      { title: "CSS",        hash: "#CSS",        icon: cssicon,        color: "#1572B6" },
-      { title: "JavaScript", hash: "#JavaScript", icon: javascripticon, color: "#F7DF1E" },
-      { title: "TypeScript", hash: "#TypeScript", icon: typescripticon, color: "#007ACC" },
-      { title: "React",      hash: "#React",      icon: reacticon,      color: "#61DAFB" },
-      { title: "Redux",      hash: "#Redux",      icon: redux,          color: ["#000000", "#FFFFFF"] },
-      { title: "Node.js",    hash: "#Node.js",    icon: nodejsicon,     color: "#339933" },
-      { title: "Express",    hash: "#Express",    icon: [expressicon, expressiconwhite], color: ["#000000", "#FFFFFF"] },
-      { title: "Tailwind",   hash: "#Tailwind",   icon: tailwindcssicon,color: "#38B2AC" },
-      { title: "AWS",        hash: "#AWS",        icon: aws,            color: "#FF9900" },
-      { title: "Nginx",      hash: "#Nginx",      icon: nginx,          color: "#009639" },
-      { title: "Vite",       hash: "#Vite",       icon: vite,           color: "#646CFF" },
-      { title: "Vercel",     hash: "#Vercel",     icon: vercel,         color: "#000000" },
-      { title: "PostgreSQL", hash: "#PostgreSQL", icon: psql,           color: "#336791" },
-      { title: "MongoDB",    hash: "#MongoDB",    icon: mongodbicon,    color: "#449C45" },
+      { title: "React.js",      hash: "#React",        icon: reacticon,       color: "#61DAFB" },
+      { title: "Next.js",       hash: "#Next.js",      icon: [nextjsicon, nextjsiconwhite], color: ["#000000", "#FFFFFF"] },
+      { title: "React Native",  hash: "#ReactNative",  icon: reactnativeicon,  color: "#61DAFB" },
+      { title: "Redux",         hash: "#Redux",        icon: redux,            color: ["#000000", "#FFFFFF"] },
+      { title: "React Query",   hash: "#ReactQuery",   icon: reactqueryicon,   color: "#FF4154" },
+      { title: "Tailwind CSS",  hash: "#Tailwind",     icon: tailwindcssicon,  color: "#38B2AC" },
+      { title: "TypeScript",    hash: "#TypeScript",   icon: typescripticon,   color: "#007ACC" },
+      { title: "JavaScript",    hash: "#JavaScript",   icon: javascripticon,   color: "#F7DF1E" },
     ],
   },
 ] as const;
 
 export const skillsDataDesign = [
   {
-    skillsTitle: "DevOps",
+    skillsTitle: "Backend & Cloud",
     skills: [
-      { title: "Docker",     hash: "#Docker",     icon: docker, color: "#2496ED" },
-      { title: "Kubernetes", hash: "#Kubernetes", icon: kuber,  color: "#326CE5" },
-      { title: "Git",        hash: "#Git",        icon: git,    color: "#F05032" },
+      { title: "Node.js",      hash: "#Node.js",     icon: nodejsicon,      color: "#339933" },
+      { title: "Express.js",   hash: "#Express",     icon: [expressicon, expressiconwhite], color: ["#000000", "#FFFFFF"] },
+      { title: "Bun.js",       hash: "#Bun",         icon: bunicon,         color: "#F5A623" },
+      { title: "GraphQL",      hash: "#GraphQL",     icon: graphqlicon,     color: "#E10098" },
+      { title: "REST API",     hash: "#REST",        icon: apiicon,         color: "#FF9900" },
+      { title: "WebSocket",    hash: "#WebSocket",   icon: websocketicon,   color: "#00D4FF" },
+      { title: "JWT",          hash: "#JWT",         icon: jwticon,         color: "#000000" },
+      { title: "OAuth",        hash: "#OAuth",       icon: oauthicon,       color: "#EB5424" },
+      { title: "MongoDB",      hash: "#MongoDB",     icon: mongodbicon,     color: "#449C45" },
+      { title: "PostgreSQL",   hash: "#PostgreSQL",  icon: psql,            color: "#336791" },
+      { title: "Redis",        hash: "#Redis",       icon: redisicon,       color: "#DC382D" },
+      { title: "AWS",          hash: "#AWS",         icon: aws,             color: "#FF9900" },
+      { title: "DigitalOcean", hash: "#DigitalOcean",icon: digitaloceanicon,color: "#0080FF" },
+      { title: "GCP",          hash: "#GCP",         icon: gcpicon,         color: "#4285F4" },
+      { title: "Docker",       hash: "#Docker",      icon: docker,          color: "#2496ED" },
+      { title: "Nginx",        hash: "#Nginx",       icon: nginx,           color: "#009639" },
+      { title: "CI/CD",        hash: "#CICD",        icon: cicdicon,        color: "#21D397" },
     ],
   },
 ] as const;
 
 export const skillsDataCMS = [
   {
-    skillsTitle: "Languages",
+    skillsTitle: "Tools",
     skills: [
-      { title: "TypeScript", hash: "#TypeScript", icon: typescripticon, color: "#007ACC" },
-      { title: "JavaScript", hash: "#JavaScript", icon: javascripticon, color: "#F7DF1E" },
-      { title: "Python",     hash: "#Python",     icon: python,         color: "#3776AB" },
+      { title: "Git",      hash: "#Git",      icon: git,          color: "#F05032" },
+      { title: "Firebase", hash: "#Firebase", icon: firebaseicon, color: "#FFCA28" },
+      { title: "Figma",    hash: "#Figma",    icon: figmaicon,    color: "#F24E1E" },
+      { title: "Jira",     hash: "#Jira",     icon: jiraicon,     color: "#0052CC" },
+      { title: "Postman",  hash: "#Postman",  icon: postmanicon,  color: "#FF6C37" },
     ],
   },
 ] as const;
