@@ -31,7 +31,7 @@ const ServiceStatus: React.FC = () => {
       }
     }
     getStatusData();
-  }, []);
+  }, [apiServiceStatusURL]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="flex items-center gap-3 px-5 py-3 rounded-xl bg-white/5 border border-white/10">

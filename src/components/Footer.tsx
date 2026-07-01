@@ -117,10 +117,9 @@ const Footer: React.FC = () => {
                     }}
                   >
                     {typeof social.icon === "function" ? (
-                      <social.icon
-                        className="group-hover:text-[--orange] transition-colors duration-300"
-                        style={{ color: isDark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.45)" } as React.CSSProperties}
-                      />
+                      <span style={{ color: isDark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.45)" }}>
+                        <social.icon className="group-hover:text-[--orange] transition-colors duration-300" />
+                      </span>
                     ) : (
                       <img src={social.icon} alt={social.altimgname}
                         className="w-[2.4rem] h-[2.4rem] opacity-50 group-hover:opacity-100 transition-opacity duration-300" />
