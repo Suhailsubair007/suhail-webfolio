@@ -5,19 +5,19 @@
 /* FONT IMPORTS */
 @font-face {
   font-family: "poppins-bold";
-  src: url("./assets/fonts/font3.woff2");
+  src: url("/fonts/font3.woff2");
 }
 @font-face {
   font-family: "poppins-semibold";
-  src: url("./assets/fonts/font2.woff2");
+  src: url("/fonts/font2.woff2");
 }
 @font-face {
   font-family: "poppins-black";
-  src: url("./assets/fonts/font4.woff2");
+  src: url("/fonts/font4.woff2");
 }
 @font-face {
   font-family: "poppins-regular";
-  src: url("./assets/fonts/font1.woff2");
+  src: url("/fonts/font1.woff2");
 }
 
 /* ============================================================

@@ -1,8 +1,10 @@
+'use client';
+
 import React, { useState, useEffect, useRef } from "react";
 import Button from "./Button";
 import emailjs from "@emailjs/browser";
 import { Highlight, themes } from "prism-react-renderer";
-import { contactData, toastMessages } from "../assets/lib/data.tsx";
+import { contactData, toastMessages } from "../assets/lib/data";
 import { useSectionInView } from "../assets/lib/hooks";
 import { ToastContainer, toast } from "react-toastify";
 import { useTheme } from "../context/theme-context";
@@ -44,9 +46,9 @@ const editorColors = {
 };
 
 const Contact: React.FC = () => {
-  const serviceId  = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-  const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-  const publicKey  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+  const serviceId  = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
+  const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!;
+  const publicKey  = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!;
 
   const [name, setName]                         = useState("");
   const [email, setEmail]                       = useState("");
@@ -265,7 +267,9 @@ await send({
               className="flex items-center gap-2 px-4 py-[0.6rem] rounded-t-lg"
               style={{
                 background: ec.codeArea,
-                border: `1px solid ${ec.border}`,
+                borderTop: `1px solid ${ec.border}`,
+                borderLeft: `1px solid ${ec.border}`,
+                borderRight: `1px solid ${ec.border}`,
                 borderBottom: "none",
               }}
             >

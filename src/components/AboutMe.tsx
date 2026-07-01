@@ -1,6 +1,9 @@
+'use client';
+
 import React, { useRef } from "react";
-import suhail from "../assets/img/suhail.webp";
 import { aboutMeData } from "../assets/lib/data";
+
+const suhail = "/img/suhail.webp";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { motion, useScroll, useTransform } from "framer-motion";

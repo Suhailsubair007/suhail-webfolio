@@ -1,4 +1,5 @@
-import bannerBg from "../assets/img/bannerbg.webp";
+'use client';
+
 import React, { useRef } from "react";
 import Button from "./Button";
 import LiveTicker from "./ParallaxText";
@@ -13,6 +14,8 @@ import "react-toastify/dist/ReactToastify.css";
 import "swiper/css";
 import "swiper/css/effect-cards";
 import "swiper/css/pagination";
+
+const bannerBg = "/img/bannerbg.webp";
 
 const ProjectSlider: React.FC = () => {
   const { ref } = useSectionInView("Projects");
@@ -92,59 +95,60 @@ const ProjectSlider: React.FC = () => {
               {projectsData.map((project, index: number) => (
                 <SwiperSlide
                   key={index}
-                  className="quote-outer-container bg-[--darkblue] text-[--white] flex flex-row justify-between  rounded-2xl p-20 text-left max-lg:hidden "
+                  className="quote-outer-container bg-[--darkblue] rounded-2xl text-left max-lg:hidden"
                 >
-                  <div className=" w-[55%] flex flex-col gap-12 justify-between ">
-                    <h2>{project.title}</h2>
+                  <div className="flex flex-row justify-between items-start w-full h-full p-20 text-[--white]">
+                    <div className="w-[55%] flex flex-col gap-12 justify-between">
+                      <h2>{project.title}</h2>
 
-                    <p className="text-white">
-                      {project.description_EN}
-                    </p>
-                    <div className="technologies">
-                      <h3>
-                        {"Technologies"}
-                      </h3>
-                      <div className="grid grid-cols-6 gap-10 p-4">
-                        {project.technologies.map(
-                          (technology, innerIndex: number) => (
-                            <img
-                              key={innerIndex}
-                              src={technology.icon}
-                              alt={`${project.title}-icon`}
-                              className="h-[5rem] w-[60%] "
-                              data-tooltip-id="my-tooltip"
-                              data-tooltip-content={technology.name}
-                            />
-                          )
-                        )}
+                      <p className="text-white">
+                        {project.description_EN}
+                      </p>
+                      <div className="technologies">
+                        <h3>
+                          {"Technologies"}
+                        </h3>
+                        <div className="grid grid-cols-6 gap-10 p-4">
+                          {project.technologies.map(
+                            (technology, innerIndex: number) => (
+                              <img
+                                key={innerIndex}
+                                src={technology.icon}
+                                alt={`${project.title}-icon`}
+                                className="h-[5rem] w-[60%]"
+                                data-tooltip-id="my-tooltip"
+                                data-tooltip-content={technology.name}
+                              />
+                            )
+                          )}
+                        </div>
+                      </div>
+                      <div className="buttons flex gap-10">
+                        <Button
+                          label="Live Demo"
+                          link={project.deploymenturl}
+                          iconSVG={project.deploymenticon}
+                          buttoncolor={project.colors.main}
+                          iconcolor={project.colors.icon}
+                          onClick={notifyServerRequest}
+                        />
+                        <Button
+                          label="Github Repository"
+                          link={project.githuburl}
+                          iconSVG={project.githubicon}
+                          buttoncolor={project.colors.main}
+                          iconcolor={project.colors.icon}
+                        />
                       </div>
                     </div>
-                    <div className="buttons flex gap-10">
-                      <Button
-                        label="Live Demo"
-                        link={project.deploymenturl}
-                        iconSVG={project.deploymenticon}
-                        buttoncolor={project.colors.main}
-                        iconcolor={project.colors.icon}
-                        onClick={notifyServerRequest}
-                      />
-                      <Button
-                        label="Github Repository"
-                        link={project.githuburl}
-                        iconSVG={project.githubicon}
-                        buttoncolor={project.colors.main}
-                        iconcolor={project.colors.icon}
+
+                    <div className="right-content relative h-[40rem] overflow-hidden rounded-xl w-[40%] transition-all duration-200 shadow-2xl">
+                      <img
+                        src={project.image}
+                        alt={`${project.title}-project-mockup`}
+                        className="w-full h-auto transition-all duration-[6000ms] transform opacity-100 hover:translate-y-[-50%]"
                       />
                     </div>
-                  </div>
-
-                  <div className="right-content relative h-[40rem] overflow-hidden rounded-xl w-[40%] transition-all duration-200 shadow-2xl">
-                    <img
-                      src={project.image}
-                      alt={`${project.title}-project-mockup`}
-                      className={`w-full h-auto transition-all duration-[6000ms] transform opacity-100 hover:translate-y-[-50%] 
-                      `}
-                    />
                   </div>
                 </SwiperSlide>
               ))}

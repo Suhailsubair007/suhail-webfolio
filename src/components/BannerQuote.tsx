@@ -1,8 +1,10 @@
-import React from "react";
+'use client';
 
-import bannerBg from "../assets/img/bannerbg.webp";
+import React from "react";
 import { quotesData } from "../assets/lib/data";
 import { useQuoteAnimation } from "../hooks/useQuoteAnimation";
+
+const bannerBg = "/img/bannerbg.webp";
 
 interface BannerProps {
   style: "withBG" | "noBG";

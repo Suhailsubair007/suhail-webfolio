@@ -1,3 +1,5 @@
+'use client';
+
 import type { SectionName } from "../assets/lib/types";
 import React, { useState, createContext, useContext } from "react";
 
