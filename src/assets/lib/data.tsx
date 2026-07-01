@@ -28,9 +28,10 @@ const nginx           = "/icons/nginx.svg";
 const cicdicon        = "/icons/cicdicon.svg";
 const git             = "/icons/git.svg";
 const firebaseicon    = "/icons/firebaseicon.svg";
-const figmaicon       = "/icons/figmaicon.svg";
+const figmaicon       = "/icons/figmaicon.webp";
 const jiraicon        = "/icons/jiraicon.svg";
 const postmanicon     = "/icons/postmanicon.svg";
+const githubicon      = "/icons/githubicon.svg";
 // — legacy icons used in project tech lists —
 const htmlicon     = "/icons/htmlicon.svg";
 const cssicon      = "/icons/cssicon.svg";
@@ -217,6 +218,7 @@ export const skillsDataCMS = [
     skillsTitle: "Tools",
     skills: [
       { title: "Git",      hash: "#Git",      icon: git,          color: "#F05032" },
+      { title: "GitHub",   hash: "#GitHub",   icon: githubicon,   color: "#1B1F24" },
       { title: "Firebase", hash: "#Firebase", icon: firebaseicon, color: "#FFCA28" },
       { title: "Figma",    hash: "#Figma",    icon: figmaicon,    color: "#F24E1E" },
       { title: "Jira",     hash: "#Jira",     icon: jiraicon,     color: "#0052CC" },
