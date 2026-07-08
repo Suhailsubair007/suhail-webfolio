@@ -50,7 +50,7 @@ const Button: React.FC<ButtonProps> = ({
 
   if (elementType === "input") {
     return <input {...commonProps} value={value}></input>;
-  } else if (link?.startsWith("http")) {
+  } else if (link?.startsWith("http") || link?.endsWith(".pdf")) {
     return (
       <a href={link} target="_blank" rel="noopener noreferrer" className="no-underline">
         {inner}

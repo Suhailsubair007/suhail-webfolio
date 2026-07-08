@@ -39,13 +39,13 @@ const caricon      = "/icons/car-icon.svg";
 const travelicon   = "/icons/travel-icon.svg";
 const hardwareicon = "/icons/hardware-icon.svg";
 import { GoHome, GoPerson, GoMail, GoStack, GoBriefcase } from "react-icons/go";
-import { FiGithub, FiLink, FiLinkedin, FiMail } from "react-icons/fi";
+import { FiGithub, FiLink, FiLinkedin, FiMail, FiFileText } from "react-icons/fi";
 
 export const headerIntroData = {
   title: "Hi, I'm Suhail",
   subtitle: "Lead Full Stack Engineer",
   description: {
-    en: "Full Stack Developer with 2+ years of experience building scalable web and mobile applications using React.js, Next.js, React Native, Node.js, TypeScript, GraphQL, and MongoDB. Experienced in architecting backend systems, cloud infrastructure, and CI/CD pipelines — delivering production-grade products from concept to deployment.",
+    en: "I design and ship scalable web and mobile applications with React, Next.js, React Native, and Node.js — powered by TypeScript, GraphQL, and MongoDB. With 2+ years building production-grade products, I architect backend systems, cloud infrastructure, and CI/CD pipelines that carry ideas from concept to deployment.",
   },
   buttons: [
     {
@@ -58,6 +58,12 @@ export const headerIntroData = {
       name: "Projects",
       label: { en: "GitHub" },
       icon: FiGithub,
+      color: "secondary-btn",
+    },
+    {
+      name: "Resume",
+      label: { en: "Resume" },
+      icon: FiFileText,
       color: "secondary-btn",
     },
   ],
@@ -73,17 +79,16 @@ export const experienceData = [
     location: "Kottayam, India",
     tagline: "Product ownership of a location-based services marketplace",
     description_EN:
-      "Driving development of a location-based services marketplace serving 10,000+ registered users — spanning a Next.js customer platform, a freelancer onboarding portal, an admin dashboard, and cross-platform mobile apps.",
+      "Driving product development for a location-based services marketplace serving 10,000+ users — spanning a Next.js customer platform, a freelancer portal, an admin dashboard, and mobile apps.",
     highlights: [
-      "Re-architected a legacy Node.js backend into a service-based system with TypeScript, GraphQL & MongoDB — migrating all production data with zero downtime and zero data loss.",
+      "Re-architected a legacy Node.js backend into a service-based system with TypeScript, GraphQL & MongoDB — migrating all production data with zero downtime.",
       "Built real-time, geo-based service matching using regions, micro-zones and geographic boundaries to connect customers with nearby providers instantly.",
-      "Shipped the React Native (Expo) Android app end-to-end and owned the full Play Store release pipeline; now leading the migration to native Kotlin.",
-      "Manage AWS infrastructure (EC2, S3, SES) and designed the file-upload architecture powering production.",
-      "Mentor two junior developers and partner directly with the CTO on product and architecture decisions.",
+      "Shipped the React Native (Expo) Android app end-to-end, owning the full Play Store release pipeline and now leading the migration to native Kotlin.",
+      "Manage AWS infrastructure (EC2, S3, SES) while mentoring two junior developers and partnering directly with the CTO on architecture decisions.",
     ],
     technologies: [
-      "Next.js", "TypeScript", "GraphQL", "MongoDB",
-      "React Native", "Kotlin", "AWS", "Node.js",
+      "Next.js", "TypeScript", "GraphQL",
+      "MongoDB", "React Native", "AWS",
     ],
     websiteurl: "https://deelo.in",
     githuburl: "",
@@ -112,8 +117,8 @@ export const experienceData = [
       "Managed production deployment on DigitalOcean with Nginx/Caddy reverse proxies, PM2, Cloudflare DNS + R2 storage and Postmark transactional email.",
     ],
     technologies: [
-      "TypeScript", "Bun.js", "REST APIs", "WebSockets",
-      "React Native", "DigitalOcean", "Cloudflare R2", "Caddy",
+      "TypeScript", "Bun.js", "WebSockets",
+      "React Native", "DigitalOcean", "Cloudflare R2",
     ],
     websiteurl: "",
     githuburl: "",
@@ -136,12 +141,14 @@ export const experienceData = [
     description_EN:
       "Building a SaaS platform for automotive workshops as a solo developer — covering service-order management, customer communication, inventory tracking and role-based access control.",
     highlights: [
-      "Architected a Go (Fiber) backend backed by PostgreSQL, fully containerized with Docker.",
-      "Building a Flutter mobile app so workshop staff can manage service orders on the go.",
-      "Designed multi-tenant data models and role-based access control from the ground up.",
+      "Architected a Go (Fiber) backend on PostgreSQL, fully containerized with Docker for fast, reproducible deployments across environments.",
+      "Building a cross-platform Flutter app so workshop staff can manage service orders, inventory and customer communication from the field.",
+      "Designed multi-tenant data models and role-based access control from the ground up, supporting multiple workshop accounts on one platform.",
+      "Built end-to-end inventory tracking and customer communication workflows, giving each workshop a single operational hub.",
     ],
     technologies: [
-      "Go (Fiber)", "PostgreSQL", "Flutter", "Docker",
+      "Go (Fiber)", "PostgreSQL", "Flutter",
+      "Docker", "REST APIs", "JWT",
     ],
     websiteurl: "",
     githuburl: "https://github.com/Suhailsubair007",

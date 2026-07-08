@@ -166,7 +166,7 @@ const ExperienceSlider: React.FC = () => {
               effect={"cards"}
               grabCursor={true}
               modules={[EffectCards, Autoplay, Pagination]}
-              className=" w-[60vw] max-lg:hidden min-[1921px]:px-96"
+              className=" w-[60vw] max-lg:!hidden min-[1921px]:px-96"
               loop={true}
               autoplay={{
                 delay: 5000,
@@ -180,7 +180,7 @@ const ExperienceSlider: React.FC = () => {
               {experienceData.map((experience, index: number) => (
                 <SwiperSlide
                   key={index}
-                  className="quote-outer-container bg-[--darkblue] rounded-2xl text-left max-lg:hidden"
+                  className="quote-outer-container bg-[--darkblue] rounded-2xl text-left max-lg:!hidden"
                 >
                   <div className="flex flex-row justify-between items-stretch w-full h-full p-20 gap-16 text-[--white] min-h-[46rem]">
                     {/* LEFT — identity, summary, stack, links */}
