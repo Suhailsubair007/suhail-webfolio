@@ -32,25 +32,13 @@ const figmaicon       = "/icons/figmaicon.webp";
 const jiraicon        = "/icons/jiraicon.svg";
 const postmanicon     = "/icons/postmanicon.svg";
 const githubicon      = "/icons/githubicon.svg";
-// — legacy icons used in project tech lists —
-const htmlicon     = "/icons/htmlicon.svg";
-const cssicon      = "/icons/cssicon.svg";
-const axiosicon    = "/icons/axiosicon.svg";
-const spotifyicon  = "/icons/spotifyicon.svg";
-const netlifyicon  = "/icons/netlifyicon.svg";
-const rendericon   = "/icons/rendericon.svg";
-const trelloicon   = "/icons/trelloicon.svg";
-const canvaicon    = "/icons/canvaicon.svg";
-// — project assets —
-const tastyMockup    = "/img/tasty_mockup.webp";
-const instorMockup   = "/img/instor_mockup.webp";
-const silentmoonMockup = "/img/silentmoon_mockup.webp";
+// — profile —
 const profilepicture = "/img/me2.webp";
 // — about me icons —
 const caricon      = "/icons/car-icon.svg";
 const travelicon   = "/icons/travel-icon.svg";
 const hardwareicon = "/icons/hardware-icon.svg";
-import { GoHome, GoPerson, GoMail, GoStack, GoProject } from "react-icons/go";
+import { GoHome, GoPerson, GoMail, GoStack, GoBriefcase } from "react-icons/go";
 import { FiGithub, FiLink, FiLinkedin, FiMail } from "react-icons/fi";
 
 export const headerIntroData = {
@@ -76,92 +64,94 @@ export const headerIntroData = {
   profilepicture: profilepicture,
 } as const;
 
-export const projectsData = [
+export const experienceData = [
   {
-    title: "Tasty App",
+    company: "Deelo",
+    role: "Full Stack Developer",
+    kind: "Full-time",
+    period: "Jan 2026 — Present",
+    location: "Kottayam, India",
+    tagline: "Product ownership of a location-based services marketplace",
     description_EN:
-      "A recipe app that we built as a team with React and the MealDB API. I was the front-end developer and programmed features like voice search or print to PDF. The design was created with Figma. The website is responsive and mobile-optimized.",
-    technologies: [
-      { name: "Html", icon: htmlicon },
-      { name: "CSS", icon: cssicon },
-      { name: "JavaScript", icon: javascripticon },
-      { name: "REST Api", icon: apiicon },
-      { name: "React", icon: reacticon },
-      { name: "Figma", icon: redux },
-      { name: "Canva", icon: canvaicon },
-      { name: "Netlify", icon: netlifyicon },
-      { name: "Trello", icon: trelloicon },
+      "Driving development of a location-based services marketplace serving 10,000+ registered users — spanning a Next.js customer platform, a freelancer onboarding portal, an admin dashboard, and cross-platform mobile apps.",
+    highlights: [
+      "Re-architected a legacy Node.js backend into a service-based system with TypeScript, GraphQL & MongoDB — migrating all production data with zero downtime and zero data loss.",
+      "Built real-time, geo-based service matching using regions, micro-zones and geographic boundaries to connect customers with nearby providers instantly.",
+      "Shipped the React Native (Expo) Android app end-to-end and owned the full Play Store release pipeline; now leading the migration to native Kotlin.",
+      "Manage AWS infrastructure (EC2, S3, SES) and designed the file-upload architecture powering production.",
+      "Mentor two junior developers and partner directly with the CTO on product and architecture decisions.",
     ],
-    image: tastyMockup,
-    deploymenturl: "https://delightful-cheesecake-9b19f0.netlify.app/",
-    githuburl: "https://github.com/Suhailsubair007",
+    technologies: [
+      "Next.js", "TypeScript", "GraphQL", "MongoDB",
+      "React Native", "Kotlin", "AWS", "Node.js",
+    ],
+    websiteurl: "https://deelo.in",
+    githuburl: "",
+    websiteicon: FiLink,
     githubicon: FiGithub,
-    deploymenticon: FiLink,
     colors: {
       main: "main-btn",
       second: "secondary-btn",
       icon: "white",
-      projectcolor: "#70B9BE",
+      accent: "#f59e0b",
     },
   },
   {
-    title: "Silentmoon",
+    company: "Ecloto Designs",
+    role: "Full Stack Developer",
+    kind: "Full-time",
+    period: "Apr 2025 — Dec 2025",
+    location: "Kochi, India",
+    tagline: "Built Orgface, a professional networking & messaging platform",
     description_EN:
-      "A yoga and meditation app that we built as a team with React, MongoDB, Express and Node.js. My task as a gitmaster and backend developer was to program the backend with connection using a restful API and to model the database in MongoDB.",
-    technologies: [
-      { name: "Html", icon: htmlicon },
-      { name: "CSS", icon: cssicon },
-      { name: "JavaScript", icon: javascripticon },
-      { name: "Spotify Api", icon: spotifyicon },
-      { name: "React", icon: reacticon },
-      { name: "JWT & Bcrypt", icon: jwticon },
-      { name: "Axios", icon: axiosicon },
-      { name: "MongoDB", icon: mongodbicon },
-      { name: "Express", icon: expressiconwhite },
-      { name: "Node.js", icon: nodejsicon },
-      { name: "Figma", icon: redux },
-      { name: "Render", icon: rendericon },
+      "Built Orgface — a professional networking and messaging platform — engineering the entire backend from scratch and delivering features across web, Android and iOS from a single codebase.",
+    highlights: [
+      "Designed scalable database schemas and REST APIs across 10+ business modules using TypeScript and Bun.js in a monorepo.",
+      "Engineered one-to-one and group chat over WebSockets, with a WhatsApp-style push-notification system delivered across web, Android and iOS.",
+      "Shipped cross-platform features from a single React Native codebase, including API integration and a redesign of core screens such as profile management.",
+      "Managed production deployment on DigitalOcean with Nginx/Caddy reverse proxies, PM2, Cloudflare DNS + R2 storage and Postmark transactional email.",
     ],
-    image: silentmoonMockup,
-    deploymenturl: "https://silentmoon-grpw.onrender.com/",
-    githuburl: "https://github.com/Suhailsubair007",
+    technologies: [
+      "TypeScript", "Bun.js", "REST APIs", "WebSockets",
+      "React Native", "DigitalOcean", "Cloudflare R2", "Caddy",
+    ],
+    websiteurl: "",
+    githuburl: "",
+    websiteicon: FiLink,
     githubicon: FiGithub,
-    deploymenticon: FiLink,
     colors: {
       main: "main-btn",
       second: "secondary-btn",
       icon: "white",
-      projectcolor: "#FFD5BD",
+      accent: "#22c55e",
     },
   },
   {
-    title: "Furniture Organizer",
+    company: "Workshop Management SaaS",
+    role: "Solo Developer",
+    kind: "Personal Product",
+    period: "2024 — Present",
+    location: "Self-initiated",
+    tagline: "A SaaS platform for automotive workshops, built end-to-end",
     description_EN:
-      "A furniture organizer app that we programmed as a duo team with React, MongoDB, Express and Node.js. As a gitmaster, I took over the connection of the frontend to the backend and the database modeling. The app is responsive and mobile-optimized.",
-    technologies: [
-      { name: "Html", icon: htmlicon },
-      { name: "CSS", icon: cssicon },
-      { name: "JavaScript", icon: javascripticon },
-      { name: "React", icon: reacticon },
-      { name: "JWT & Bcrypt", icon: jwticon },
-      { name: "Axios", icon: axiosicon },
-      { name: "MongoDB", icon: mongodbicon },
-      { name: "Express", icon: expressiconwhite },
-      { name: "Node.js", icon: nodejsicon },
-      { name: "Figma", icon: redux },
-      { name: "Render", icon: rendericon },
-      { name: "Trello", icon: trelloicon },
+      "Building a SaaS platform for automotive workshops as a solo developer — covering service-order management, customer communication, inventory tracking and role-based access control.",
+    highlights: [
+      "Architected a Go (Fiber) backend backed by PostgreSQL, fully containerized with Docker.",
+      "Building a Flutter mobile app so workshop staff can manage service orders on the go.",
+      "Designed multi-tenant data models and role-based access control from the ground up.",
     ],
-    image: instorMockup,
-    deploymenturl: "https://mern-haushaltsbuch.onrender.com/",
+    technologies: [
+      "Go (Fiber)", "PostgreSQL", "Flutter", "Docker",
+    ],
+    websiteurl: "",
     githuburl: "https://github.com/Suhailsubair007",
+    websiteicon: FiLink,
     githubicon: FiGithub,
-    deploymenticon: FiLink,
     colors: {
       main: "main-btn",
       second: "secondary-btn",
       icon: "white",
-      projectcolor: "#E3964A",
+      accent: "#38bdf8",
     },
   },
 ] as const;
@@ -229,9 +219,9 @@ export const skillsDataCMS = [
 
 export const navLinks = [
   { en: "Home",     hash: "#home",     icon: GoHome    },
-  { en: "Skills",   hash: "#skills",   icon: GoStack   },
-  { en: "Projects", hash: "#projects", icon: GoProject },
-  { en: "About me", hash: "#about-me", icon: GoPerson  },
+  { en: "Skills",     hash: "#skills",     icon: GoStack     },
+  { en: "Experience", hash: "#experience", icon: GoBriefcase },
+  { en: "About me",   hash: "#about-me",   icon: GoPerson    },
   { en: "Contact",  hash: "#contact",  icon: GoMail    },
 ] as const;
 

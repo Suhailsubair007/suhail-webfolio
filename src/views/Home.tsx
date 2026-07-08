@@ -16,7 +16,7 @@ const AboutMe        = dynamic(() => import("../components/AboutMe"),        { s
 const Contact        = dynamic(() => import("../components/Contact"));
 const HeaderIntro    = dynamic(() => import("../components/HeaderIntro"));
 const RadialGradient = dynamic(() => import("../components/RadialGradient"), { ssr: false });
-const ProjectSlider  = dynamic(() => import("../components/ProjectSlider"),  { ssr: false });
+const ExperienceSlider = dynamic(() => import("../components/ExperienceSlider"), { ssr: false });
 
 const Home: React.FC = () => {
   const { theme } = useTheme();
@@ -71,7 +71,7 @@ const Home: React.FC = () => {
             height="extraLarge"
             dividerStyle="solid"
           />
-          <ProjectSlider />
+          <ExperienceSlider />
           <div className="relative -mb-24 pb-32 -mt-10">
             <RadialGradient
               opacity={theme === "light" ? "opacity-30" : "opacity-30"}
