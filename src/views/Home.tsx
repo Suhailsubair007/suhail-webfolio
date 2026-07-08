@@ -36,7 +36,7 @@ const Home: React.FC = () => {
           <HeaderIntro />
           <SiteBarRight />
         </header>
-        <main className="relative">
+        <main className="relative overflow-clip">
           <BannerQuote
             style={"withBG"}
             quoteIndex={0}
