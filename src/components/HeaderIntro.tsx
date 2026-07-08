@@ -95,7 +95,7 @@ const HeaderIntro: React.FC = () => {
       </h2>
 
       {/* Description */}
-      <p className="text-[1.5rem] sm:text-[1.6rem] leading-relaxed max-w-[90%] sm:max-w-[60rem] lg:max-w-[55rem] text-center opacity-70">
+      <p className="text-[1.5rem] sm:text-[1.6rem] font-medium leading-relaxed max-w-[90%] sm:max-w-[60rem] lg:max-w-[55rem] text-center opacity-80 tracking-[-0.01em]">
         {headerIntroData.description.en}
       </p>
 
@@ -109,11 +109,13 @@ const HeaderIntro: React.FC = () => {
             link={
               button.name === "Projects"
                 ? "https://github.com/Suhailsubair007"
+                : button.name === "Resume"
+                ? "/resume.pdf"
                 : `#${button.name.toLocaleLowerCase()}`
             }
             buttoncolor={button.color}
             onClick={
-              button.name === "Projects"
+              button.name === "Projects" || button.name === "Resume"
                 ? undefined
                 : () => {
                     setActiveSection(button.name);

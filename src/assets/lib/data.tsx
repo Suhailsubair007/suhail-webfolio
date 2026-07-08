@@ -1,46 +1,51 @@
-const canvaicon = "/icons/canvaicon.svg";
-const vite = "/icons/vite.svg";
-const psql = "/icons/psql.svg";
-const docker = "/icons/docker.svg";
-const aws = "/icons/aws.svg";
-const git = "/icons/git.svg";
-const kuber = "/icons/kubernatis.svg";
-const nginx = "/icons/nginx.svg";
-const vercel = "/icons/vercel.svg";
-const python = "/icons/python.svg";
-const htmlicon = "/icons/htmlicon.svg";
-const cssicon = "/icons/cssicon.svg";
-const javascripticon = "/icons/javascripticon.svg";
-const typescripticon = "/icons/typescripticon.svg";
-const reacticon = "/icons/reacticon.svg";
-const nodejsicon = "/icons/nodejsicon.svg";
+// — icons used in skills (resume-aligned) —
+const javascripticon  = "/icons/javascripticon.svg";
+const typescripticon  = "/icons/typescripticon.svg";
+const reacticon       = "/icons/reacticon.svg";
+const nextjsicon      = "/icons/nextjsicon.svg";
+const nextjsiconwhite = "/icons/nextjsiconwhite.svg";
+const reactnativeicon = "/icons/reactnativeicon.svg";
+const redux           = "/icons/redux.svg";
+const reactqueryicon  = "/icons/reactqueryicon.svg";
 const tailwindcssicon = "/icons/tailwindicon.svg";
-const mongodbicon = "/icons/mongoicon.svg";
-const expressicon = "/icons/expressicon.svg";
-const trelloicon = "/icons/trelloicon.svg";
-const apiicon = "/icons/apiicon.svg";
-const axiosicon = "/icons/axiosicon.svg";
-const spotifyicon = "/icons/spotifyicon.svg";
-const netlifyicon = "/icons/netlifyicon.svg";
-const rendericon = "/icons/rendericon.svg";
-const jwticon = "/icons/jwticon.svg";
-const tastyMockup = "/img/tasty_mockup.webp";
-const instorMockup = "/img/instor_mockup.webp";
-const silentmoonMockup = "/img/silentmoon_mockup.webp";
-const redux = "/icons/redux.svg";
+const nodejsicon      = "/icons/nodejsicon.svg";
+const expressicon     = "/icons/expressicon.svg";
+const expressiconwhite= "/icons/expressiconwhite.svg";
+const bunicon         = "/icons/bunicon.svg";
+const graphqlicon     = "/icons/graphqlicon.svg";
+const apiicon         = "/icons/apiicon.svg";
+const websocketicon   = "/icons/websocketicon.svg";
+const jwticon         = "/icons/jwticon.svg";
+const oauthicon       = "/icons/oauthicon.svg";
+const mongodbicon     = "/icons/mongoicon.svg";
+const psql            = "/icons/psql.svg";
+const redisicon       = "/icons/redisicon.svg";
+const aws             = "/icons/aws.svg";
+const digitaloceanicon= "/icons/digitaloceanicon.svg";
+const gcpicon         = "/icons/gcpicon.svg";
+const docker          = "/icons/docker.svg";
+const nginx           = "/icons/nginx.svg";
+const cicdicon        = "/icons/cicdicon.svg";
+const git             = "/icons/git.svg";
+const firebaseicon    = "/icons/firebaseicon.svg";
+const figmaicon       = "/icons/figmaicon.webp";
+const jiraicon        = "/icons/jiraicon.svg";
+const postmanicon     = "/icons/postmanicon.svg";
+const githubicon      = "/icons/githubicon.svg";
+// — profile —
 const profilepicture = "/img/me2.webp";
-const caricon = "/icons/car-icon.svg";
-const travelicon = "/icons/travel-icon.svg";
+// — about me icons —
+const caricon      = "/icons/car-icon.svg";
+const travelicon   = "/icons/travel-icon.svg";
 const hardwareicon = "/icons/hardware-icon.svg";
-const expressiconwhite = "/icons/expressiconwhite.svg";
-import { GoHome, GoPerson, GoMail, GoStack, GoProject } from "react-icons/go";
-import { FiGithub, FiLink, FiLinkedin, FiMail } from "react-icons/fi";
+import { GoHome, GoPerson, GoMail, GoStack, GoBriefcase } from "react-icons/go";
+import { FiGithub, FiLink, FiLinkedin, FiMail, FiFileText } from "react-icons/fi";
 
 export const headerIntroData = {
   title: "Hi, I'm Suhail",
-  subtitle: "Software Engineer",
+  subtitle: "Lead Full Stack Engineer",
   description: {
-    en: "Lead Software Engineer with 2+ years of experience. I specialise in scalable backend systems, full-stack web development, and React Native mobile apps — while mentoring junior developers and driving teams toward production-grade solutions.",
+    en: "I design and ship scalable web and mobile applications with React, Next.js, React Native, and Node.js — powered by TypeScript, GraphQL, and MongoDB. With 2+ years building production-grade products, I architect backend systems, cloud infrastructure, and CI/CD pipelines that carry ideas from concept to deployment.",
   },
   buttons: [
     {
@@ -55,96 +60,105 @@ export const headerIntroData = {
       icon: FiGithub,
       color: "secondary-btn",
     },
+    {
+      name: "Resume",
+      label: { en: "Resume" },
+      icon: FiFileText,
+      color: "secondary-btn",
+    },
   ],
   profilepicture: profilepicture,
 } as const;
 
-export const projectsData = [
+export const experienceData = [
   {
-    title: "Tasty App",
+    company: "Deelo",
+    role: "Full Stack Developer",
+    kind: "Full-time",
+    period: "Jan 2026 — Present",
+    location: "Kottayam, India",
+    tagline: "Product ownership of a location-based services marketplace",
     description_EN:
-      "A recipe app that we built as a team with React and the MealDB API. I was the front-end developer and programmed features like voice search or print to PDF. The design was created with Figma. The website is responsive and mobile-optimized.",
-    technologies: [
-      { name: "Html", icon: htmlicon },
-      { name: "CSS", icon: cssicon },
-      { name: "JavaScript", icon: javascripticon },
-      { name: "REST Api", icon: apiicon },
-      { name: "React", icon: reacticon },
-      { name: "Figma", icon: redux },
-      { name: "Canva", icon: canvaicon },
-      { name: "Netlify", icon: netlifyicon },
-      { name: "Trello", icon: trelloicon },
+      "Driving product development for a location-based services marketplace serving 10,000+ users — spanning a Next.js customer platform, a freelancer portal, an admin dashboard, and mobile apps.",
+    highlights: [
+      "Re-architected a legacy Node.js backend into a service-based system with TypeScript, GraphQL & MongoDB — migrating all production data with zero downtime.",
+      "Built real-time, geo-based service matching using regions, micro-zones and geographic boundaries to connect customers with nearby providers instantly.",
+      "Shipped the React Native (Expo) Android app end-to-end, owning the full Play Store release pipeline and now leading the migration to native Kotlin.",
+      "Manage AWS infrastructure (EC2, S3, SES) while mentoring two junior developers and partnering directly with the CTO on architecture decisions.",
     ],
-    image: tastyMockup,
-    deploymenturl: "https://delightful-cheesecake-9b19f0.netlify.app/",
-    githuburl: "https://github.com/Suhailsubair007",
+    technologies: [
+      "Next.js", "TypeScript", "GraphQL",
+      "MongoDB", "React Native", "AWS",
+    ],
+    websiteurl: "https://deelo.in",
+    githuburl: "",
+    websiteicon: FiLink,
     githubicon: FiGithub,
-    deploymenticon: FiLink,
     colors: {
       main: "main-btn",
       second: "secondary-btn",
       icon: "white",
-      projectcolor: "#70B9BE",
+      accent: "#f59e0b",
     },
   },
   {
-    title: "Silentmoon",
+    company: "Ecloto Designs",
+    role: "Full Stack Developer",
+    kind: "Full-time",
+    period: "Apr 2025 — Dec 2025",
+    location: "Kochi, India",
+    tagline: "Built Orgface, a professional networking & messaging platform",
     description_EN:
-      "A yoga and meditation app that we built as a team with React, MongoDB, Express and Node.js. My task as a gitmaster and backend developer was to program the backend with connection using a restful API and to model the database in MongoDB.",
-    technologies: [
-      { name: "Html", icon: htmlicon },
-      { name: "CSS", icon: cssicon },
-      { name: "JavaScript", icon: javascripticon },
-      { name: "Spotify Api", icon: spotifyicon },
-      { name: "React", icon: reacticon },
-      { name: "JWT & Bcrypt", icon: jwticon },
-      { name: "Axios", icon: axiosicon },
-      { name: "MongoDB", icon: mongodbicon },
-      { name: "Express", icon: expressiconwhite },
-      { name: "Node.js", icon: nodejsicon },
-      { name: "Figma", icon: redux },
-      { name: "Render", icon: rendericon },
+      "Built Orgface — a professional networking and messaging platform — engineering the entire backend from scratch and delivering features across web, Android and iOS from a single codebase.",
+    highlights: [
+      "Designed scalable database schemas and REST APIs across 10+ business modules using TypeScript and Bun.js in a monorepo.",
+      "Engineered one-to-one and group chat over WebSockets, with a WhatsApp-style push-notification system delivered across web, Android and iOS.",
+      "Shipped cross-platform features from a single React Native codebase, including API integration and a redesign of core screens such as profile management.",
+      "Managed production deployment on DigitalOcean with Nginx/Caddy reverse proxies, PM2, Cloudflare DNS + R2 storage and Postmark transactional email.",
     ],
-    image: silentmoonMockup,
-    deploymenturl: "https://silentmoon-grpw.onrender.com/",
-    githuburl: "https://github.com/Suhailsubair007",
+    technologies: [
+      "TypeScript", "Bun.js", "WebSockets",
+      "React Native", "DigitalOcean", "Cloudflare R2",
+    ],
+    websiteurl: "",
+    githuburl: "",
+    websiteicon: FiLink,
     githubicon: FiGithub,
-    deploymenticon: FiLink,
     colors: {
       main: "main-btn",
       second: "secondary-btn",
       icon: "white",
-      projectcolor: "#FFD5BD",
+      accent: "#22c55e",
     },
   },
   {
-    title: "Furniture Organizer",
+    company: "Workshop Management SaaS",
+    role: "Solo Developer",
+    kind: "Personal Product",
+    period: "2024 — Present",
+    location: "Self-initiated",
+    tagline: "A SaaS platform for automotive workshops, built end-to-end",
     description_EN:
-      "A furniture organizer app that we programmed as a duo team with React, MongoDB, Express and Node.js. As a gitmaster, I took over the connection of the frontend to the backend and the database modeling. The app is responsive and mobile-optimized.",
-    technologies: [
-      { name: "Html", icon: htmlicon },
-      { name: "CSS", icon: cssicon },
-      { name: "JavaScript", icon: javascripticon },
-      { name: "React", icon: reacticon },
-      { name: "JWT & Bcrypt", icon: jwticon },
-      { name: "Axios", icon: axiosicon },
-      { name: "MongoDB", icon: mongodbicon },
-      { name: "Express", icon: expressiconwhite },
-      { name: "Node.js", icon: nodejsicon },
-      { name: "Figma", icon: redux },
-      { name: "Render", icon: rendericon },
-      { name: "Trello", icon: trelloicon },
+      "Building a SaaS platform for automotive workshops as a solo developer — covering service-order management, customer communication, inventory tracking and role-based access control.",
+    highlights: [
+      "Architected a Go (Fiber) backend on PostgreSQL, fully containerized with Docker for fast, reproducible deployments across environments.",
+      "Building a cross-platform Flutter app so workshop staff can manage service orders, inventory and customer communication from the field.",
+      "Designed multi-tenant data models and role-based access control from the ground up, supporting multiple workshop accounts on one platform.",
+      "Built end-to-end inventory tracking and customer communication workflows, giving each workshop a single operational hub.",
     ],
-    image: instorMockup,
-    deploymenturl: "https://mern-haushaltsbuch.onrender.com/",
+    technologies: [
+      "Go (Fiber)", "PostgreSQL", "Flutter",
+      "Docker", "REST APIs", "JWT",
+    ],
+    websiteurl: "",
     githuburl: "https://github.com/Suhailsubair007",
+    websiteicon: FiLink,
     githubicon: FiGithub,
-    deploymenticon: FiLink,
     colors: {
       main: "main-btn",
       second: "secondary-btn",
       icon: "white",
-      projectcolor: "#E3964A",
+      accent: "#38bdf8",
     },
   },
 ] as const;
@@ -157,54 +171,64 @@ export const liveTickerData = {
 
 export const skillsDataWeb = [
   {
-    skillsTitle: "WebDevelopment",
+    skillsTitle: "Frontend",
     skills: [
-      { title: "HTML",       hash: "#html",       icon: htmlicon,       color: "#F1662A" },
-      { title: "CSS",        hash: "#CSS",        icon: cssicon,        color: "#1572B6" },
-      { title: "JavaScript", hash: "#JavaScript", icon: javascripticon, color: "#F7DF1E" },
-      { title: "TypeScript", hash: "#TypeScript", icon: typescripticon, color: "#007ACC" },
-      { title: "React",      hash: "#React",      icon: reacticon,      color: "#61DAFB" },
-      { title: "Redux",      hash: "#Redux",      icon: redux,          color: ["#000000", "#FFFFFF"] },
-      { title: "Node.js",    hash: "#Node.js",    icon: nodejsicon,     color: "#339933" },
-      { title: "Express",    hash: "#Express",    icon: [expressicon, expressiconwhite], color: ["#000000", "#FFFFFF"] },
-      { title: "Tailwind",   hash: "#Tailwind",   icon: tailwindcssicon,color: "#38B2AC" },
-      { title: "AWS",        hash: "#AWS",        icon: aws,            color: "#FF9900" },
-      { title: "Nginx",      hash: "#Nginx",      icon: nginx,          color: "#009639" },
-      { title: "Vite",       hash: "#Vite",       icon: vite,           color: "#646CFF" },
-      { title: "Vercel",     hash: "#Vercel",     icon: vercel,         color: "#000000" },
-      { title: "PostgreSQL", hash: "#PostgreSQL", icon: psql,           color: "#336791" },
-      { title: "MongoDB",    hash: "#MongoDB",    icon: mongodbicon,    color: "#449C45" },
+      { title: "React.js",      hash: "#React",        icon: reacticon,       color: "#61DAFB" },
+      { title: "Next.js",       hash: "#Next.js",      icon: [nextjsicon, nextjsiconwhite], color: ["#000000", "#FFFFFF"] },
+      { title: "React Native",  hash: "#ReactNative",  icon: reactnativeicon,  color: "#61DAFB" },
+      { title: "Redux",         hash: "#Redux",        icon: redux,            color: ["#000000", "#FFFFFF"] },
+      { title: "React Query",   hash: "#ReactQuery",   icon: reactqueryicon,   color: "#FF4154" },
+      { title: "Tailwind CSS",  hash: "#Tailwind",     icon: tailwindcssicon,  color: "#38B2AC" },
+      { title: "TypeScript",    hash: "#TypeScript",   icon: typescripticon,   color: "#007ACC" },
+      { title: "JavaScript",    hash: "#JavaScript",   icon: javascripticon,   color: "#F7DF1E" },
     ],
   },
 ] as const;
 
 export const skillsDataDesign = [
   {
-    skillsTitle: "DevOps",
+    skillsTitle: "Backend & Cloud",
     skills: [
-      { title: "Docker",     hash: "#Docker",     icon: docker, color: "#2496ED" },
-      { title: "Kubernetes", hash: "#Kubernetes", icon: kuber,  color: "#326CE5" },
-      { title: "Git",        hash: "#Git",        icon: git,    color: "#F05032" },
+      { title: "Node.js",      hash: "#Node.js",     icon: nodejsicon,      color: "#339933" },
+      { title: "Express.js",   hash: "#Express",     icon: [expressicon, expressiconwhite], color: ["#000000", "#FFFFFF"] },
+      { title: "Bun.js",       hash: "#Bun",         icon: bunicon,         color: "#F5A623" },
+      { title: "GraphQL",      hash: "#GraphQL",     icon: graphqlicon,     color: "#E10098" },
+      { title: "REST API",     hash: "#REST",        icon: apiicon,         color: "#FF9900" },
+      { title: "WebSocket",    hash: "#WebSocket",   icon: websocketicon,   color: "#00D4FF" },
+      { title: "JWT",          hash: "#JWT",         icon: jwticon,         color: "#000000" },
+      { title: "OAuth",        hash: "#OAuth",       icon: oauthicon,       color: "#EB5424" },
+      { title: "MongoDB",      hash: "#MongoDB",     icon: mongodbicon,     color: "#449C45" },
+      { title: "PostgreSQL",   hash: "#PostgreSQL",  icon: psql,            color: "#336791" },
+      { title: "Redis",        hash: "#Redis",       icon: redisicon,       color: "#DC382D" },
+      { title: "AWS",          hash: "#AWS",         icon: aws,             color: "#FF9900" },
+      { title: "DigitalOcean", hash: "#DigitalOcean",icon: digitaloceanicon,color: "#0080FF" },
+      { title: "GCP",          hash: "#GCP",         icon: gcpicon,         color: "#4285F4" },
+      { title: "Docker",       hash: "#Docker",      icon: docker,          color: "#2496ED" },
+      { title: "Nginx",        hash: "#Nginx",       icon: nginx,           color: "#009639" },
+      { title: "CI/CD",        hash: "#CICD",        icon: cicdicon,        color: "#21D397" },
     ],
   },
 ] as const;
 
 export const skillsDataCMS = [
   {
-    skillsTitle: "Languages",
+    skillsTitle: "Tools",
     skills: [
-      { title: "TypeScript", hash: "#TypeScript", icon: typescripticon, color: "#007ACC" },
-      { title: "JavaScript", hash: "#JavaScript", icon: javascripticon, color: "#F7DF1E" },
-      { title: "Python",     hash: "#Python",     icon: python,         color: "#3776AB" },
+      { title: "Git",      hash: "#Git",      icon: git,          color: "#F05032" },
+      { title: "GitHub",   hash: "#GitHub",   icon: githubicon,   color: "#1B1F24" },
+      { title: "Firebase", hash: "#Firebase", icon: firebaseicon, color: "#FFCA28" },
+      { title: "Figma",    hash: "#Figma",    icon: figmaicon,    color: "#F24E1E" },
+      { title: "Jira",     hash: "#Jira",     icon: jiraicon,     color: "#0052CC" },
+      { title: "Postman",  hash: "#Postman",  icon: postmanicon,  color: "#FF6C37" },
     ],
   },
 ] as const;
 
 export const navLinks = [
   { en: "Home",     hash: "#home",     icon: GoHome    },
-  { en: "Skills",   hash: "#skills",   icon: GoStack   },
-  { en: "Projects", hash: "#projects", icon: GoProject },
-  { en: "About me", hash: "#about-me", icon: GoPerson  },
+  { en: "Skills",     hash: "#skills",     icon: GoStack     },
+  { en: "Experience", hash: "#experience", icon: GoBriefcase },
+  { en: "About me",   hash: "#about-me",   icon: GoPerson    },
   { en: "Contact",  hash: "#contact",  icon: GoMail    },
 ] as const;
 

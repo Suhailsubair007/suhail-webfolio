@@ -3,26 +3,25 @@ import '../index.css';
 import Providers from './providers';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://suhailsubair.com'),
+  metadataBase: new URL('https://suhailsubair.online'),
   title: {
-    default: 'Suhail Subair — Lead Software Engineer',
+    default: 'Suhail Subair — Senior Full Stack Developer',
     template: '%s | Suhail Subair',
   },
   description:
-    'Lead Software Engineer specialising in scalable backend systems, full-stack web development, and React Native mobile apps.',
+    'Senior Full Stack Developer specialising in scalable backend systems, full-stack web development, and React Native mobile apps.',
   keywords: [
     'Suhail Subair',
-    'Lead Software Engineer',
-    'Full Stack Developer',
+    'Senior Full Stack Developer',
     'React Developer',
     'Node.js',
     'TypeScript',
     'Portfolio',
   ],
   openGraph: {
-    title: 'Suhail Subair — Lead Software Engineer',
+    title: 'Suhail Subair — Senior Full Stack Developer',
     description: 'Scalable backend systems, full-stack web development, and React Native apps.',
-    url: 'https://suhailsubair.com',
+    url: 'https://suhailsubair.online',
     siteName: 'Suhail Subair Portfolio',
     images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Suhail Subair' }],
     locale: 'en_US',
@@ -30,7 +29,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Suhail Subair — Lead Software Engineer',
+    title: 'Suhail Subair — Senior Full Stack Developer',
     description: 'Scalable backend systems, full-stack web, React Native.',
     images: ['/og-image.png'],
   },

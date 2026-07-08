@@ -136,7 +136,7 @@ const Contact: React.FC = () => {
       fontSize: "1.6rem",
       width: "100%",
       outline: "none",
-      fontFamily: "poppins-regular, sans-serif",
+      fontFamily: "var(--font-sans), sans-serif",
       marginBottom: 0,
       resize: "none" as const,
     };

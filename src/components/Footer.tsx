@@ -47,7 +47,7 @@ const Footer: React.FC = () => {
           <div className="flex flex-col gap-6 max-w-[42rem]">
             <div>
               <p className="text-[--lightblue] text-[1.5rem] font-mono opacity-70">
-                Lead Software Engineer
+                Senior Full Stack Developer
               </p>
             </div>
             <p
