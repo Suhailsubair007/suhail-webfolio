@@ -127,7 +127,7 @@ const HeaderIntro: React.FC = () => {
       </div>
 
       {/* Scroll hint — hidden on mobile */}
-      <div className="hidden sm:flex animate-bounce">
+      <div className="hidden sm:flex animate-bounce mt-20 sm:mt-20">
         <BsMouse className="text-[2.6rem] opacity-40" />
       </div>
     </section>
