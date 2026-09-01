@@ -61,6 +61,9 @@
   /* ---------------------------------------------------------------- */
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", sans-serif;
+  /* Used once, on the email address. A single deliberate flourish reads as a
+     choice; a second face used everywhere would read as indecision. */
+  --font-display: "Fraunces", ui-serif, Georgia, "Times New Roman", serif;
 
   /* ---------------------------------------------------------------- */
   /* Fluid scale, 320px → 1440px. Tailwind's static scale is dropped   */

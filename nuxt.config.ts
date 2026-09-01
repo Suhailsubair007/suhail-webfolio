@@ -102,6 +102,9 @@ export default defineNuxtConfig({
     // an edited page.
     families: [
       { name: 'Plus Jakarta Sans', provider: 'google', weights: [400, 500, 600] },
+      // A display serif, loaded for one element: the email address in the
+      // contact section. Worth ~15KB for the one flourish on the page.
+      { name: 'Fraunces', provider: 'google', weights: [400], styles: ['italic'] },
     ],
     defaults: { subsets: ['latin'] },
   },

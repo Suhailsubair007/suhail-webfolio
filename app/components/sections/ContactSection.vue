@@ -47,7 +47,7 @@ const channels = computed(() => [
             :href="`mailto:${profile.email}`"
             class="group inline-flex items-baseline gap-3 text-fg"
           >
-            <span class="underline-sweep text-xl sm:text-2xl">{{ profile.email }}</span>
+            <span class="underline-sweep font-display text-2xl italic sm:text-3xl">{{ profile.email }}</span>
             <span aria-hidden="true" class="arrow text-accent">&#8594;</span>
           </a>
         </p>
