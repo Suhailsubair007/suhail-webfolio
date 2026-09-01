@@ -1,0 +1,249 @@
+/*
+ * Design tokens and base layer.
+ *
+ * `source(none)` + an explicit `@source` is deliberate: Tailwind v4's automatic
+ * source detection roots at the process CWD, so a build launched from the repo
+ * root would scan the legacy Next.js app and inject its classes and palette
+ * into this stylesheet. This makes the scan deterministic and independent of
+ * where the build was started from.
+ */
+@import "tailwindcss" source(none);
+@source "../../";
+
+@import "./motion.css";
+
+@theme {
+  /* ---------------------------------------------------------------- */
+  /* Surfaces — warm near-black, so the gold reads native to the       */
+  /* palette rather than bolted onto a neutral grey.                   */
+  /* ---------------------------------------------------------------- */
+  --color-ink-950: #0a0908; /* page */
+  --color-ink-900: #12100e; /* raised */
+  --color-ink-850: #191712;
+  --color-ink-800: #221f1a; /* card */
+  --color-ink-700: #2e2a23; /* hairline */
+  --color-ink-600: #3d382f; /* hairline, hover */
+
+  /* ---------------------------------------------------------------- */
+  /* Text — contrast ratios computed against --color-ink-950.          */
+  /* ---------------------------------------------------------------- */
+  --color-bone-50: #f5f1e8; /* 12.2:1  headings */
+  --color-bone-200: #c3bcac; /* 10.5:1  body */
+  --color-bone-400: #8a8271; /*  5.2:1  AA — meta, captions */
+  --color-bone-600: #5c5648; /*  2.7:1  NON-TEXT ONLY: rules, watermarks */
+
+  /* ---------------------------------------------------------------- */
+  /* Champagne gold                                                    */
+  /* ---------------------------------------------------------------- */
+  --color-gold-100: #f7e9c8;
+  --color-gold-200: #efd9a8;
+  --color-gold-300: #e3c88b; /* the accent — 12.2:1 on ink-950 */
+  --color-gold-400: #d4b173;
+  --color-gold-500: #b8935a;
+  --color-gold-600: #8f7040;
+  --color-gold-700: #5f4a2a;
+
+  /* ---------------------------------------------------------------- */
+  /* Semantic layer — components reference ONLY these.                 */
+  /* ---------------------------------------------------------------- */
+  --color-surface: var(--color-ink-950);
+  --color-surface-raised: var(--color-ink-900);
+  --color-surface-card: var(--color-ink-800);
+  --color-border: var(--color-ink-700);
+  --color-border-strong: var(--color-ink-600);
+  --color-accent: var(--color-gold-300);
+  --color-accent-dim: var(--color-gold-500);
+  --color-fg: var(--color-bone-50);
+  --color-fg-muted: var(--color-bone-200);
+  --color-fg-subtle: var(--color-bone-400);
+  --color-fg-faint: var(--color-bone-600);
+
+  /* ---------------------------------------------------------------- */
+  /* Families                                                          */
+  /* ---------------------------------------------------------------- */
+  --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-display: "Instrument Serif", ui-serif, Georgia, "Times New Roman", serif;
+
+  /* ---------------------------------------------------------------- */
+  /* Fluid type scale, 320px → 1440px viewport.                        */
+  /* Tailwind's static scale is dropped first so nothing can silently  */
+  /* fall back to a fixed size.                                        */
+  /* Root font-size stays at the UA default 16px — the legacy site's   */
+  /* `font-size: 62.5%` breaks user font preferences.                  */
+  /* ---------------------------------------------------------------- */
+  --text-*: initial;
+  --text-2xs: clamp(0.75rem, 0.732rem + 0.089vw, 0.8125rem); /* 12 → 13 */
+  --text-xs: clamp(0.8125rem, 0.795rem + 0.089vw, 0.875rem); /* 13 → 14 */
+  --text-sm: clamp(0.875rem, 0.857rem + 0.089vw, 0.9375rem); /* 14 → 15 */
+  --text-base: clamp(1rem, 0.964rem + 0.179vw, 1.125rem); /* 16 → 18 */
+  --text-lg: clamp(1.125rem, 1.071rem + 0.268vw, 1.3125rem); /* 18 → 21 */
+  --text-xl: clamp(1.25rem, 1.143rem + 0.536vw, 1.625rem); /* 20 → 26 */
+  --text-2xl: clamp(1.5rem, 1.321rem + 0.893vw, 2.125rem); /* 24 → 34 */
+  --text-3xl: clamp(1.875rem, 1.554rem + 1.607vw, 3rem); /* 30 → 48 */
+  --text-4xl: clamp(2.5rem, 1.857rem + 3.214vw, 4.75rem); /* 40 → 76 */
+  --text-5xl: clamp(3rem, 2rem + 5vw, 6.5rem); /* 48 → 104 */
+
+  --text-base--line-height: 1.65;
+  --text-lg--line-height: 1.6;
+  --text-xl--line-height: 1.45;
+  --text-2xl--line-height: 1.2;
+  --text-2xl--letter-spacing: -0.012em;
+  --text-3xl--line-height: 1.08;
+  --text-3xl--letter-spacing: -0.018em;
+  --text-4xl--line-height: 0.98;
+  --text-4xl--letter-spacing: -0.026em;
+  --text-5xl--line-height: 0.92;
+  --text-5xl--letter-spacing: -0.032em;
+
+  /* ---------------------------------------------------------------- */
+  /* Named spacing, alongside Tailwind's numeric scale.                */
+  /* ---------------------------------------------------------------- */
+  --spacing-gutter: clamp(1.25rem, 0.75rem + 2.5vw, 3rem); /* 20 → 48 */
+  /* Applied as py-section, so adjacent sections stack to 2×. Capped at 6.5rem
+     to keep the gap between sections at ~208px rather than ~288px. */
+  --spacing-section: clamp(3.5rem, 2.643rem + 4.286vw, 6.5rem); /* 56 → 104 */
+  --spacing-header: 4rem;
+
+  /* ---------------------------------------------------------------- */
+  /* Containers                                                        */
+  /* ---------------------------------------------------------------- */
+  --container-prose: 68ch;
+  --container-content: 76rem;
+  --container-wide: 88rem;
+
+  /* ---------------------------------------------------------------- */
+  /* Radius                                                            */
+  /* ---------------------------------------------------------------- */
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+
+  /* ---------------------------------------------------------------- */
+  /* Elevation. On near-black, depth comes from a top inset hairline   */
+  /* plus a soft dark ambient — never a grey drop shadow.              */
+  /* ---------------------------------------------------------------- */
+  --shadow-hairline: inset 0 1px 0 0 rgb(245 241 232 / 0.055);
+  --shadow-card:
+    inset 0 1px 0 0 rgb(245 241 232 / 0.05), 0 1px 2px 0 rgb(0 0 0 / 0.6),
+    0 12px 32px -16px rgb(0 0 0 / 0.9);
+  --shadow-lift:
+    inset 0 1px 0 0 rgb(245 241 232 / 0.09), 0 2px 4px 0 rgb(0 0 0 / 0.5),
+    0 24px 56px -24px rgb(0 0 0 / 0.95);
+  --shadow-glow:
+    0 0 0 1px rgb(184 147 90 / 0.28), 0 20px 60px -28px rgb(212 177 115 / 0.35);
+
+  /* ---------------------------------------------------------------- */
+  /* Easing                                                            */
+  /* ---------------------------------------------------------------- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/*
+ * Tailwind v4 has no --duration-* theme namespace, so these are plain custom
+ * properties, consumed either in raw CSS or via duration-[var(--duration-*)].
+ */
+:root {
+  --duration-fast: 150ms;
+  --duration-base: 260ms;
+  --duration-slow: 480ms;
+  --duration-reveal: 720ms;
+  --focus-offset: 3px;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-fg-muted);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: var(--text-base--line-height);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: var(--color-fg);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: var(--focus-offset);
+    border-radius: var(--radius-xs);
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-ink-950);
+  }
+
+  /* Every in-page anchor clears the sticky header. */
+  [id] {
+    scroll-margin-top: calc(var(--spacing-header) + 2rem);
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-ink-950);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-ink-700);
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-ink-600);
+  }
+}
+
+@utility container-content {
+  width: 100%;
+  max-width: var(--container-content);
+  margin-inline: auto;
+  padding-inline: var(--spacing-gutter);
+}
+
+@utility container-wide {
+  width: 100%;
+  max-width: var(--container-wide);
+  margin-inline: auto;
+  padding-inline: var(--spacing-gutter);
+}
+
+/* The ambient dot grid used behind the hero. Masked so it fades out rather
+   than tiling to a hard edge. */
+@utility dot-grid {
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgb(245 241 232 / 0.045) 1px,
+    transparent 0
+  );
+  background-size: 34px 34px;
+  mask-image: radial-gradient(70% 55% at 50% 0%, #000 0%, transparent 100%);
+  -webkit-mask-image: radial-gradient(70% 55% at 50% 0%, #000 0%, transparent 100%);
+}

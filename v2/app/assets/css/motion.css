@@ -1,0 +1,145 @@
+/*
+ * Motion.
+ *
+ * There is no JavaScript animation runtime on this site. Every effect below is
+ * a CSS transition or keyframe animating only `opacity`, `transform` and
+ * `stroke-dashoffset`, so the work stays on the compositor.
+ */
+
+/* ------------------------------------------------------------------ *
+ * Reveal contract.
+ *
+ * The hidden state is gated behind BOTH `scripting: enabled` and
+ * `prefers-reduced-motion: no-preference`. That single query means:
+ *   • no JS (bundle failed, crawler, reader mode) → content is never hidden
+ *   • reduced motion                              → content is never hidden
+ * with no JS branching and no flash of hidden content.
+ * ------------------------------------------------------------------ */
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  [data-reveal] {
+    opacity: 0;
+    transform: translate3d(0, var(--reveal-y, 1.5rem), 0);
+  }
+
+  [data-reveal].is-revealed {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity var(--duration-reveal) var(--ease-out-expo),
+      transform var(--duration-reveal) var(--ease-out-expo);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Hover elevation — hover-capable pointers only, so a tap never leaves
+ * a card stuck in its hover state.
+ * ------------------------------------------------------------------ */
+@media (hover: hover) and (pointer: fine) {
+  .card-lift {
+    transition:
+      transform var(--duration-base) var(--ease-out-quint),
+      border-color var(--duration-base) var(--ease-out-quint),
+      box-shadow var(--duration-base) var(--ease-out-quint);
+  }
+
+  .card-lift:hover {
+    transform: translate3d(0, -2px, 0);
+    border-color: var(--color-border-strong);
+    box-shadow: var(--shadow-lift);
+  }
+
+  /* Directional nudge on link-style calls to action. */
+  .arrow-nudge {
+    transition: transform var(--duration-base) var(--ease-out-quint);
+  }
+
+  .group:hover .arrow-nudge {
+    transform: translate3d(2px, -2px, 0);
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Ambient — hero only.
+ * ------------------------------------------------------------------ */
+@keyframes aura-breathe {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.06) translate3d(0, -1.5%, 0);
+  }
+}
+
+@keyframes trace-comet {
+  from {
+    stroke-dashoffset: var(--trace-len);
+  }
+  to {
+    stroke-dashoffset: calc(var(--trace-len) * -1);
+  }
+}
+
+@keyframes node-pulse {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.35);
+  }
+}
+
+@keyframes caret-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.aura {
+  animation: aura-breathe 14s var(--ease-in-out-soft) infinite;
+}
+
+.trace-comet {
+  stroke-dasharray: 26 var(--trace-len);
+  animation: trace-comet 6s linear infinite;
+}
+
+.node-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: node-pulse 4s var(--ease-in-out-soft) infinite;
+}
+
+/* ------------------------------------------------------------------ *
+ * Reduced motion — the global kill switch.
+ *
+ * Last in the file so it wins on specificity ties. `0.01ms` rather than
+ * `none` so `transitionend` / `animationend` listeners still fire.
+ * ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Belt and braces: nothing may be left invisible. */
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
