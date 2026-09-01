@@ -9,7 +9,7 @@ import type { SkillGroup } from '../types/portfolio'
 export const skills: SkillGroup[] = [
   {
     category: 'Languages',
-    items: ['TypeScript', 'JavaScript', 'Go', 'Dart', 'Kotlin'],
+    items: ['TypeScript', 'JavaScript'],
   },
   {
     category: 'Product',
