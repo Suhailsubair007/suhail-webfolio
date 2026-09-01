@@ -1,0 +1,259 @@
+/*
+ * Design tokens and base layer.
+ *
+ * `source(none)` + an explicit `@source` is deliberate: Tailwind v4's automatic
+ * source detection roots at the process CWD, which makes the emitted CSS depend
+ * on where the build was started from. Pinning the scan to `app/` keeps the
+ * output identical whether the build runs locally, in CI, or on Vercel.
+ */
+@import "tailwindcss" source(none);
+@source "../../";
+
+@import "./motion.css";
+
+@theme {
+  /* ---------------------------------------------------------------- */
+  /* Ground — cool, blue-cast near-black. Warm type sits on top of it, */
+  /* and that temperature mismatch is what keeps the page from reading */
+  /* as the usual warm-black-plus-gold treatment.                      */
+  /* ---------------------------------------------------------------- */
+  --color-ink-900: #0b0d10; /* page */
+  --color-ink-800: #111418; /* raised, used sparingly */
+  --color-ink-700: #191d23;
+  --color-rule: #23282f; /* hairline */
+  --color-rule-strong: #333a43;
+
+  /* ---------------------------------------------------------------- */
+  /* Type — warm bone. Contrast ratios against --color-ink-900.        */
+  /* ---------------------------------------------------------------- */
+  --color-bone: #edeae3; /* 15.1:1  headings and body */
+  --color-bone-dim: #a8adb4; /*  8.4:1  secondary copy */
+  --color-bone-mute: #7b828b; /*  5.0:1  AA — metadata, labels */
+
+  /* ---------------------------------------------------------------- */
+  /* Accent. Reserved for interaction: hover underline, focus ring,    */
+  /* active nav. Never a fill, a border, a glow or a heading colour.   */
+  /* The primary action is bone, not amber — restraint is the point.   */
+  /* ---------------------------------------------------------------- */
+  --color-amber: #e5b45c; /* 9.1:1 */
+
+  /* ---------------------------------------------------------------- */
+  /* Semantic layer — components reference only these.                 */
+  /* ---------------------------------------------------------------- */
+  --color-surface: var(--color-ink-900);
+  --color-surface-raised: var(--color-ink-800);
+  --color-border: var(--color-rule);
+  --color-border-strong: var(--color-rule-strong);
+  --color-fg: var(--color-bone);
+  --color-fg-muted: var(--color-bone-dim);
+  --color-fg-subtle: var(--color-bone-mute);
+  --color-accent: var(--color-amber);
+
+  /* ---------------------------------------------------------------- */
+  /* One family. A second face — and especially a monospace — is what  */
+  /* makes a portfolio read as a developer template.                   */
+  /* ---------------------------------------------------------------- */
+  --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", sans-serif;
+
+  /* ---------------------------------------------------------------- */
+  /* Fluid scale, 320px → 1440px. Tailwind's static scale is dropped   */
+  /* first so nothing can silently fall back to a fixed size.          */
+  /* Root font-size stays at the browser default of 16px.              */
+  /* ---------------------------------------------------------------- */
+  --text-*: initial;
+  --text-meta: 0.75rem; /* 12 — labels, rail */
+  --text-xs: clamp(0.8125rem, 0.795rem + 0.089vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.857rem + 0.089vw, 0.9375rem);
+  --text-base: clamp(1rem, 0.982rem + 0.089vw, 1.0625rem);
+  --text-lg: clamp(1.0625rem, 1.009rem + 0.268vw, 1.25rem);
+  --text-xl: clamp(1.25rem, 1.116rem + 0.67vw, 1.75rem);
+  --text-2xl: clamp(1.5rem, 1.232rem + 1.339vw, 2.4375rem);
+  --text-3xl: clamp(1.875rem, 1.339rem + 2.679vw, 3.75rem);
+  --text-display: clamp(2.75rem, 1.196rem + 7.768vw, 8rem);
+
+  --text-base--line-height: 1.65;
+  --text-lg--line-height: 1.6;
+  --text-xl--line-height: 1.4;
+  --text-2xl--line-height: 1.18;
+  --text-2xl--letter-spacing: -0.018em;
+  --text-3xl--line-height: 1.06;
+  --text-3xl--letter-spacing: -0.026em;
+  --text-display--line-height: 0.94;
+  --text-display--letter-spacing: -0.038em;
+
+  /* ---------------------------------------------------------------- */
+  /* Rhythm                                                            */
+  /* ---------------------------------------------------------------- */
+  --spacing-gutter: clamp(1.25rem, 0.688rem + 2.813vw, 4rem); /* 20 → 64 */
+  --spacing-section: clamp(3.25rem, 2.679rem + 2.857vw, 5.25rem); /* 52 → 84 */
+  --spacing-header: 4.5rem;
+  /* Width of the metadata rail — the page's structural signature. */
+  --spacing-rail: 11rem;
+
+  --container-page: 82rem;
+  --container-prose: 60ch;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  --duration-fast: 140ms;
+  --duration-base: 240ms;
+  --duration-reveal: 640ms;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-fg-muted);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: var(--text-base--line-height);
+    font-synthesis-weight: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3 {
+    color: var(--color-fg);
+    font-weight: 500;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Years and metrics align in columns. */
+  time,
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: var(--color-fg);
+    color: var(--color-ink-900);
+  }
+
+  [id] {
+    scroll-margin-top: calc(var(--spacing-header) + 2rem);
+  }
+
+  ::-webkit-scrollbar {
+    width: 9px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-ink-900);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-rule);
+  }
+}
+
+/* The page measure. */
+@utility page {
+  width: 100%;
+  max-width: var(--container-page);
+  margin-inline: auto;
+  padding-inline: var(--spacing-gutter);
+}
+
+/*
+ * The metadata rail: a narrow left column of secondary information against a
+ * wide right column of content. This is the page's structural signature, and
+ * it encodes the hierarchy rather than decorating it — technology and dates
+ * are literally secondary, in space as well as in weight.
+ *
+ * Collapses to a single stacked column below the `md` breakpoint.
+ */
+@utility rail {
+  display: grid;
+  gap: 1.5rem 3rem;
+  grid-template-columns: 1fr;
+
+  @media (width >= 48rem) {
+    grid-template-columns: var(--spacing-rail) minmax(0, 1fr);
+    gap: 0 3rem;
+  }
+}
+
+/* Small caps metadata. Used for labels, years, locations, technologies. */
+@utility label {
+  font-size: var(--text-meta);
+  line-height: 1.5;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--color-fg-subtle);
+}
+
+/* A label in the accent — section markers, eyebrows and dates. */
+@utility label-accent {
+  font-size: var(--text-meta);
+  line-height: 1.5;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+/*
+ * A link that draws its own underline on hover — the accent's main job.
+ * `background-size` animates on the compositor; `text-decoration` cannot.
+ */
+@utility underline-sweep {
+  background-image: linear-gradient(var(--color-accent), var(--color-accent));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;
+  transition: background-size var(--duration-base) var(--ease-out-expo);
+
+  &:hover,
+  &:focus-visible {
+    background-size: 100% 1px;
+  }
+}
+
+/*
+ * Rail technologies: inline on mobile where the rail is full-width, stacked on
+ * desktop where it is a narrow column. See RailStack.vue.
+ */
+@utility rail-stack {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0.5rem;
+  margin-top: 0.75rem;
+
+  & li:not(:last-child)::after {
+    content: "\00B7";
+    margin-left: 0.5rem;
+  }
+
+  @media (width >= 48rem) {
+    display: block;
+    margin-top: 1.5rem;
+
+    & li {
+      line-height: 1.55;
+    }
+
+    & li:not(:last-child)::after {
+      content: none;
+    }
+  }
+}

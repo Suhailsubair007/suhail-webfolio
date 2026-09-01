@@ -1,0 +1,75 @@
+/*
+ * Motion.
+ *
+ * No animation library. Every effect below is a CSS transition or keyframe
+ * touching only `opacity`, `transform` and `background-size`, so the work
+ * stays on the compositor.
+ *
+ * Fewer effects than the previous pass, executed more precisely: a reveal on
+ * entry, an underline that draws itself, and an arrow that steps forward.
+ * Nothing loops, nothing floats, nothing glows.
+ */
+
+/* ------------------------------------------------------------------ *
+ * Reveal contract.
+ *
+ * The hidden state is gated behind BOTH `scripting: enabled` and
+ * `prefers-reduced-motion: no-preference`. That single query means:
+ *   • no JS (bundle failed, crawler, reader mode) → content is never hidden
+ *   • reduced motion                              → content is never hidden
+ * with no JS branching and no flash of hidden content.
+ * ------------------------------------------------------------------ */
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  [data-reveal] {
+    opacity: 0;
+    transform: translate3d(0, var(--reveal-y, 0.75rem), 0);
+  }
+
+  [data-reveal].is-revealed {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity var(--duration-reveal) var(--ease-out-expo),
+      transform var(--duration-reveal) var(--ease-out-expo);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Arrow that steps forward on hover. Hover-capable pointers only, so a
+ * tap never leaves it stuck mid-gesture.
+ * ------------------------------------------------------------------ */
+@media (hover: hover) and (pointer: fine) {
+  .arrow {
+    transition: transform var(--duration-base) var(--ease-out-quint);
+  }
+
+  .group:hover .arrow,
+  a:hover .arrow {
+    transform: translate3d(0.25rem, 0, 0);
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Reduced motion — the global kill switch.
+ *
+ * Last in the file so it wins on specificity ties. `0.01ms` rather than
+ * `none` so `transitionend` / `animationend` listeners still fire.
+ * ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Belt and braces: nothing may be left invisible. */
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

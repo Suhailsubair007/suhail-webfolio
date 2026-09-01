@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Suhail Subair">
+  <rect width="64" height="64" rx="14" fill="#0a0908"/>
+  <rect x="0.5" y="0.5" width="63" height="63" rx="13.5" fill="none" stroke="#3d382f"/>
+  <!-- Monogram S, drawn as a stroked path so it stays crisp at 16px. -->
+  <path
+    d="M42 21c-2.6-3.4-6.2-5-10.8-5-6.2 0-10.2 3-10.2 7.6 0 4.2 3 6.4 9.4 7.8l2.6.6c6.6 1.4 9.8 3.8 9.8 8.4 0 5.2-4.6 8.6-11.6 8.6-5.4 0-9.6-1.9-12.2-5.6"
+    fill="none" stroke="#e3c88b" stroke-width="4" stroke-linecap="round"/>
+</svg>
