@@ -16,11 +16,11 @@ const label = computed(() =>
 <template>
   <button
     type="button"
-    class="-mr-2 inline-flex size-11 items-center justify-center text-fg-subtle transition-colors duration-[var(--duration-base)] hover:text-fg"
+    class="inline-flex size-10 items-center justify-center rounded-full border border-border text-fg-muted transition-colors duration-[var(--duration-base)] hover:border-border-strong hover:text-fg"
     :title="label"
     @click="toggle"
   >
-    <AppIcon :name="theme === 'dark' ? 'sun' : 'moon'" :size="18" />
+    <AppIcon :name="theme === 'dark' ? 'sun' : 'moon'" :size="17" />
     <span class="sr-only">{{ label }}</span>
   </button>
 </template>
