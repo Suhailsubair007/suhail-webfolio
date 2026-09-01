@@ -25,15 +25,25 @@ import { highlights, profile } from '#shared/content'
       balances the wrap instead.
     -->
     <h1 class="mt-8 text-display text-balance text-fg sm:mt-10 sm:text-wrap">
+      <!--
+        Each line ends in a real space, not a CSS ::after. Generated content
+        never appears in textContent, so the heading read "wholeproduct" and
+        "justmy" to anything extracting or copying it. The space is written as
+        {{ ' ' }} because Vue's default whitespace handling strips
+        whitespace-only text nodes that contain a newline.
+
+        Between two block spans it collapses and renders as nothing; below
+        `sm`, where the lines run inline, it is the separator.
+      -->
       <span
         v-for="(line, i) in profile.headline"
         :key="i"
-        class="inline after:content-['_'] sm:block sm:after:content-none"
+        class="inline sm:block"
       ><span
         v-for="(segment, j) in line"
         :key="j"
         :class="segment.accent && 'text-accent'"
-      >{{ segment.text }}</span></span>
+      >{{ segment.text }}</span>{{ ' ' }}</span>
     </h1>
 
     <div class="mt-14 border-t border-border pt-10 sm:mt-20">

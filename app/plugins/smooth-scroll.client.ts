@@ -27,12 +27,18 @@ export function scrollToId(id: string) {
   const target = document.getElementById(id)
   if (!target) return false
 
-  const top = target.getBoundingClientRect().top + window.scrollY - headerOffset()
+  const top = Math.max(0, target.getBoundingClientRect().top + window.scrollY - headerOffset())
 
-  window.scrollTo({
-    top: Math.max(0, top),
-    behavior: prefersReducedMotion() ? 'auto' : 'smooth',
-  })
+  // Hand the jump to Lenis when it is running. Calling window.scrollTo while
+  // Lenis owns the scroll position makes the two fight: the jump lands, then
+  // Lenis interpolates back toward where it thought it was.
+  const lenis = (useNuxtApp() as { $lenis?: { scrollTo: (t: number, o?: object) => void } }).$lenis
+  if (lenis && !prefersReducedMotion()) {
+    lenis.scrollTo(top, { duration: 1.05 })
+  }
+  else {
+    window.scrollTo({ top, behavior: prefersReducedMotion() ? 'auto' : 'smooth' })
+  }
 
   // Move focus for keyboard and screen-reader users, without a second jump.
   target.setAttribute('tabindex', '-1')
