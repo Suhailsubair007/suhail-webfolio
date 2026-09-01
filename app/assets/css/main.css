@@ -351,3 +351,35 @@
     transparent 100%
   );
 }
+
+/*
+ * Hero headline variants.
+ *
+ * All variants ship in the markup; the inline head script writes a random
+ * index to data-headline before first paint and this shows one. `display:
+ * none` keeps the others out of the accessibility tree rather than merely
+ * hiding them visually.
+ *
+ * The first variant is the default, so with JavaScript disabled — or before
+ * the script runs — exactly one headline is visible and nothing shifts.
+ *
+ * Adding a variant means adding a pair of rules here and raising the count in
+ * the head script.
+ */
+.headline-set > .headline-variant {
+  display: none;
+}
+
+.headline-set > .headline-variant:first-child {
+  display: block;
+}
+
+:root[data-headline="1"] .headline-set > .headline-variant:first-child,
+:root[data-headline="2"] .headline-set > .headline-variant:first-child {
+  display: none;
+}
+
+:root[data-headline="1"] .headline-set > .headline-variant:nth-child(2),
+:root[data-headline="2"] .headline-set > .headline-variant:nth-child(3) {
+  display: block;
+}

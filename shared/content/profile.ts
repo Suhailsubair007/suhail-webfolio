@@ -6,20 +6,43 @@ export const profile = {
   /** Hero label. One line, no technology list — the work establishes that. */
   eyebrow: 'Software Engineer',
   /**
-   * The hero statement, broken into the lines it should set on.
+   * Hero statements, one picked at random per visit.
    *
-   * Positioning is the strongest true claim in the résumé, and it is a claim
-   * about him rather than about a stack: most engineers own a slice, and he
-   * owns the web surface, the mobile app, the backend and the infrastructure
-   * under all of it.
+   * Every variant is the same claim in different words, and every one is
+   * backed by the roles in `experience`: he owns the web surface, the mobile
+   * app, the backend and the infrastructure under all of it.
+   *
+   * None uses the first person. An "I build…" construction turns a
+   * description of the work into a self-assessment, which is what made the
+   * earlier drafts read as boasting. These describe the work and leave the
+   * figures underneath to make the case. None repeats the eyebrow above or
+   * the tagline below.
+   *
+   * The first entry is the fallback: it is what renders with JavaScript
+   * disabled, and what a crawler that ignores the selection sees first.
+   *
+   * Adding or removing a variant needs a matching rule in the `.headline-set`
+   * block in main.css, and the count updated in the head script in
+   * nuxt.config.ts. Both are commented to say so.
    */
-  headline: [
-    [{ text: 'I build the ' }, { text: 'whole', accent: true }],
-    [{ text: 'product', accent: true }, { text: ', not just' }],
-    [{ text: 'my part of it.' }],
-  ] satisfies HeadlineSegment[][],
-  // Names the four surfaces specifically rather than repeating the headline's
-  // "whole product" — the tagline's job is to make the claim concrete.
+  headlines: [
+    [
+      [{ text: 'The whole stack.' }],
+      [{ text: 'Schema', accent: true }, { text: ' to' }],
+      [{ text: 'store release', accent: true }, { text: '.' }],
+    ],
+    [
+      [{ text: 'Production systems,' }],
+      [{ text: 'built ' }, { text: 'end to end', accent: true }],
+      [{ text: 'and kept running.' }],
+    ],
+    [
+      [{ text: 'From ' }, { text: 'data model', accent: true }],
+      [{ text: 'to ' }, { text: 'shipped release', accent: true }, { text: '.' }],
+      [{ text: 'The whole product.' }],
+    ],
+  ] satisfies HeadlineSegment[][][],
+
   tagline:
     'Full stack engineer in Kochi, India. At Deelo that means the customer site, the React Native app, the GraphQL backend and the AWS infrastructure under them — for a services marketplace with 10,000+ registered users.',
   location: 'Kochi, India',

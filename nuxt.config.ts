@@ -39,7 +39,12 @@ export default defineNuxtConfig({
             + 'document.documentElement.dataset.theme=t;'
             + 'var m=document.querySelector(\'meta[name="theme-color"]\');'
             + 'if(m)m.setAttribute("content",t==="light"?"#f5f6f7":"#0b0d10")'
-            + '}catch(e){}})()',
+            + '}catch(e){}'
+            // Headline variant, chosen before first paint. Doing this after
+            // hydration would swap the headline in front of the reader.
+            // Raise the 3 when a variant is added to profile.headlines.
+            + 'try{document.documentElement.dataset.headline=Math.floor(Math.random()*3)}catch(e){}'
+            + '})()',
           tagPosition: 'head',
         },
       ],

@@ -24,26 +24,30 @@ import { highlights, profile } from '#shared/content'
       on a line of its own — so there the spans run inline and the browser
       balances the wrap instead.
     -->
-    <h1 class="mt-8 text-display text-balance text-fg sm:mt-10 sm:text-wrap">
+    <h1 class="headline-set mt-8 text-display text-balance text-fg sm:mt-10 sm:text-wrap">
       <!--
-        Each line ends in a real space, not a CSS ::after. Generated content
-        never appears in textContent, so the heading read "wholeproduct" and
-        "justmy" to anything extracting or copying it. The space is written as
-        {{ ' ' }} because Vue's default whitespace handling strips
-        whitespace-only text nodes that contain a newline.
+        Every variant is rendered; the inline head script picks one before
+        first paint and CSS shows only that. Choosing after hydration would
+        swap the headline in front of the reader and put the LCP element back
+        behind JavaScript, which is the jank this page was just fixed for.
 
-        Between two block spans it collapses and renders as nothing; below
-        `sm`, where the lines run inline, it is the separator.
+        Each line ends in a real space, not a CSS ::after. Generated content
+        never appears in textContent, so the heading read "wholeproduct" to
+        anything extracting or copying it. Written as {{ ' ' }} because Vue
+        strips whitespace-only text nodes containing a newline. Between block
+        spans it collapses; below `sm`, where lines run inline, it separates.
       -->
-      <span
-        v-for="(line, i) in profile.headline"
-        :key="i"
-        class="inline sm:block"
-      ><span
-        v-for="(segment, j) in line"
-        :key="j"
-        :class="segment.accent && 'text-accent'"
-      >{{ segment.text }}</span>{{ ' ' }}</span>
+      <span v-for="(variant, v) in profile.headlines" :key="v" class="headline-variant">
+        <span
+          v-for="(line, i) in variant"
+          :key="i"
+          class="inline sm:block"
+        ><span
+          v-for="(segment, j) in line"
+          :key="j"
+          :class="segment.accent && 'text-accent'"
+        >{{ segment.text }}</span>{{ ' ' }}</span>
+      </span>
     </h1>
 
     <div class="mt-14 border-t border-border pt-10 sm:mt-20">
