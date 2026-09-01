@@ -1,53 +1,108 @@
 <script setup lang="ts">
 import { contactCta, profile, socials } from '#shared/content'
+
+/**
+ * Channels, as rows rather than a loose run of links.
+ *
+ * Each carries what it is and what it points at, so a recruiter scanning for
+ * a GitHub handle finds it without opening anything.
+ */
+const channels = computed(() => [
+  ...socials
+    .filter(social => social.icon !== 'mail')
+    .map(social => ({
+      label: social.label,
+      value: social.handle,
+      href: social.href,
+      icon: social.icon,
+    })),
+  {
+    label: 'Résumé',
+    value: 'PDF',
+    href: profile.resumeUrl,
+    icon: 'download' as const,
+  },
+])
 </script>
 
 <template>
   <section id="contact" class="page py-section">
     <SectionLabel v-reveal text="Contact" />
 
-    <p class="mt-12 text-3xl text-fg">
-      <span
-        v-for="(line, i) in contactCta.heading"
-        :key="line"
-        v-reveal="{ delay: i * 70 }"
-        class="block"
-      >{{ line }}</span>
-    </p>
-
-    <MetaRail class="mt-12">
-      <template #meta>
-        <p class="label">
-          {{ profile.availability }}
+    <div class="mt-12 grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)] lg:gap-24">
+      <!-- The ask, and the one action that matters. -->
+      <div v-reveal>
+        <p class="text-3xl text-fg">
+          <span v-for="line in contactCta.heading" :key="line" class="block">{{ line }}</span>
         </p>
-      </template>
 
-      <div v-reveal="{ delay: 100 }">
-        <p class="max-w-prose text-lg text-fg-muted">
+        <p class="mt-6 max-w-prose text-lg text-fg-muted">
           {{ contactCta.body }}
         </p>
 
-        <!-- The address itself is the call to action, at a size worth reading. -->
-        <p class="mt-9">
+        <!-- The address is the primary call to action, so it is set as one
+             rather than hidden behind a button labelled "get in touch". -->
+        <p class="mt-10">
           <a
             :href="`mailto:${profile.email}`"
-            class="underline-sweep text-xl text-fg sm:text-2xl"
-          >{{ profile.email }}</a>
+            class="group inline-flex items-baseline gap-3 text-fg"
+          >
+            <span class="underline-sweep font-display text-xl italic sm:text-2xl">{{ profile.email }}</span>
+            <span aria-hidden="true" class="arrow text-accent">&#8594;</span>
+          </a>
         </p>
+      </div>
 
-        <ul class="mt-9 flex flex-wrap gap-x-8 gap-y-3">
-          <li v-for="social in socials.filter(s => s.icon !== 'mail')" :key="social.label">
-            <TextLink :href="social.href" external>
-              {{ social.label }}
-            </TextLink>
-          </li>
-          <li>
-            <TextLink :href="profile.resumeUrl" external>
-              Résumé
-            </TextLink>
+      <!-- Everything else, in rows. -->
+      <div v-reveal="{ delay: 90 }">
+        <ul class="border-t border-border">
+          <li v-for="channel in channels" :key="channel.label">
+            <!--
+              The link is labelled here rather than with a visually-hidden
+              span. An sr-only span sits in the text content, so anyone copying
+              the block gets "(opens in a new tab)" three times; aria-label
+              gives assistive tech the same sentence without that.
+            -->
+            <a
+              :href="channel.href"
+              target="_blank"
+              rel="noopener noreferrer"
+              :aria-label="`${channel.label}: ${channel.value} (opens in a new tab)`"
+              class="group flex items-center gap-4 border-b border-border py-4 transition-colors duration-[var(--duration-base)] hover:border-border-strong"
+            >
+              <AppIcon
+                :name="channel.icon"
+                :size="17"
+                class="shrink-0 text-fg-subtle transition-colors group-hover:text-accent"
+              />
+              <span class="w-20 shrink-0 text-sm text-fg-subtle">{{ channel.label }}</span>
+              <span class="min-w-0 flex-1 truncate text-fg transition-colors group-hover:text-accent">
+                {{ channel.value }}
+              </span>
+              <span aria-hidden="true" class="arrow shrink-0 text-fg-subtle">&#8594;</span>
+            </a>
           </li>
         </ul>
+
+        <dl class="mt-8 space-y-4">
+          <div class="flex gap-4">
+            <dt class="w-24 shrink-0 text-sm text-fg-subtle">
+              Based in
+            </dt>
+            <dd class="text-sm text-fg-muted">
+              {{ profile.location }}
+            </dd>
+          </div>
+          <div class="flex gap-4">
+            <dt class="w-24 shrink-0 text-sm text-fg-subtle">
+              Available
+            </dt>
+            <dd class="text-sm text-fg-muted">
+              {{ profile.availability }}
+            </dd>
+          </div>
+        </dl>
       </div>
-    </MetaRail>
+    </div>
   </section>
 </template>

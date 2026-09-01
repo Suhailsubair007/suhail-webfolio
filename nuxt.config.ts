@@ -26,6 +26,23 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/png', sizes: '64x64', href: '/favicon.png' },
         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
       ],
+      script: [
+        {
+          // Resolves the theme before first paint. The page is prerendered, so
+          // the served HTML cannot know the visitor's preference — without this
+          // running ahead of render, a light-theme visitor sees a dark flash.
+          // Deliberately inline, unminified and dependency-free so nothing can
+          // defer it.
+          innerHTML:
+            '(function(){try{var t=localStorage.getItem("theme");'
+            + 'if(t!=="light"&&t!=="dark"){t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"}'
+            + 'document.documentElement.dataset.theme=t;'
+            + 'var m=document.querySelector(\'meta[name="theme-color"]\');'
+            + 'if(m)m.setAttribute("content",t==="light"?"#f5f6f7":"#0b0d10")'
+            + '}catch(e){}})()',
+          tagPosition: 'head',
+        },
+      ],
     },
     // Deliberately no pageTransition: a global fade delays the LCP paint.
   },
@@ -84,7 +101,10 @@ export default defineNuxtConfig({
     // is what makes a portfolio read as a developer template rather than as
     // an edited page.
     families: [
-      { name: 'Geist', provider: 'google', weights: [400, 500, 600] },
+      { name: 'Plus Jakarta Sans', provider: 'google', weights: [400, 500, 600] },
+      // A display serif, loaded for one element: the email address in the
+      // contact section. Worth ~15KB for the one flourish on the page.
+      { name: 'Fraunces', provider: 'google', weights: [400], styles: ['italic'] },
     ],
     defaults: { subsets: ['latin'] },
   },

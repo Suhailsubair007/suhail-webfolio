@@ -5,6 +5,10 @@ import { selectedWork } from '#shared/content'
  * Work is ordered by strength in the data layer. The first entry carries the
  * argument and gets the display treatment; the rest are set as rail entries.
  * Equal weight for every project would waste the strongest one.
+ *
+ * There are no product screenshots, and inventing them is not an option, so
+ * the visual interest has to come from type and from the one thing that is
+ * genuinely striking here: the verified figures.
  */
 const [featured, ...rest] = selectedWork
 </script>
@@ -15,34 +19,46 @@ const [featured, ...rest] = selectedWork
 
     <!-- Featured. -->
     <article v-if="featured" class="border-b border-border py-14">
-      <h3 v-reveal class="text-3xl text-fg">
-        {{ featured.name }}
-      </h3>
-
-      <p v-reveal="{ delay: 60 }" class="mt-5 max-w-[24ch] text-2xl text-fg-muted">
-        {{ featured.thesis }}
-      </p>
-
-      <MetaRail class="mt-12">
-        <template #meta>
-          <p class="label-accent">
-            {{ featured.period }}
+      <div class="grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-20">
+        <div v-reveal>
+          <h3 class="text-3xl text-fg">
+            {{ featured.name }}
+          </h3>
+          <p class="mt-5 max-w-[22ch] text-2xl text-fg-muted">
+            {{ featured.thesis }}
           </p>
-          <p class="label mt-1">
-            {{ featured.context }}
-          </p>
-          <RailStack :items="featured.stack" />
-        </template>
 
-        <div v-reveal="{ delay: 100 }">
+          <!-- The figure is the section's visual anchor: real, verified, and
+               the only thing here worth setting at display scale. -->
+          <div v-if="featured.outcomeValue" class="mt-12 border-t border-border pt-6">
+            <p class="tabular text-3xl leading-none text-accent">
+              {{ featured.outcomeValue }}
+            </p>
+            <p class="mt-2 text-sm text-fg-subtle">
+              {{ featured.outcomeLabel }}
+            </p>
+          </div>
+        </div>
+
+        <div v-reveal="{ delay: 90 }" class="lg:pt-3">
+          <RailMeta
+            :period="featured.period"
+            :place="featured.context"
+            :stack="featured.stack"
+            class="mb-8 lg:hidden"
+          />
+
           <p class="max-w-prose text-lg text-fg-muted">
             {{ featured.contribution }}
           </p>
 
-          <p v-if="featured.outcome" class="mt-8 border-l border-border pl-5">
-            <span class="label block">Outcome</span>
-            <span class="tabular mt-1 block text-xl text-accent">{{ featured.outcome }}</span>
-          </p>
+          <div class="mt-8 hidden lg:block">
+            <RailMeta
+              :period="featured.period"
+              :place="featured.context"
+              :stack="featured.stack"
+            />
+          </div>
 
           <div class="mt-9 flex flex-wrap items-center gap-x-8 gap-y-3">
             <TextLink :to="`/work/${featured.slug}`">
@@ -53,7 +69,7 @@ const [featured, ...rest] = selectedWork
             </TextLink>
           </div>
         </div>
-      </MetaRail>
+      </div>
     </article>
 
     <!-- Supporting work. -->
@@ -61,19 +77,18 @@ const [featured, ...rest] = selectedWork
       <li v-for="item in rest" :key="item.slug" class="border-b border-border py-12">
         <MetaRail as="article">
           <template #meta>
-            <p class="label-accent">
-              {{ item.period }}
-            </p>
-            <p class="label mt-1">
-              {{ item.context }}
-            </p>
-            <RailStack :items="item.stack" />
+            <RailMeta :period="item.period" :place="item.context" :stack="item.stack" />
           </template>
 
           <div v-reveal="{ delay: 60 }">
-            <h3 class="text-xl text-fg">
-              {{ item.name }}
-            </h3>
+            <div class="flex flex-wrap items-baseline gap-x-6 gap-y-2">
+              <h3 class="text-xl text-fg">
+                {{ item.name }}
+              </h3>
+              <p v-if="item.outcomeValue" class="tabular text-sm text-accent">
+                {{ item.outcomeValue }} <span class="text-fg-subtle">{{ item.outcomeLabel?.toLowerCase() }}</span>
+              </p>
+            </div>
 
             <p class="mt-3 max-w-prose text-lg text-fg-muted">
               {{ item.thesis }}

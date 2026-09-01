@@ -16,6 +16,8 @@ type IconName
     | 'chevron-down'
     | 'menu'
     | 'close'
+    | 'sun'
+    | 'moon'
 
 const props = withDefaults(
   defineProps<{
@@ -44,6 +46,8 @@ const ICONS: Record<IconName, { d: string, mode: 'stroke' | 'fill' }> = {
   'chevron-down': { mode: 'stroke', d: 'm6 9 6 6 6-6' },
   'menu': { mode: 'stroke', d: 'M4 7h16M4 12h16M4 17h16' },
   'close': { mode: 'stroke', d: 'M6 6l12 12M18 6L6 18' },
+  'sun': { mode: 'stroke', d: 'M12 4V2m0 20v-2m8-8h2M2 12h2m13.66-5.66 1.41-1.41M4.93 19.07l1.41-1.41m11.32 0 1.41 1.41M4.93 4.93l1.41 1.41M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z' },
+  'moon': { mode: 'stroke', d: 'M20 13.4A8.4 8.4 0 0 1 10.6 4a8.4 8.4 0 1 0 9.4 9.4Z' },
 }
 
 const icon = computed(() => ICONS[props.name])

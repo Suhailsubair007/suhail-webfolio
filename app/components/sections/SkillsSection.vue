@@ -4,7 +4,7 @@ import { achievements, education, skills } from '#shared/content'
 
 <template>
   <section id="skills" class="page py-section">
-    <SectionLabel v-reveal text="Toolkit" />
+    <SectionLabel v-reveal text="Skills" />
 
     <!--
       Set as prose, not as a badge wall. Technology is evidence for the claims
@@ -17,7 +17,7 @@ import { achievements, education, skills } from '#shared/content'
         v-reveal="{ delay: Math.min(i, 3) * 50 }"
         class="rail border-b border-border py-6 first:border-t"
       >
-        <dt class="label md:pt-1">
+        <dt class="text-sm font-medium text-accent md:pt-1">
           {{ group.category }}
         </dt>
         <dd class="text-lg text-fg-muted">
@@ -26,22 +26,46 @@ import { achievements, education, skills } from '#shared/content'
       </div>
     </dl>
 
-    <!-- Background, compressed to a single rail rather than its own section. -->
-    <MetaRail class="mt-16">
-      <template #meta>
-        <p class="label">Background</p>
-      </template>
-
-      <div v-reveal class="max-w-prose">
-        <p v-for="item in education" :key="item.id" class="text-lg text-fg">
-          {{ item.degree }} {{ item.field }}, {{ item.institution }}
-          <span class="tabular block text-sm text-fg-subtle">{{ item.period }} · First Class Distinction</span>
-        </p>
-
-        <p class="mt-6 text-sm text-fg-subtle">
-          {{ achievements.filter(a => !a.title.startsWith('B.Tech')).map(a => a.title).join(' · ') }}
-        </p>
+    <div class="mt-16 grid gap-12 lg:grid-cols-2 lg:gap-20">
+      <!-- Education. -->
+      <div v-reveal>
+        <h3 class="text-sm font-medium text-accent">
+          Education
+        </h3>
+        <div v-for="item in education" :key="item.id" class="mt-5">
+          <p class="text-lg text-fg">
+            {{ item.degree }}, {{ item.field }}
+          </p>
+          <p class="mt-1 text-fg-muted">
+            {{ item.institution }} · {{ item.location }}
+          </p>
+          <p class="tabular mt-2 text-sm text-fg-subtle">
+            <time :datetime="item.startDate">{{ item.period }}</time>
+            <template v-if="item.note"> · {{ item.note }}</template>
+          </p>
+        </div>
       </div>
-    </MetaRail>
+
+      <!--
+        Rows with their years rather than one middot-separated run. The run
+        wrapped mid-title and gave three separate things the appearance of one
+        sentence.
+      -->
+      <div v-reveal="{ delay: 80 }">
+        <h3 class="text-sm font-medium text-accent">
+          Certifications & achievements
+        </h3>
+        <ul class="mt-5 border-t border-border">
+          <li
+            v-for="item in achievements"
+            :key="item.title"
+            class="flex gap-5 border-b border-border py-3.5"
+          >
+            <time class="tabular w-12 shrink-0 text-sm text-fg-subtle">{{ item.year }}</time>
+            <span class="text-fg-muted">{{ item.title }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
   </section>
 </template>

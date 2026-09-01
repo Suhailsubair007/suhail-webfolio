@@ -22,13 +22,12 @@ const LEAD_STACK = 5
       >
         <MetaRail as="article">
           <template #meta>
-            <time v-reveal :datetime="role.startDate" class="tabular label-accent block">
-              {{ role.period }}
-            </time>
-            <p class="label mt-1">
-              {{ role.location }}
-            </p>
-            <RailStack :items="role.stack.slice(0, LEAD_STACK)" />
+            <RailMeta
+              v-reveal
+              :period="role.period"
+              :place="role.location"
+              :stack="role.stack.slice(0, LEAD_STACK)"
+            />
           </template>
 
           <div v-reveal="{ delay: 60 }">

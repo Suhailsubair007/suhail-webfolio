@@ -49,16 +49,11 @@ usePageSeo({
 
     <MetaRail class="mt-14">
       <template #meta>
-        <p class="label-accent">
-          {{ entry.period }}
-        </p>
-        <p class="label mt-1">
-          {{ entry.subtitle }}
-        </p>
-        <p v-if="entry.location" class="label mt-1">
-          {{ entry.location }}
-        </p>
-        <RailStack :items="entry.stack" />
+        <RailMeta
+          :period="entry.period"
+          :place="entry.location ? `${entry.subtitle} · ${entry.location}` : entry.subtitle"
+          :stack="entry.stack"
+        />
         <p v-for="link in entry.links" :key="link.href" class="mt-6">
           <TextLink :href="link.href" external>
             {{ link.label }}
@@ -67,7 +62,7 @@ usePageSeo({
       </template>
 
       <div>
-        <h2 class="label-accent">
+        <h2 class="text-sm font-medium text-accent">
           {{ entry.kind === 'role' ? 'What I owned' : 'Scope' }}
         </h2>
 
@@ -90,7 +85,7 @@ usePageSeo({
     </MetaRail>
 
     <nav aria-label="Other case studies" class="mt-20 border-t border-border pt-10">
-      <p class="label">More work</p>
+      <p class="text-sm text-fg-subtle">More work</p>
       <ul class="mt-6 flex flex-wrap gap-x-10 gap-y-4">
         <li v-for="other in others" :key="other.slug">
           <TextLink :to="`/work/${other.slug}`">

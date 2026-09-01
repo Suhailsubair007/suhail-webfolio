@@ -114,3 +114,13 @@ export interface CaseStudy {
   links: ProjectLink[]
   location?: string
 }
+
+/**
+ * A run of hero headline text. The accent falls on the phrase carrying the
+ * claim, not on a decorative fragment — segmenting it here keeps that a
+ * content decision rather than markup buried in the component.
+ */
+export interface HeadlineSegment {
+  text: string
+  accent?: boolean
+}

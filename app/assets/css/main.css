@@ -47,14 +47,23 @@
   --color-fg: var(--color-bone);
   --color-fg-muted: var(--color-bone-dim);
   --color-fg-subtle: var(--color-bone-mute);
+  /* Accent as text. */
   --color-accent: var(--color-amber);
+  /* Accent as a fill, with the colour that sits legibly on top of it. The two
+     cannot be the same token: an amber readable as text on ink is not the
+     amber readable as a button behind dark text. */
+  --color-accent-solid: var(--color-amber);
+  --color-on-accent: var(--color-ink-900);
 
   /* ---------------------------------------------------------------- */
   /* One family. A second face — and especially a monospace — is what  */
   /* makes a portfolio read as a developer template.                   */
   /* ---------------------------------------------------------------- */
-  --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system,
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", sans-serif;
+  /* Used once, on the email address. A single deliberate flourish reads as a
+     choice; a second face used everywhere would read as indecision. */
+  --font-display: "Fraunces", ui-serif, Georgia, "Times New Roman", serif;
 
   /* ---------------------------------------------------------------- */
   /* Fluid scale, 320px → 1440px. Tailwind's static scale is dropped   */
@@ -70,7 +79,11 @@
   --text-xl: clamp(1.25rem, 1.116rem + 0.67vw, 1.75rem);
   --text-2xl: clamp(1.5rem, 1.232rem + 1.339vw, 2.4375rem);
   --text-3xl: clamp(1.875rem, 1.339rem + 2.679vw, 3.75rem);
-  --text-display: clamp(2.75rem, 1.196rem + 7.768vw, 8rem);
+  /* The cap is set by the hero's longest authored line against the 1209px
+     measure, measured rather than guessed. "product, not just" needs 1043px
+     at 8.5rem, leaving ~165px of margin. Re-measure if the headline changes:
+     the previous line needed 1263px at 8rem and broke to four lines. */
+  --text-display: clamp(2.5rem, 1.027rem + 7.366vw, 8.5rem);
 
   --text-base--line-height: 1.65;
   --text-lg--line-height: 1.6;
@@ -78,9 +91,9 @@
   --text-2xl--line-height: 1.18;
   --text-2xl--letter-spacing: -0.018em;
   --text-3xl--line-height: 1.06;
-  --text-3xl--letter-spacing: -0.026em;
+  --text-3xl--letter-spacing: -0.022em;
   --text-display--line-height: 0.94;
-  --text-display--letter-spacing: -0.038em;
+  --text-display--letter-spacing: -0.03em;
 
   /* ---------------------------------------------------------------- */
   /* Rhythm                                                            */
@@ -96,6 +109,47 @@
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/*
+ * Light theme.
+ *
+ * Not an inversion. The dark theme is a cool ground under warm type; this is
+ * its counterpart — cool paper under warm ink — so the same temperature
+ * tension survives the switch.
+ *
+ * Contrast is matched deliberately, not approximated: fg 16.20:1 against
+ * 16.20:1, muted 8.40 against 8.62, subtle 4.97 against 5.01. The two themes
+ * are equally readable rather than one being a courtesy.
+ *
+ * Keyed only off [data-theme] because the inline head script always resolves a
+ * value before first paint. With JavaScript disabled the page stays dark,
+ * which is the site's default identity.
+ */
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --color-surface: #f5f6f7;
+  --color-surface-raised: #ffffff;
+  --color-border: #e1e4e7;
+  --color-border-strong: #c9cdd2;
+
+  --color-fg: #1b1917; /* 16.20:1 */
+  --color-fg-muted: #4b4844; /*  8.40:1 */
+  --color-fg-subtle: #6e6a64; /*  4.97:1 — AA */
+
+  --color-accent: #7a5c1c; /*  5.75:1 — AA as text */
+  --color-accent-solid: #e0a83f; /* 8.22:1 behind --color-on-accent */
+  --color-on-accent: #1b1917;
+}
+
+:root[data-theme="light"] ::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+
+:root[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
 }
 
 :root {
@@ -147,7 +201,7 @@
 
   ::selection {
     background: var(--color-fg);
-    color: var(--color-ink-900);
+    color: var(--color-surface);
   }
 
   [id] {
