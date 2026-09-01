@@ -2,23 +2,11 @@ export type Theme = 'light' | 'dark'
 
 const STORAGE_KEY = 'theme'
 
-/** Matches the meta[name=theme-color] values so the browser chrome follows. */
 const THEME_COLOR: Record<Theme, string> = {
   dark: '#0b0d10',
   light: '#f5f6f7',
 }
 
-/**
- * The active colour theme.
- *
- * Shared across every caller via `useState`, so the header toggle and anything
- * else reading it stay in sync.
- *
- * The value is resolved before first paint by the inline script in
- * `nuxt.config.ts` — this composable adopts whatever that script already wrote
- * to the document rather than deciding again, which is what keeps the toggle
- * from flashing on hydration.
- */
 export function useTheme() {
   const theme = useState<Theme>('theme', () => 'dark')
 
@@ -34,7 +22,7 @@ export function useTheme() {
       localStorage.setItem(STORAGE_KEY, next)
     }
     catch {
-      // Private mode or blocked storage: the choice simply won't persist.
+      // Private mode or blocked storage: the choice just will not persist.
     }
   }
 
@@ -43,8 +31,6 @@ export function useTheme() {
   }
 
   onMounted(() => {
-    // Adopt what the head script resolved, falling back to storage and then to
-    // the system preference if the attribute has been stripped.
     let resolved: Theme | undefined
     const attr = document.documentElement.dataset.theme
     if (attr === 'light' || attr === 'dark') resolved = attr
@@ -58,17 +44,12 @@ export function useTheme() {
     theme.value = resolved
       ?? (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
 
-    // The state is authoritative from here: anything that strips or rewrites
-    // the attribute (head reconciliation, a stray script) is corrected rather
-    // than silently winning.
     watchEffect(() => {
       document.documentElement.dataset.theme = theme.value
       document.querySelector('meta[name="theme-color"]')
         ?.setAttribute('content', THEME_COLOR[theme.value])
     })
 
-    // Follow the system while the visitor has expressed no preference of
-    // their own.
     const media = window.matchMedia('(prefers-color-scheme: light)')
     const onChange = (event: MediaQueryListEvent) => {
       let stored: string | null = null

@@ -10,17 +10,11 @@ export const education: EducationItem[] = [
     period: 'Nov 2020 — Apr 2024',
     startDate: '2020-11',
     endDate: '2024-04',
-    note: 'Cochin University of Science and Technology — First Class Distinction',
+    note: 'First Class Distinction',
   },
 ]
 
 export const achievements: Achievement[] = [
-  {
-    title: 'B.Tech with First Class Distinction',
-    description:
-      'Graduated in Information Technology from Cochin University of Science and Technology.',
-    year: '2024',
-  },
   {
     title: '100 LeetCode problems solved',
     description: 'Sharpened problem-solving across data structures and algorithms.',
