@@ -5,6 +5,11 @@
  *
  * The primary action carries the accent — it is the page's focal point, and
  * the one place a filled colour earns its keep.
+ *
+ * It fills with `accent-solid`, not `accent`. The two differ per theme: the
+ * amber that reads as text on paper is a dark bronze, and filling a button
+ * with it put dark text on a dark ground. `on-accent` is the colour that
+ * belongs on top of the fill, whichever theme is active.
  */
 const props = withDefaults(
   defineProps<{
@@ -23,7 +28,7 @@ const tag = computed(() => {
 })
 
 const VARIANTS = {
-  primary: 'bg-accent text-ink-900 hover:bg-[#f0c777]',
+  primary: 'bg-accent-solid text-on-accent hover:brightness-110',
   secondary: 'border border-border text-fg hover:border-border-strong',
 } as const
 </script>

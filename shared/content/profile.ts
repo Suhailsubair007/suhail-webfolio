@@ -1,4 +1,4 @@
-import type { Highlight, SocialLink } from '../types/portfolio'
+import type { HeadlineSegment, Highlight, SocialLink } from '../types/portfolio'
 
 export const profile = {
   name: 'Suhail Subair',
@@ -13,7 +13,11 @@ export const profile = {
    * owns the web surface, the mobile app, the backend and the infrastructure
    * under all of it.
    */
-  headline: ['I build the whole', 'product, not just', 'my part of it.'],
+  headline: [
+    [{ text: 'I build the ' }, { text: 'whole', accent: true }],
+    [{ text: 'product', accent: true }, { text: ', not just' }],
+    [{ text: 'my part of it.' }],
+  ] satisfies HeadlineSegment[][],
   // Names the four surfaces specifically rather than repeating the headline's
   // "whole product" — the tagline's job is to make the claim concrete.
   tagline:

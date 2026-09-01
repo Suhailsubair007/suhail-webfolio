@@ -22,10 +22,14 @@ import { highlights, profile } from '#shared/content'
     <h1 class="mt-8 text-display text-balance text-fg sm:mt-10 sm:text-wrap">
       <span
         v-for="(line, i) in profile.headline"
-        :key="line"
+        :key="i"
         v-reveal="{ delay: i * 80, y: '1.25rem' }"
         class="inline after:content-['_'] sm:block sm:after:content-none"
-      >{{ line }}</span>
+      ><span
+        v-for="(segment, j) in line"
+        :key="j"
+        :class="segment.accent && 'text-accent'"
+      >{{ segment.text }}</span></span>
     </h1>
 
     <div class="mt-14 border-t border-border pt-10 sm:mt-20">
