@@ -101,7 +101,15 @@ export default defineNuxtConfig({
     // is what makes a portfolio read as a developer template rather than as
     // an edited page.
     families: [
-      { name: 'Plus Jakarta Sans', provider: 'google', weights: [400, 500, 600] },
+      // Preloaded: this is the hero's face, and without a preload link the
+      // browser only discovers it after parsing CSS, so the headline paints in
+      // a fallback and then swaps. Fraunces is deliberately not preloaded — it
+      // sits below the fold on one element.
+      // styles is pinned to normal: without it the module also pulls the
+      // italic faces, which nothing uses — and it was preloading one of them,
+      // putting an unused font on the critical path while the weight the
+      // headline actually needs went unpreloaded.
+      { name: 'Plus Jakarta Sans', provider: 'google', weights: [400, 500, 600], styles: ['normal'], preload: true },
       // A display serif, loaded for one element: the email address in the
       // contact section. Worth ~15KB for the one flourish on the page.
       { name: 'Fraunces', provider: 'google', weights: [400], styles: ['italic'] },

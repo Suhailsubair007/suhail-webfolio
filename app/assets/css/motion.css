@@ -36,6 +36,35 @@
 }
 
 /* ------------------------------------------------------------------ *
+ * Hero entrance.
+ *
+ * Pure CSS, running from the first frame — nothing here waits for
+ * hydration. The hero previously used the same JS reveal as the rest of the
+ * page, which shipped the <h1> at opacity 0 and left it invisible until the
+ * bundle had parsed and an IntersectionObserver had fired.
+ *
+ * It animates `transform` only, never `opacity`. An element at opacity 0 is
+ * not considered painted, so fading the hero in would push Largest
+ * Contentful Paint out by the length of the animation. Translating a fully
+ * opaque element costs nothing: LCP is recorded on the first frame and the
+ * movement is decoration on top of it.
+ * ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes hero-rise {
+    from {
+      transform: translate3d(0, 0.5rem, 0);
+    }
+    to {
+      transform: none;
+    }
+  }
+
+  .hero-enter {
+    animation: hero-rise 620ms var(--ease-out-expo) both;
+  }
+}
+
+/* ------------------------------------------------------------------ *
  * Arrow that steps forward on hover. Hover-capable pointers only, so a
  * tap never leaves it stuck mid-gesture.
  * ------------------------------------------------------------------ */
