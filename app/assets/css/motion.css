@@ -80,6 +80,35 @@
 }
 
 /* ------------------------------------------------------------------ *
+ * Navigation links.
+ *
+ * The rule grows from the centre on hover and stays put while the section is
+ * in view. Animating scaleX on a pseudo-element keeps the work on the
+ * compositor; animating `width` or `border-bottom` would lay out every frame.
+ * ------------------------------------------------------------------ */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transition: transform var(--duration-base) var(--ease-out-quint);
+}
+
+.nav-link.is-active::after {
+  transform: scaleX(1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .nav-link:hover::after,
+  .nav-link:focus-visible::after {
+    transform: scaleX(1);
+  }
+}
+
+/* ------------------------------------------------------------------ *
  * Theme cross-fade.
  *
  * Applied only while a theme switch is in flight — useTheme adds the class,

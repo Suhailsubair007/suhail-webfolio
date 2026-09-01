@@ -5,11 +5,18 @@ const sectionIds = navigation.map(item => item.href.replace('#', ''))
 const { activeId, lock } = useScrollSpy(sectionIds)
 
 const scrolled = ref(false)
+/** 0–1 through the document, drives the progress rule under the header. */
+const progress = ref(0)
 const menuOpen = ref(false)
 const menuButton = useTemplateRef<HTMLButtonElement>('menuButton')
 
 function onScroll() {
   scrolled.value = window.scrollY > 24
+
+  // Computed here rather than in its own listener: this handler already runs
+  // on every scroll, and the work is a division and a custom-property write.
+  const travel = document.documentElement.scrollHeight - window.innerHeight
+  progress.value = travel > 0 ? Math.min(1, window.scrollY / travel) : 0
 }
 
 function closeMenu(returnFocus = false) {
@@ -36,7 +43,17 @@ onScopeDispose(() => window.removeEventListener('scroll', onScroll))
     :class="scrolled || menuOpen ? 'border-b border-border bg-surface/90 backdrop-blur' : 'border-b border-transparent'"
   >
     <div class="page flex h-header items-center justify-between gap-6">
-      <a href="#top" class="text-fg" @click="onNavigate('#top')">
+      <a
+        href="#top"
+        class="group inline-flex items-center gap-2.5 text-fg"
+        @click="onNavigate('#top')"
+      >
+        <!-- A mark, not a logo: the dot is the accent's smallest possible
+             appearance, and it gives the name something to sit against. -->
+        <span
+          aria-hidden="true"
+          class="size-1.5 rounded-full bg-accent transition-transform duration-[var(--duration-base)] group-hover:scale-150"
+        />
         {{ profile.name }}
       </a>
 
@@ -44,16 +61,14 @@ onScopeDispose(() => window.removeEventListener('scroll', onScroll))
         <ul class="flex items-center gap-7">
           <li v-for="item in navigation" :key="item.href">
             <!--
-              The active section is marked by a rule under the label, not by a
-              filled pill. aria-current carries it for assistive tech.
+              The active section is marked by a rule that grows from the centre,
+              not by a filled pill. aria-current carries it for assistive tech.
             -->
             <a
               :href="item.href"
               :aria-current="activeId === item.href.slice(1) ? 'true' : undefined"
-              class="border-b py-1 text-sm transition-colors duration-[var(--duration-base)]"
-              :class="activeId === item.href.slice(1)
-                ? 'border-accent text-fg'
-                : 'border-transparent text-fg-subtle hover:text-fg'"
+              class="nav-link relative py-1 text-sm transition-colors duration-[var(--duration-base)]"
+              :class="activeId === item.href.slice(1) ? 'is-active text-fg' : 'text-fg-subtle hover:text-fg'"
               @click="onNavigate(item.href)"
             >
               {{ item.label }}
@@ -77,6 +92,17 @@ onScopeDispose(() => window.removeEventListener('scroll', onScroll))
         </button>
       </div>
     </div>
+
+    <!--
+      Reading progress. Driven by a custom property and a scaleX transform, so
+      it composites rather than triggering layout on every frame.
+    -->
+    <div
+      aria-hidden="true"
+      class="absolute inset-x-0 bottom-0 h-px origin-left bg-accent transition-opacity duration-[var(--duration-base)]"
+      :class="scrolled ? 'opacity-100' : 'opacity-0'"
+      :style="{ transform: `scaleX(${progress})` }"
+    />
 
     <nav
       v-show="menuOpen"
