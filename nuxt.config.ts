@@ -84,7 +84,7 @@ export default defineNuxtConfig({
     // is what makes a portfolio read as a developer template rather than as
     // an edited page.
     families: [
-      { name: 'Geist', provider: 'google', weights: [400, 500, 600] },
+      { name: 'Plus Jakarta Sans', provider: 'google', weights: [400, 500, 600] },
     ],
     defaults: { subsets: ['latin'] },
   },
