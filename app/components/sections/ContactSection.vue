@@ -17,7 +17,7 @@ import { contactCta, profile, socials } from '#shared/content'
 
     <MetaRail class="mt-12">
       <template #meta>
-        <p class="label">
+        <p class="max-w-[22ch] text-sm text-fg-subtle">
           {{ profile.availability }}
         </p>
       </template>

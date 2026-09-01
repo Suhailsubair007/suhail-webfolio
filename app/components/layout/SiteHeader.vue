@@ -68,7 +68,7 @@ onScopeDispose(() => window.removeEventListener('scroll', onScroll))
         <button
           ref="menuButton"
           type="button"
-          class="label flex h-11 items-center px-2 text-fg sm:hidden"
+          class="flex h-11 items-center px-2 text-sm text-fg sm:hidden"
           :aria-expanded="menuOpen"
           aria-controls="mobile-nav"
           @click="menuOpen = !menuOpen"

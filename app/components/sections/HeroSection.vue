@@ -56,7 +56,7 @@ import { highlights, profile } from '#shared/content'
             <dd class="tabular text-xl text-accent lg:w-24">
               {{ item.value }}
             </dd>
-            <dt class="label mt-1 lg:mt-0">
+            <dt class="mt-1 text-sm text-fg-subtle lg:mt-0">
               {{ item.label }}
             </dt>
           </div>

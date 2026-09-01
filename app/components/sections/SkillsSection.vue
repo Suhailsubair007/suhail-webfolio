@@ -17,7 +17,7 @@ import { achievements, education, skills } from '#shared/content'
         v-reveal="{ delay: Math.min(i, 3) * 50 }"
         class="rail border-b border-border py-6 first:border-t"
       >
-        <dt class="label md:pt-1">
+        <dt class="text-sm font-medium text-accent md:pt-1">
           {{ group.category }}
         </dt>
         <dd class="text-lg text-fg-muted">
@@ -29,7 +29,7 @@ import { achievements, education, skills } from '#shared/content'
     <!-- Background, compressed to a single rail rather than its own section. -->
     <MetaRail class="mt-16">
       <template #meta>
-        <p class="label">Background</p>
+        <p class="text-sm font-medium text-accent">Background</p>
       </template>
 
       <div v-reveal class="max-w-prose">

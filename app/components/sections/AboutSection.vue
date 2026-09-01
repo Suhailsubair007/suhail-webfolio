@@ -18,7 +18,7 @@ import { about, profile } from '#shared/content'
           decoding="async"
           class="w-28 object-cover md:w-full"
         >
-        <p class="label mt-4">
+        <p class="mt-4 text-sm text-fg-subtle">
           {{ profile.location }}
         </p>
       </template>

@@ -17,8 +17,10 @@ export interface WorkItem {
   thesis: string
   /** What he personally contributed. */
   contribution: string
-  /** Verified outcome, or undefined when the data supports no claim. */
-  outcome?: string
+  /** Verified figure, or undefined when the data supports no claim. */
+  outcomeValue?: string
+  /** What the figure counts. Always paired with `outcomeValue`. */
+  outcomeLabel?: string
   stack: string[]
   url?: string
   /** Reserved: a real screenshot slots in here. Never a placeholder. */
@@ -36,7 +38,8 @@ export const selectedWork: WorkItem[] = [
       'A services marketplace that matches customers with nearby service providers in real time.',
     contribution:
       'I own the product surface — the Next.js customer site, the React Native Android app, the GraphQL backend, and the AWS infrastructure. I moved the legacy backend to a service architecture with zero data loss and built the geo-matching that connects customers to nearby providers.',
-    outcome: '10,000+ registered users',
+    outcomeValue: '10,000+',
+    outcomeLabel: 'Registered users',
     stack: ['TypeScript', 'GraphQL', 'React Native', 'MongoDB', 'AWS'],
     url: 'https://deelo.in',
   },
@@ -49,7 +52,8 @@ export const selectedWork: WorkItem[] = [
       'A professional networking platform with real-time messaging across web, Android and iOS.',
     contribution:
       'I wrote the entire backend from scratch — schemas and REST APIs for 10+ modules in TypeScript and Bun.js — and built the WebSocket chat and push notification pipeline behind it.',
-    outcome: '10+ business modules',
+    outcomeValue: '10+',
+    outcomeLabel: 'Business modules built',
     stack: ['TypeScript', 'Bun.js', 'WebSockets', 'React Native', 'DigitalOcean'],
   },
   {
