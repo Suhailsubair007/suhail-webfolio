@@ -3,7 +3,14 @@ import { highlights, profile } from '#shared/content'
 </script>
 
 <template>
-  <section id="top" class="page hero-enter pt-16 pb-section sm:pt-24">
+  <section id="top" class="page hero-enter relative pt-8 pb-section sm:pt-12">
+    <!--
+      A grid behind the hero, and only the hero. It carries no meaning, so it
+      is aria-hidden and inert; everything about how it is drawn and where it
+      shows lives in `.hero-grid` in main.css.
+    -->
+    <div aria-hidden="true" class="hero-grid pointer-events-none absolute inset-0 -z-10" />
+
     <p class="label-accent">
       {{ profile.eyebrow }}
     </p>
@@ -24,7 +31,7 @@ import { highlights, profile } from '#shared/content'
       on a line of its own — so there the spans run inline and the browser
       balances the wrap instead.
     -->
-    <h1 class="headline-set mt-8 text-display text-balance text-fg sm:mt-10 sm:text-wrap">
+    <h1 class="headline-set mt-6 text-display text-balance text-fg sm:mt-8 sm:text-wrap">
       <!--
         Every variant is rendered; the inline head script picks one before
         first paint and CSS shows only that. Choosing after hydration would
@@ -50,12 +57,18 @@ import { highlights, profile } from '#shared/content'
       </span>
     </h1>
 
-    <div class="mt-14 border-t border-border pt-10 sm:mt-20">
+    <!--
+      No rule between the headline and this. The headline is already a block of
+      solid type; a hairline under it read as a second edge in a place that
+      needed none, and it held the tagline a screen's worth of space away from
+      the sentence it belongs to. Whitespace does the separating now.
+    -->
+    <div class="mt-16 sm:mt-24">
       <p class="max-w-prose text-lg text-fg-muted">
         {{ profile.tagline }}
       </p>
 
-      <div class="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
+      <div class="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
         <AppButton href="#work">
           View the work
           <span aria-hidden="true" class="arrow">&#8594;</span>
@@ -64,7 +77,7 @@ import { highlights, profile } from '#shared/content'
           Get in touch
         </TextLink>
         <TextLink :href="profile.resumeUrl" external :arrow="false">
-          Résumé
+          Resume
         </TextLink>
       </div>
     </div>
@@ -76,7 +89,7 @@ import { highlights, profile } from '#shared/content'
       overflowed, knocking its label out of line with the other three.
     -->
     <dl
-      class="mt-16 grid grid-cols-2 gap-x-8 gap-y-10 border-t border-border pt-10 sm:mt-20 lg:grid-cols-4"
+      class="mt-12 grid grid-cols-2 gap-x-8 gap-y-10 border-t border-border pt-8 sm:mt-14 lg:grid-cols-4"
     >
       <div v-for="item in highlights" :key="item.label">
         <dd class="tabular text-2xl leading-none text-accent">

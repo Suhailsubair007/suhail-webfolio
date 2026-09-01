@@ -383,3 +383,70 @@
 :root[data-headline="2"] .headline-set > .headline-variant:nth-child(3) {
   display: block;
 }
+
+/*
+ * The hero's grid.
+ *
+ * Confined to the hero — repeated down the page it stops being a texture and
+ * becomes a pattern.
+ *
+ * The line colour is the only thing that changes between themes: warm ink at
+ * 5% on paper, warm bone at 4.5% on ink. The alphas are not the same number
+ * because they are not doing the same work — a dark line on a light ground
+ * carries further than a light line on a dark one, so the dark theme's rule
+ * would disappear at the light theme's alpha. Both land fainter than
+ * --color-border, which is the point: this sits under the hairlines, not
+ * beside them.
+ *
+ * One ellipse mask does the entire fade. The corners are the farthest points
+ * from its centre, so they clear first and all four edges taper on the way
+ * out — no second layer, no mask-composite, no hard stop anywhere.
+ *
+ * Two repeating gradients rather than an SVG or an image: nothing to fetch,
+ * nothing to decode, and the whole layer is painted once and never animated.
+ *
+ * The dark values sit on the bare class rather than behind a [data-theme]
+ * selector, so the grid is there with JavaScript disabled too — that state
+ * resolves to the dark theme, and gating it on the attribute would have left
+ * exactly that reader with a blank hero.
+ */
+.hero-grid {
+  --hero-grid-step: 40px;
+  --hero-grid-line: rgb(237 234 227 / 0.045);
+
+  background-image:
+    repeating-linear-gradient(
+      to right,
+      var(--hero-grid-line) 0 1px,
+      transparent 1px var(--hero-grid-step)
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      var(--hero-grid-line) 0 1px,
+      transparent 1px var(--hero-grid-step)
+    );
+  mask-image: radial-gradient(
+    ellipse 68% 60% at 50% 44%,
+    rgb(0 0 0 / 1) 0%,
+    rgb(0 0 0 / 0.62) 42%,
+    rgb(0 0 0 / 0.2) 68%,
+    transparent 86%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 68% 60% at 50% 44%,
+    rgb(0 0 0 / 1) 0%,
+    rgb(0 0 0 / 0.62) 42%,
+    rgb(0 0 0 / 0.2) 68%,
+    transparent 86%
+  );
+
+  /* The cell scales with the measure so the grid keeps the same visual
+     density from a phone to a wide desktop. */
+  @media (width >= 48rem) {
+    --hero-grid-step: 64px;
+  }
+}
+
+:root[data-theme="light"] .hero-grid {
+  --hero-grid-line: rgb(27 25 23 / 0.05);
+}

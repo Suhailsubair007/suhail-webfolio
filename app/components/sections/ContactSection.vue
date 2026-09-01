@@ -17,7 +17,7 @@ const channels = computed(() => [
       icon: social.icon,
     })),
   {
-    label: 'Résumé',
+    label: 'Resume',
     value: 'PDF',
     href: profile.resumeUrl,
     icon: 'download' as const,

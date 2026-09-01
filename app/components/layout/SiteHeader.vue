@@ -47,7 +47,7 @@ onScopeDispose(() => window.removeEventListener('scroll', onScroll))
     <div class="page relative flex h-header items-center justify-between gap-6">
       <a
         href="#top"
-        class="group inline-flex items-center gap-2.5 text-fg"
+        class="group inline-flex items-center gap-2.5 font-medium text-fg"
         @click="onNavigate('#top')"
       >
         <!-- A mark, not a logo: the dot is the accent's smallest possible
