@@ -47,7 +47,13 @@
   --color-fg: var(--color-bone);
   --color-fg-muted: var(--color-bone-dim);
   --color-fg-subtle: var(--color-bone-mute);
+  /* Accent as text. */
   --color-accent: var(--color-amber);
+  /* Accent as a fill, with the colour that sits legibly on top of it. The two
+     cannot be the same token: an amber readable as text on ink is not the
+     amber readable as a button behind dark text. */
+  --color-accent-solid: var(--color-amber);
+  --color-on-accent: var(--color-ink-900);
 
   /* ---------------------------------------------------------------- */
   /* One family. A second face — and especially a monospace — is what  */
@@ -101,6 +107,47 @@
   --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+
+/*
+ * Light theme.
+ *
+ * Not an inversion. The dark theme is a cool ground under warm type; this is
+ * its counterpart — cool paper under warm ink — so the same temperature
+ * tension survives the switch.
+ *
+ * Contrast is matched deliberately, not approximated: fg 16.20:1 against
+ * 16.20:1, muted 8.40 against 8.62, subtle 4.97 against 5.01. The two themes
+ * are equally readable rather than one being a courtesy.
+ *
+ * Keyed only off [data-theme] because the inline head script always resolves a
+ * value before first paint. With JavaScript disabled the page stays dark,
+ * which is the site's default identity.
+ */
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --color-surface: #f5f6f7;
+  --color-surface-raised: #ffffff;
+  --color-border: #e1e4e7;
+  --color-border-strong: #c9cdd2;
+
+  --color-fg: #1b1917; /* 16.20:1 */
+  --color-fg-muted: #4b4844; /*  8.40:1 */
+  --color-fg-subtle: #6e6a64; /*  4.97:1 — AA */
+
+  --color-accent: #7a5c1c; /*  5.75:1 — AA as text */
+  --color-accent-solid: #e0a83f; /* 8.22:1 behind --color-on-accent */
+  --color-on-accent: #1b1917;
+}
+
+:root[data-theme="light"] ::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+
+:root[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+}
+
 :root {
   --duration-fast: 140ms;
   --duration-base: 240ms;
@@ -150,7 +197,7 @@
 
   ::selection {
     background: var(--color-fg);
-    color: var(--color-ink-900);
+    color: var(--color-surface);
   }
 
   [id] {

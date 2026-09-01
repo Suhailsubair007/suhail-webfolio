@@ -62,16 +62,20 @@ onScopeDispose(() => window.removeEventListener('scroll', onScroll))
         </ul>
       </nav>
 
-      <button
-        ref="menuButton"
-        type="button"
-        class="label -mr-2 flex h-11 items-center px-2 text-fg sm:hidden"
-        :aria-expanded="menuOpen"
-        aria-controls="mobile-nav"
-        @click="menuOpen = !menuOpen"
-      >
-        {{ menuOpen ? 'Close' : 'Menu' }}
-      </button>
+      <div class="flex items-center gap-1">
+        <ThemeToggle />
+
+        <button
+          ref="menuButton"
+          type="button"
+          class="label flex h-11 items-center px-2 text-fg sm:hidden"
+          :aria-expanded="menuOpen"
+          aria-controls="mobile-nav"
+          @click="menuOpen = !menuOpen"
+        >
+          {{ menuOpen ? 'Close' : 'Menu' }}
+        </button>
+      </div>
     </div>
 
     <nav
