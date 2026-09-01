@@ -80,6 +80,34 @@
 }
 
 /* ------------------------------------------------------------------ *
+ * Theme cross-fade.
+ *
+ * Applied only while a theme switch is in flight — useTheme adds the class,
+ * then removes it on a timer matching the duration below.
+ *
+ * It is deliberately not a standing rule. A permanent
+ * `transition: color, background-color` on every element would also catch
+ * every hover, focus and active state on the page, making the whole interface
+ * feel as though it were lagging behind the pointer.
+ *
+ * `fill` and `stroke` are included so the inline icons cross-fade with
+ * everything else instead of snapping a third of a second early.
+ * ------------------------------------------------------------------ */
+.theme-transition,
+.theme-transition *,
+.theme-transition *::before,
+.theme-transition *::after {
+  transition:
+    background-color 320ms var(--ease-out-quint),
+    border-color 320ms var(--ease-out-quint),
+    color 320ms var(--ease-out-quint),
+    fill 320ms var(--ease-out-quint),
+    stroke 320ms var(--ease-out-quint),
+    outline-color 320ms var(--ease-out-quint) !important;
+  transition-delay: 0ms !important;
+}
+
+/* ------------------------------------------------------------------ *
  * Reduced motion — the global kill switch.
  *
  * Last in the file so it wins on specificity ties. `0.01ms` rather than
