@@ -12,6 +12,6 @@ defineProps<{ text: string }>()
 
 <template>
   <div class="border-t border-border pt-4">
-    <h2 class="label">{{ text }}</h2>
+    <h2 class="label-accent">{{ text }}</h2>
   </div>
 </template>

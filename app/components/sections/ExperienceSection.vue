@@ -22,7 +22,7 @@ const LEAD_STACK = 5
       >
         <MetaRail as="article">
           <template #meta>
-            <time v-reveal :datetime="role.startDate" class="tabular label block text-fg">
+            <time v-reveal :datetime="role.startDate" class="tabular label-accent block">
               {{ role.period }}
             </time>
             <p class="label mt-1">

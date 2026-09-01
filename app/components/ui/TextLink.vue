@@ -25,7 +25,7 @@ const tag = computed(() => (props.to ? resolveComponent('NuxtLink') : 'a'))
     <span class="underline-sweep">
       <slot />
     </span>
-    <span v-if="arrow" aria-hidden="true" class="arrow text-fg-subtle">&#8594;</span>
+    <span v-if="arrow" aria-hidden="true" class="arrow text-accent">&#8594;</span>
     <span v-if="external" class="sr-only">(opens in a new tab)</span>
   </component>
 </template>

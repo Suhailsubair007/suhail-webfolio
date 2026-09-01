@@ -4,7 +4,7 @@ import { highlights, profile } from '#shared/content'
 
 <template>
   <section id="top" class="page pt-16 pb-section sm:pt-24">
-    <p v-reveal class="label">
+    <p v-reveal class="label-accent">
       {{ profile.eyebrow }}
     </p>
 
@@ -53,7 +53,7 @@ import { highlights, profile } from '#shared/content'
           class="grid grid-cols-2 gap-x-10 gap-y-6 lg:grid-cols-1 lg:gap-y-5 lg:border-l lg:border-border lg:pl-10"
         >
           <div v-for="item in highlights" :key="item.label" class="lg:flex lg:items-baseline lg:gap-4">
-            <dd class="tabular text-xl text-fg lg:w-24">
+            <dd class="tabular text-xl text-accent lg:w-24">
               {{ item.value }}
             </dd>
             <dt class="label mt-1 lg:mt-0">

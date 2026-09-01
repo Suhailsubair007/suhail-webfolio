@@ -49,7 +49,7 @@ usePageSeo({
 
     <MetaRail class="mt-14">
       <template #meta>
-        <p class="label text-fg">
+        <p class="label-accent">
           {{ entry.period }}
         </p>
         <p class="label mt-1">
@@ -67,7 +67,7 @@ usePageSeo({
       </template>
 
       <div>
-        <h2 class="label">
+        <h2 class="label-accent">
           {{ entry.kind === 'role' ? 'What I owned' : 'Scope' }}
         </h2>
 

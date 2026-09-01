@@ -35,7 +35,7 @@
   /* active nav. Never a fill, a border, a glow or a heading colour.   */
   /* The primary action is bone, not amber — restraint is the point.   */
   /* ---------------------------------------------------------------- */
-  --color-amber: #d8a657; /* 8.0:1 */
+  --color-amber: #e5b45c; /* 9.1:1 */
 
   /* ---------------------------------------------------------------- */
   /* Semantic layer — components reference only these.                 */
@@ -53,7 +53,7 @@
   /* One family. A second face — and especially a monospace — is what  */
   /* makes a portfolio read as a developer template.                   */
   /* ---------------------------------------------------------------- */
-  --font-sans: "Instrument Sans", ui-sans-serif, system-ui, -apple-system,
+  --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", sans-serif;
 
   /* ---------------------------------------------------------------- */
@@ -201,6 +201,15 @@
   letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--color-fg-subtle);
+}
+
+/* A label in the accent — section markers, eyebrows and dates. */
+@utility label-accent {
+  font-size: var(--text-meta);
+  line-height: 1.5;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--color-accent);
 }
 
 /*

@@ -3,9 +3,8 @@
  * Polymorphic action: a <NuxtLink> for internal routes, an <a> for external or
  * protocol URLs, a <button> when there is no destination.
  *
- * The primary action is bone, not amber. Reserving the accent for interaction
- * states is what keeps it meaningful — a page where every button glows gold
- * has no accent at all.
+ * The primary action carries the accent — it is the page's focal point, and
+ * the one place a filled colour earns its keep.
  */
 const props = withDefaults(
   defineProps<{
@@ -24,7 +23,7 @@ const tag = computed(() => {
 })
 
 const VARIANTS = {
-  primary: 'bg-fg text-ink-900 hover:bg-white',
+  primary: 'bg-accent text-ink-900 hover:bg-[#f0c777]',
   secondary: 'border border-border text-fg hover:border-border-strong',
 } as const
 </script>

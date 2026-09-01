@@ -25,7 +25,7 @@ const [featured, ...rest] = selectedWork
 
       <MetaRail class="mt-12">
         <template #meta>
-          <p class="label text-fg">
+          <p class="label-accent">
             {{ featured.period }}
           </p>
           <p class="label mt-1">
@@ -41,7 +41,7 @@ const [featured, ...rest] = selectedWork
 
           <p v-if="featured.outcome" class="mt-8 border-l border-border pl-5">
             <span class="label block">Outcome</span>
-            <span class="tabular mt-1 block text-xl text-fg">{{ featured.outcome }}</span>
+            <span class="tabular mt-1 block text-xl text-accent">{{ featured.outcome }}</span>
           </p>
 
           <div class="mt-9 flex flex-wrap items-center gap-x-8 gap-y-3">
@@ -61,7 +61,7 @@ const [featured, ...rest] = selectedWork
       <li v-for="item in rest" :key="item.slug" class="border-b border-border py-12">
         <MetaRail as="article">
           <template #meta>
-            <p class="label text-fg">
+            <p class="label-accent">
               {{ item.period }}
             </p>
             <p class="label mt-1">

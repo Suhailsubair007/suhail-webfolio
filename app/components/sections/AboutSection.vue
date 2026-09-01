@@ -16,7 +16,7 @@ import { about, profile } from '#shared/content'
           height="1080"
           loading="lazy"
           decoding="async"
-          class="w-28 object-cover grayscale md:w-full"
+          class="w-28 object-cover md:w-full"
         >
         <p class="label mt-4">
           {{ profile.location }}
