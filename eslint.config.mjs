@@ -2,6 +2,11 @@
 import withNuxt from './.nuxt/eslint.config.mjs'
 
 export default withNuxt({
+  // Untracked reference résumé data some working copies keep at the root. It is
+  // not imported by the app — the live content lives in `shared/content/` — so
+  // it is not held to the project's code style.
+  ignores: ['data.ts'],
+}, {
   rules: {
     // Single-component pages and sections are named by their file path.
     'vue/multi-word-component-names': 'off',

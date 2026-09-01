@@ -2,10 +2,9 @@
  * Design tokens and base layer.
  *
  * `source(none)` + an explicit `@source` is deliberate: Tailwind v4's automatic
- * source detection roots at the process CWD, so a build launched from the repo
- * root would scan the legacy Next.js app and inject its classes and palette
- * into this stylesheet. This makes the scan deterministic and independent of
- * where the build was started from.
+ * source detection roots at the process CWD, which makes the emitted CSS depend
+ * on where the build was started from. Pinning the scan to `app/` keeps the
+ * output identical whether the build runs locally, in CI, or on Vercel.
  */
 @import "tailwindcss" source(none);
 @source "../../";
