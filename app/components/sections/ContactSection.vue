@@ -14,13 +14,13 @@ const channels = computed(() => [
       label: social.label,
       value: social.handle,
       href: social.href,
-      external: true,
+      icon: social.icon,
     })),
   {
     label: 'Résumé',
-    value: 'PDF, one page',
+    value: 'PDF',
     href: profile.resumeUrl,
-    external: true,
+    icon: 'download' as const,
   },
 ])
 </script>
@@ -57,18 +57,29 @@ const channels = computed(() => [
       <div v-reveal="{ delay: 90 }">
         <ul class="border-t border-border">
           <li v-for="channel in channels" :key="channel.label">
+            <!--
+              The link is labelled here rather than with a visually-hidden
+              span. An sr-only span sits in the text content, so anyone copying
+              the block gets "(opens in a new tab)" three times; aria-label
+              gives assistive tech the same sentence without that.
+            -->
             <a
               :href="channel.href"
               target="_blank"
               rel="noopener noreferrer"
-              class="group flex items-baseline gap-4 border-b border-border py-4 transition-colors duration-[var(--duration-base)] hover:border-border-strong"
+              :aria-label="`${channel.label}: ${channel.value} (opens in a new tab)`"
+              class="group flex items-center gap-4 border-b border-border py-4 transition-colors duration-[var(--duration-base)] hover:border-border-strong"
             >
-              <span class="w-24 shrink-0 text-sm text-fg-subtle">{{ channel.label }}</span>
+              <AppIcon
+                :name="channel.icon"
+                :size="17"
+                class="shrink-0 text-fg-subtle transition-colors group-hover:text-accent"
+              />
+              <span class="w-20 shrink-0 text-sm text-fg-subtle">{{ channel.label }}</span>
               <span class="min-w-0 flex-1 truncate text-fg transition-colors group-hover:text-accent">
                 {{ channel.value }}
               </span>
               <span aria-hidden="true" class="arrow shrink-0 text-fg-subtle">&#8594;</span>
-              <span class="sr-only">(opens in a new tab)</span>
             </a>
           </li>
         </ul>
