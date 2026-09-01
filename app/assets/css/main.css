@@ -311,3 +311,43 @@
     }
   }
 }
+
+/*
+ * The header's backdrop.
+ *
+ * Extends below the header row and fades out, so the blur and the tint
+ * dissolve into the page rather than ending at a rule. The mask is applied to
+ * the layer itself — masking the <header> would fade the navigation out with
+ * it.
+ *
+ * The fade lives entirely in the mask, not in a background gradient. A
+ * gradient stop built with color-mix() is resolved at build time against
+ * whichever theme happens to be active in the stylesheet, which baked the dark
+ * surface into the middle stop and left it dark under the light theme. Driving
+ * the fade from mask alpha keeps the single background colour themed.
+ *
+ * Masking also fades the backdrop-filter, so the blur tapers off with the
+ * tint instead of stopping dead at the mask's edge.
+ */
+@utility header-veil {
+  height: calc(var(--spacing-header) + 2.5rem);
+  background: var(--color-surface);
+  /* The blur comes from Tailwind's backdrop-blur utility on the element, not
+     from a hand-written declaration here: writing both the standard and
+     -webkit- forms confused the minifier into emitting only the prefixed one,
+     which left Firefox with no blur at all. */
+  mask-image: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 0.94) 0%,
+    rgb(0 0 0 / 0.9) 45%,
+    rgb(0 0 0 / 0.5) 72%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 0.94) 0%,
+    rgb(0 0 0 / 0.9) 45%,
+    rgb(0 0 0 / 0.5) 72%,
+    transparent 100%
+  );
+}

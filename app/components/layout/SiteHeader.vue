@@ -5,18 +5,11 @@ const sectionIds = navigation.map(item => item.href.replace('#', ''))
 const { activeId, lock } = useScrollSpy(sectionIds)
 
 const scrolled = ref(false)
-/** 0–1 through the document, drives the progress rule under the header. */
-const progress = ref(0)
 const menuOpen = ref(false)
 const menuButton = useTemplateRef<HTMLButtonElement>('menuButton')
 
 function onScroll() {
   scrolled.value = window.scrollY > 24
-
-  // Computed here rather than in its own listener: this handler already runs
-  // on every scroll, and the work is a division and a custom-property write.
-  const travel = document.documentElement.scrollHeight - window.innerHeight
-  progress.value = travel > 0 ? Math.min(1, window.scrollY / travel) : 0
 }
 
 function closeMenu(returnFocus = false) {
@@ -38,11 +31,20 @@ onScopeDispose(() => window.removeEventListener('scroll', onScroll))
 </script>
 
 <template>
-  <header
-    class="sticky top-0 z-50 transition-colors duration-[var(--duration-base)]"
-    :class="scrolled || menuOpen ? 'border-b border-border bg-surface/90 backdrop-blur' : 'border-b border-transparent'"
-  >
-    <div class="page flex h-header items-center justify-between gap-6">
+  <header class="sticky top-0 z-50">
+    <!--
+      The backdrop is a separate layer, taller than the header and masked to
+      fade out at its lower edge, so the blur and the background dissolve into
+      the content instead of stopping at a hard rule. Masking the header
+      itself would take the navigation with it.
+    -->
+    <div
+      aria-hidden="true"
+      class="header-veil pointer-events-none absolute inset-x-0 top-0 backdrop-blur-md transition-opacity duration-[var(--duration-base)]"
+      :class="scrolled || menuOpen ? 'opacity-100' : 'opacity-0'"
+    />
+
+    <div class="page relative flex h-header items-center justify-between gap-6">
       <a
         href="#top"
         class="group inline-flex items-center gap-2.5 text-fg"
@@ -93,22 +95,11 @@ onScopeDispose(() => window.removeEventListener('scroll', onScroll))
       </div>
     </div>
 
-    <!--
-      Reading progress. Driven by a custom property and a scaleX transform, so
-      it composites rather than triggering layout on every frame.
-    -->
-    <div
-      aria-hidden="true"
-      class="absolute inset-x-0 bottom-0 h-px origin-left bg-accent transition-opacity duration-[var(--duration-base)]"
-      :class="scrolled ? 'opacity-100' : 'opacity-0'"
-      :style="{ transform: `scaleX(${progress})` }"
-    />
-
     <nav
       v-show="menuOpen"
       id="mobile-nav"
       aria-label="Sections"
-      class="border-t border-border sm:hidden"
+      class="relative border-t border-border bg-surface/95 backdrop-blur sm:hidden"
       @keydown.esc="closeMenu(true)"
     >
       <ul class="page flex flex-col py-2">
