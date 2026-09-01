@@ -43,7 +43,7 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      siteUrl: 'https://suhailsubair.online',
+      siteUrl: 'https://www.suhailsubair.online',
     },
   },
 

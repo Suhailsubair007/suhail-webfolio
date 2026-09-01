@@ -3,6 +3,9 @@ import { education, profile, site, socials, topSkills } from '#shared/content'
 
 const { public: { siteUrl } } = useRuntimeConfig()
 
+// Same form as the home canonical and the sitemap loc: origin with its trailing slash.
+const homeUrl = `${siteUrl}/`
+
 const personLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
@@ -10,7 +13,7 @@ const personLd = {
   'jobTitle': profile.role,
   'email': `mailto:${profile.email}`,
   'telephone': profile.phone,
-  'url': siteUrl,
+  'url': homeUrl,
   'image': `${siteUrl}${profile.avatar}`,
   'address': {
     '@type': 'PostalAddress',
@@ -37,7 +40,7 @@ const websiteLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   'name': site.shortTitle,
-  'url': siteUrl,
+  'url': homeUrl,
   'description': site.description,
 }
 

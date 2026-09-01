@@ -10,7 +10,8 @@ interface PageSeoOptions {
 
 export function usePageSeo(options: PageSeoOptions) {
   const { public: { siteUrl } } = useRuntimeConfig()
-  const url = `${siteUrl}${options.path === '/' ? '' : options.path}`
+  // Home canonicalises to the origin with its trailing slash, matching the sitemap loc exactly.
+  const url = `${siteUrl}${options.path}`
   const image = `${siteUrl}${site.ogImage}`
 
   useSeoMeta({
