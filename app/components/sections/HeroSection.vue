@@ -1,59 +1,66 @@
 <script setup lang="ts">
-import { profile, topSkills } from '#shared/content'
+import { highlights, profile } from '#shared/content'
 </script>
 
 <template>
-  <section id="top" class="relative overflow-hidden">
-    <div aria-hidden="true" class="dot-grid pointer-events-none absolute inset-0" />
+  <section id="top" class="page pt-16 pb-section sm:pt-24">
+    <p v-reveal class="label">
+      {{ profile.eyebrow }}
+    </p>
 
-    <div class="container-wide relative grid items-center gap-16 py-section lg:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)]">
-      <!-- Copy. On mobile the visual sits behind this, so it is ordered first. -->
-      <div class="relative z-10">
-        <p class="font-mono text-2xs tracking-[0.18em] text-accent uppercase">
-          {{ profile.eyebrow }}
-        </p>
+    <!--
+      The page's thesis, set as large as the measure allows. Lines are authored
+      in the content layer rather than left to wrap, so the rag is deliberate
+      at every width instead of accidental.
+    -->
+    <h1 class="mt-8 text-display text-fg sm:mt-10">
+      <span
+        v-for="(line, i) in profile.headline"
+        :key="line"
+        v-reveal="{ delay: i * 80, y: '1.25rem' }"
+        class="block"
+      >{{ line }}</span>
+    </h1>
 
-        <h1 class="mt-7 text-4xl font-medium">
-          {{ profile.headlineLead }}<br>
-          <span class="font-display italic text-accent">{{ profile.headlineAccent }}</span>
-        </h1>
+    <div class="mt-14 border-t border-border pt-10 sm:mt-20">
+      <div class="grid gap-12 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-24">
+        <div v-reveal="{ delay: 120 }">
+          <p class="max-w-prose text-lg text-fg-muted">
+            {{ profile.tagline }}
+          </p>
 
-        <p class="mt-7 max-w-prose text-lg text-fg-muted">
-          {{ profile.tagline }}
-        </p>
-
-        <ul class="mt-8 flex flex-wrap gap-2">
-          <StackChip v-for="skill in topSkills" :key="skill" :label="skill" />
-        </ul>
-
-        <div class="mt-10 flex flex-wrap gap-3">
-          <AppButton href="#work" size="lg">
-            View my work
-          </AppButton>
-          <AppButton href="#contact" variant="secondary" size="lg">
-            Let’s connect
-          </AppButton>
-          <AppButton :href="profile.resumeUrl" variant="ghost" size="lg" external>
-            <AppIcon name="download" :size="18" />
-            Résumé
-          </AppButton>
+          <div class="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
+            <AppButton href="#work">
+              View the work
+              <span aria-hidden="true" class="arrow">&#8594;</span>
+            </AppButton>
+            <TextLink :href="`mailto:${profile.email}`" :arrow="false">
+              Get in touch
+            </TextLink>
+            <TextLink :href="profile.resumeUrl" external :arrow="false">
+              Résumé
+            </TextLink>
+          </div>
         </div>
 
-        <p class="mt-10 flex items-start gap-2.5 text-xs text-fg-subtle">
-          <span
-            aria-hidden="true"
-            class="mt-1.5 size-1.5 shrink-0 rounded-full bg-accent"
-          />
-          <span class="max-w-prose">{{ profile.availability }}</span>
-        </p>
-      </div>
-
-      <!-- Visual. Below lg it drops behind the copy so it never competes with
-           the h1 for the mobile LCP. -->
-      <div
-        class="pointer-events-none absolute inset-0 opacity-35 lg:pointer-events-auto lg:relative lg:inset-auto lg:opacity-100"
-      >
-        <HeroVisual class="mx-auto h-full max-w-md lg:max-w-none" />
+        <!--
+          Figures sit in the rail rather than in stat cards. They are verified
+          numbers, so they earn a place above the fold — but not four glowing
+          panels.
+        -->
+        <dl
+          v-reveal="{ delay: 180 }"
+          class="grid grid-cols-2 gap-x-10 gap-y-6 lg:grid-cols-1 lg:gap-y-5 lg:border-l lg:border-border lg:pl-10"
+        >
+          <div v-for="item in highlights" :key="item.label" class="lg:flex lg:items-baseline lg:gap-4">
+            <dd class="tabular text-xl text-fg lg:w-24">
+              {{ item.value }}
+            </dd>
+            <dt class="label mt-1 lg:mt-0">
+              {{ item.label }}
+            </dt>
+          </div>
+        </dl>
       </div>
     </div>
   </section>

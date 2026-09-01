@@ -1,34 +1,47 @@
 <script setup lang="ts">
-import { skills } from '#shared/content'
+import { achievements, education, skills } from '#shared/content'
 </script>
 
 <template>
-  <section id="skills" class="py-section">
-    <div class="container-wide">
-      <SectionHeading
-        v-reveal
-        eyebrow="Stack"
-        title="What I build with."
-        lede="Grouped by where each tool actually sits in a system, not ranked by a made-up proficiency bar."
-      />
+  <section id="skills" class="page py-section">
+    <SectionLabel v-reveal text="Toolkit" />
 
-      <dl class="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-        <div
-          v-for="(group, i) in skills"
-          :key="group.category"
-          v-reveal="{ delay: (i % 3) * 70 }"
-          class="border-t border-border pt-6"
-        >
-          <dt class="font-mono text-2xs tracking-[0.18em] text-accent uppercase">
-            {{ group.category }}
-          </dt>
-          <dd>
-            <ul class="mt-5 flex flex-wrap gap-2">
-              <StackChip v-for="item in group.items" :key="item" :label="item" />
-            </ul>
-          </dd>
-        </div>
-      </dl>
-    </div>
+    <!--
+      Set as prose, not as a badge wall. Technology is evidence for the claims
+      above it, so it reads as a short list rather than forty pills.
+    -->
+    <dl class="mt-12">
+      <div
+        v-for="(group, i) in skills"
+        :key="group.category"
+        v-reveal="{ delay: Math.min(i, 3) * 50 }"
+        class="rail border-b border-border py-6 first:border-t"
+      >
+        <dt class="label md:pt-1">
+          {{ group.category }}
+        </dt>
+        <dd class="text-lg text-fg-muted">
+          {{ group.items.join(' · ') }}
+        </dd>
+      </div>
+    </dl>
+
+    <!-- Background, compressed to a single rail rather than its own section. -->
+    <MetaRail class="mt-16">
+      <template #meta>
+        <p class="label">Background</p>
+      </template>
+
+      <div v-reveal class="max-w-prose">
+        <p v-for="item in education" :key="item.id" class="text-lg text-fg">
+          {{ item.degree }} {{ item.field }}, {{ item.institution }}
+          <span class="tabular block text-sm text-fg-subtle">{{ item.period }} · First Class Distinction</span>
+        </p>
+
+        <p class="mt-6 text-sm text-fg-subtle">
+          {{ achievements.filter(a => !a.title.startsWith('B.Tech')).map(a => a.title).join(' · ') }}
+        </p>
+      </div>
+    </MetaRail>
   </section>
 </template>

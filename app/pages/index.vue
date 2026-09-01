@@ -61,6 +61,5 @@ usePageSeo({
   <ExperienceSection />
   <WorkSection />
   <SkillsSection />
-  <CredentialsSection />
   <ContactSection />
 </template>

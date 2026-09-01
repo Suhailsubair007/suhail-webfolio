@@ -1,73 +1,35 @@
 import type { SkillGroup } from '../types/portfolio'
 
-/** Pinned to the top of the hero as a compact credibility row. */
-export const topSkills: string[] = [
-  'TypeScript',
-  'React Native',
-  'React.js',
-  'Node.js',
-  'GraphQL',
-]
-
+/**
+ * Four groups, not six, and set as prose rather than as a badge wall.
+ *
+ * Technology is evidence, not the argument — it reads as a short list under a
+ * quiet heading, and the roles above carry the actual claim.
+ */
 export const skills: SkillGroup[] = [
   {
     category: 'Languages',
     items: ['TypeScript', 'JavaScript', 'Go', 'Dart', 'Kotlin'],
   },
   {
-    category: 'Frontend & Mobile',
-    items: [
-      'React.js',
-      'Next.js',
-      'React Native',
-      'Expo',
-      'Flutter',
-      'Redux',
-      'React Query',
-      'Tailwind CSS',
-      'NativeWind',
-    ],
+    category: 'Product',
+    items: ['React', 'Next.js', 'React Native', 'Expo', 'Flutter', 'Tailwind CSS'],
   },
   {
-    category: 'Backend & APIs',
-    items: [
-      'Node.js',
-      'Bun.js',
-      'Express.js',
-      'GraphQL',
-      'REST APIs',
-      'WebSockets',
-      'JWT',
-      'OAuth',
-    ],
+    category: 'Systems',
+    items: ['Node.js', 'Bun.js', 'GraphQL', 'REST', 'WebSockets', 'MongoDB', 'PostgreSQL', 'Redis'],
   },
   {
-    category: 'Databases',
-    items: ['MongoDB', 'PostgreSQL', 'Redis'],
+    category: 'Infrastructure',
+    items: ['AWS', 'DigitalOcean', 'Docker', 'Nginx', 'Cloudflare R2', 'Firebase', 'CI/CD'],
   },
-  {
-    category: 'Cloud & DevOps',
-    items: [
-      'AWS (EC2, S3, SES)',
-      'DigitalOcean',
-      'Cloudflare R2',
-      'Nginx',
-      'Caddy',
-      'Docker',
-      'PM2',
-    ],
-  },
-  {
-    category: 'Tools',
-    items: [
-      'Git',
-      'GitHub',
-      'Jira',
-      'Postman',
-      'Firebase (Auth, FCM)',
-      'Postmark',
-      'Figma',
-      'EAS Build',
-    ],
-  },
+]
+
+/** Consumed by the Person JSON-LD `knowsAbout` field, not rendered directly. */
+export const topSkills: string[] = [
+  'TypeScript',
+  'React Native',
+  'React',
+  'Node.js',
+  'GraphQL',
 ]

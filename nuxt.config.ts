@@ -76,13 +76,15 @@ export default defineNuxtConfig({
   },
 
   fonts: {
-    // Required, not optional: @nuxt/fonts discovers families by scanning
-    // `font-family:` declarations, and ours exist only as --font-* custom
-    // properties inside Tailwind's @theme block, which the scanner cannot see.
+    // Declared explicitly: @nuxt/fonts finds families by scanning `font-family:`
+    // declarations, and ours exist only as --font-* custom properties inside
+    // Tailwind's @theme block, which its scanner cannot see.
+    //
+    // One family, deliberately. A second face — and especially a monospace —
+    // is what makes a portfolio read as a developer template rather than as
+    // an edited page.
     families: [
-      { name: 'Geist', provider: 'google', weights: [400, 500, 600] },
-      { name: 'Geist Mono', provider: 'google', weights: [400, 500] },
-      { name: 'Instrument Serif', provider: 'google', weights: [400], styles: ['normal', 'italic'] },
+      { name: 'Instrument Sans', provider: 'google', weights: [400, 500, 600] },
     ],
     defaults: { subsets: ['latin'] },
   },

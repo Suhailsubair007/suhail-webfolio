@@ -1,106 +1,110 @@
 import type { ExperienceItem } from '../types/portfolio'
 
-/** Most recent first. */
+/**
+ * Roles, most recent first.
+ *
+ * ORDERING IS MEANINGFUL. Within each role, `bullets` and `stack` are ordered
+ * strongest / most-relevant first: the homepage shows the leading three of
+ * each, the case study page shows the complete record. Reordering an array
+ * therefore changes what a recruiter sees first — that is the intent, and it
+ * avoids maintaining a second, duplicated "featured" copy of the same content.
+ *
+ * Selection criteria, highest first: measurable impact, production scale,
+ * complex engineering, technical ownership. Routine responsibilities sink.
+ */
 export const experience: ExperienceItem[] = [
   {
     id: 'deelo',
     company: 'Deelo',
     companyUrl: 'https://deelo.in',
     role: 'Full Stack Developer',
-    location: 'Kottayam, India',
-    period: 'Jan 2026 — Present',
+    location: 'Kottayam',
+    period: '2026 — Present',
     startDate: '2026-01',
     endDate: null,
     current: true,
     summary:
-      'Own product development for a location-based services marketplace serving 10,000+ registered users — across web, mobile, admin and backend.',
+      'Own the product surface of a services marketplace serving 10,000+ registered users — customer site, onboarding portal, admin panel, Android app and the backend beneath them.',
     bullets: [
       {
-        title: 'Product ownership',
+        title: 'Moved a legacy backend to service architecture',
         description:
-          'Drive development across the full product surface: a Next.js customer site, a freelancer onboarding portal, an admin panel and mobile apps, all serving 10,000+ registered users.',
+          'Migrated Deelo’s Node.js monolith to service-based TypeScript, GraphQL and MongoDB — redesigning the data models and moving every production record with zero data loss.',
       },
       {
-        title: 'Backend migration',
+        title: 'Built location matching from the ground up',
         description:
-          'Migrated the legacy Node.js backend to a service-based architecture in TypeScript, GraphQL and MongoDB — redesigning the database models and moving all production data with zero data loss.',
+          'Implemented geo-based service matching across regions, micro-zones and geographic boundaries, connecting customers to nearby providers in real time.',
       },
       {
-        title: 'Location intelligence',
+        title: 'Shipped the Android app end to end',
         description:
-          'Implemented geo-based service matching using regions, micro-zones and geographical boundaries, connecting customers to nearby providers in real time.',
+          'Took the React Native app from first commit to Play Store, owning the release pipeline and performance work, and started the migration to native Kotlin.',
       },
       {
-        title: 'Android app',
+        title: 'Run the cloud infrastructure',
         description:
-          'Built and shipped the React Native (Expo) Android app end to end, owning the full Play Store release pipeline and app performance work; initiated the migration to native Kotlin.',
+          'Manage AWS across EC2, S3 and SES, designed the file-upload architecture, and handle production deployment and maintenance.',
       },
       {
-        title: 'Cloud infrastructure',
+        title: 'Mentor two engineers',
         description:
-          'Manage AWS infrastructure — EC2 hosting, S3 storage and SES email delivery — designed the file-upload architecture, and handle production deployment and maintenance.',
-      },
-      {
-        title: 'Mentorship',
-        description:
-          'Mentor 2 junior developers through code review, sprint planning and coding standards, and work directly with the CTO on product and architecture decisions.',
+          'Lead code review, sprint planning and coding standards for two junior developers, and work directly with the CTO on product and architecture decisions.',
       },
     ],
     stack: [
       'TypeScript',
-      'Next.js',
-      'React Native',
-      'Expo',
-      'Node.js',
       'GraphQL',
+      'React Native',
       'MongoDB',
-      'AWS (EC2, S3, SES)',
+      'AWS',
+      'Next.js',
+      'Node.js',
+      'Expo',
       'Kotlin',
     ],
   },
   {
     id: 'ecloto',
-    company: 'Ecloto Designs Pvt Ltd',
+    company: 'Ecloto Designs',
     role: 'Full Stack Developer',
-    location: 'Kochi, India',
-    period: 'Apr 2025 — Dec 2025',
+    location: 'Kochi',
+    period: 'Apr — Dec 2025',
     startDate: '2025-04',
     endDate: '2025-12',
     current: false,
     summary:
-      'Built the entire backend for Orgface — a professional networking and messaging platform — and shipped cross-platform features from a single React Native codebase.',
+      'Built the entire backend for Orgface, a professional networking and messaging platform, and shipped its cross-platform features from a single React Native codebase.',
     bullets: [
       {
-        title: 'Backend architecture',
+        title: 'Wrote the backend from scratch',
         description:
-          'Built the Orgface backend from scratch: scalable database schemas and REST APIs across 10+ business modules, written in TypeScript and Bun.js inside a monorepo.',
+          'Designed the schemas and REST APIs for 10+ business modules in TypeScript and Bun.js, inside a monorepo.',
       },
       {
-        title: 'Real-time messaging',
+        title: 'Engineered real-time messaging',
         description:
-          'Engineered one-to-one and group chat over WebSockets, with a WhatsApp-style push notification system delivered across Web, Android and iOS.',
+          'Built one-to-one and group chat over WebSockets, with a push notification pipeline delivering across Web, Android and iOS.',
       },
       {
-        title: 'Cross-platform delivery',
+        title: 'Owned production infrastructure',
         description:
-          'Shipped features from a single React Native codebase serving Web, Android and iOS, including API integration and a redesign of core screens such as profile management.',
+          'Ran deployment on DigitalOcean — Nginx and Caddy, PM2, Cloudflare DNS with R2 storage, and Postmark for transactional email.',
       },
       {
-        title: 'Deployment & infrastructure',
+        title: 'Shipped to three platforms from one codebase',
         description:
-          'Managed production deployment on DigitalOcean: Nginx/Caddy reverse proxies, PM2 process management, Cloudflare DNS with R2 file storage, and Postmark transactional email.',
+          'Delivered features and a redesign of core screens from a single React Native codebase serving Web, Android and iOS.',
       },
     ],
     stack: [
       'TypeScript',
       'Bun.js',
-      'REST APIs',
       'WebSockets',
       'React Native',
       'DigitalOcean',
+      'REST APIs',
       'Nginx',
-      'Caddy',
-      'PM2',
       'Cloudflare R2',
       'Postmark',
     ],
