@@ -1,11 +1,6 @@
 <script setup lang="ts">
 import { experience } from '#shared/content'
 
-/**
- * The homepage shows the leading three bullets and technologies of each role;
- * the case study carries the full record. Content is ordered strongest-first
- * in the data layer, so the slice is a presentation decision, not an edit.
- */
 const LEAD_BULLETS = 3
 const LEAD_STACK = 5
 </script>
@@ -50,10 +45,6 @@ const LEAD_STACK = 5
               {{ role.summary }}
             </p>
 
-            <!--
-              Three achievements, not eight. Each is a headline a recruiter can
-              read on its own, with the detail underneath for anyone who stops.
-            -->
             <ul class="mt-8 space-y-5">
               <li
                 v-for="bullet in role.bullets.slice(0, LEAD_BULLETS)"

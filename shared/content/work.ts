@@ -1,33 +1,17 @@
-/**
- * Products, viewed by what was built rather than by who employed him.
- *
- * Every string is drawn from the corresponding experience entry — nothing new
- * is asserted here. `url` appears only where a public site actually exists,
- * and `image` only where a real screenshot exists; neither is invented to fill
- * a layout.
- */
 export interface WorkItem {
-  /** Matches a `caseStudies` slug. */
   slug: string
   name: string
-  /** Where it was built. */
   context: string
   period: string
-  /** One sentence. A recruiter should understand the product from this alone. */
   thesis: string
-  /** What he personally contributed. */
   contribution: string
-  /** Verified figure, or undefined when the data supports no claim. */
   outcomeValue?: string
-  /** What the figure counts. Always paired with `outcomeValue`. */
   outcomeLabel?: string
   stack: string[]
   url?: string
-  /** Reserved: a real screenshot slots in here. Never a placeholder. */
   image?: string
 }
 
-/** Ordered by strength. The first entry gets the featured treatment. */
 export const selectedWork: WorkItem[] = [
   {
     slug: 'deelo',

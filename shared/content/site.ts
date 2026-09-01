@@ -1,12 +1,5 @@
 import type { NavItem } from '../types/portfolio'
 
-/**
- * Site-level metadata and navigation.
- *
- * `url` is intentionally absent here — the canonical origin comes from
- * `runtimeConfig.public.siteUrl` so it can be overridden per environment
- * (preview vs production) without a code change.
- */
 export const site = {
   title: 'Suhail Subair — Full Stack & Mobile Engineer',
   shortTitle: 'Suhail Subair',
@@ -30,7 +23,6 @@ export const site = {
     'Kerala',
     'India',
   ],
-  /** Drives sitemap <lastmod>. Bump when content changes. */
   contentUpdatedAt: '2026-09-01',
 } as const
 

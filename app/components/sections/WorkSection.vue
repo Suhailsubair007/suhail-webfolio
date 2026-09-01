@@ -1,15 +1,6 @@
 <script setup lang="ts">
 import { selectedWork } from '#shared/content'
 
-/**
- * Work is ordered by strength in the data layer. The first entry carries the
- * argument and gets the display treatment; the rest are set as rail entries.
- * Equal weight for every project would waste the strongest one.
- *
- * There are no product screenshots, and inventing them is not an option, so
- * the visual interest has to come from type and from the one thing that is
- * genuinely striking here: the verified figures.
- */
 const [featured, ...rest] = selectedWork
 </script>
 
@@ -17,7 +8,6 @@ const [featured, ...rest] = selectedWork
   <section id="work" class="page py-section">
     <SectionLabel v-reveal text="Selected work" />
 
-    <!-- Featured. -->
     <article v-if="featured" class="border-b border-border py-14">
       <div class="grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-20">
         <div v-reveal>
@@ -28,8 +18,6 @@ const [featured, ...rest] = selectedWork
             {{ featured.thesis }}
           </p>
 
-          <!-- The figure is the section's visual anchor: real, verified, and
-               the only thing here worth setting at display scale. -->
           <div v-if="featured.outcomeValue" class="mt-12 border-t border-border pt-6">
             <p class="tabular text-3xl leading-none text-accent">
               {{ featured.outcomeValue }}
@@ -72,7 +60,6 @@ const [featured, ...rest] = selectedWork
       </div>
     </article>
 
-    <!-- Supporting work. -->
     <ol>
       <li v-for="item in rest" :key="item.slug" class="border-b border-border py-12">
         <MetaRail as="article">

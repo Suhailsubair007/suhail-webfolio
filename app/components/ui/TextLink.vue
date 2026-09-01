@@ -1,5 +1,4 @@
 <script setup lang="ts">
-/** An inline link that draws its underline on hover, with an optional arrow. */
 const props = withDefaults(
   defineProps<{
     to?: string

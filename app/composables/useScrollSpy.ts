@@ -1,15 +1,3 @@
-/**
- * Tracks which in-page section is currently in view, for the nav indicator.
- *
- * Handles three things a naive IntersectionObserver gets wrong:
- *   1. A short final section may never enter the observation band, so the last
- *      id is force-selected once the page is scrolled to the bottom.
- *   2. Clicking a hash link smooth-scrolls *through* every intermediate
- *      section, which strobes the indicator — so activation is locked briefly
- *      after a click.
- *   3. Nothing runs during SSR; the observer is created on mount and torn down
- *      with the effect scope.
- */
 export function useScrollSpy(ids: string[]) {
   const activeId = ref('')
 
@@ -18,7 +6,6 @@ export function useScrollSpy(ids: string[]) {
   let unlockAt = 0
   let observer: IntersectionObserver | undefined
 
-  /** Suppress observer updates while a smooth scroll is in flight. */
   function lock(id: string) {
     activeId.value = id
     unlockAt = Date.now() + 600

@@ -1,12 +1,6 @@
 <script setup lang="ts">
 import { contactCta, profile, socials } from '#shared/content'
 
-/**
- * Channels, as rows rather than a loose run of links.
- *
- * Each carries what it is and what it points at, so a recruiter scanning for
- * a GitHub handle finds it without opening anything.
- */
 const channels = computed(() => [
   ...socials
     .filter(social => social.icon !== 'mail')
@@ -30,7 +24,6 @@ const channels = computed(() => [
     <SectionLabel v-reveal text="Contact" />
 
     <div class="mt-12 grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)] lg:gap-24">
-      <!-- The ask, and the one action that matters. -->
       <div v-reveal>
         <p class="text-3xl text-fg">
           <span v-for="line in contactCta.heading" :key="line" class="block">{{ line }}</span>
@@ -40,8 +33,6 @@ const channels = computed(() => [
           {{ contactCta.body }}
         </p>
 
-        <!-- The address is the primary call to action, so it is set as one
-             rather than hidden behind a button labelled "get in touch". -->
         <p class="mt-10">
           <a
             :href="`mailto:${profile.email}`"
@@ -53,16 +44,9 @@ const channels = computed(() => [
         </p>
       </div>
 
-      <!-- Everything else, in rows. -->
       <div v-reveal="{ delay: 90 }">
         <ul class="border-t border-border">
           <li v-for="channel in channels" :key="channel.label">
-            <!--
-              The link is labelled here rather than with a visually-hidden
-              span. An sr-only span sits in the text content, so anyone copying
-              the block gets "(opens in a new tab)" three times; aria-label
-              gives assistive tech the same sentence without that.
-            -->
             <a
               :href="channel.href"
               target="_blank"

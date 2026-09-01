@@ -1,17 +1,5 @@
 import type { ExperienceItem } from '../types/portfolio'
 
-/**
- * Roles, most recent first.
- *
- * ORDERING IS MEANINGFUL. Within each role, `bullets` and `stack` are ordered
- * strongest / most-relevant first: the homepage shows the leading three of
- * each, the case study page shows the complete record. Reordering an array
- * therefore changes what a recruiter sees first — that is the intent, and it
- * avoids maintaining a second, duplicated "featured" copy of the same content.
- *
- * Selection criteria, highest first: measurable impact, production scale,
- * complex engineering, technical ownership. Routine responsibilities sink.
- */
 export const experience: ExperienceItem[] = [
   {
     id: 'deelo',

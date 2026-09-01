@@ -1,11 +1,5 @@
 import type { ProjectItem } from '../types/portfolio'
 
-/**
- * Independent products, as distinct from employer work (see `experience`).
- *
- * `links` is empty where no public URL exists. The UI must render no link
- * affordance in that case rather than inventing a destination.
- */
 export const projects: ProjectItem[] = [
   {
     id: 'workshop-saas',

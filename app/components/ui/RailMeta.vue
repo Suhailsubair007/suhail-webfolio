@@ -1,14 +1,4 @@
 <script setup lang="ts">
-/**
- * The metadata rail's contents: period, place, and the technologies used.
- *
- * Set in sentence case. All-caps was applied to everything here, which made
- * the rail one flat shout and cost real legibility — "REACT NATIVE" is
- * measurably harder to read than "React Native", and proper nouns lose the
- * shape the eye recognises them by.
- *
- * Caps now survive in exactly one place on the page: the section markers.
- */
 defineProps<{
   period: string
   place?: string

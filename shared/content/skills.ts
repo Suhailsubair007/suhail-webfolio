@@ -1,11 +1,5 @@
 import type { SkillGroup } from '../types/portfolio'
 
-/**
- * Four groups, not six, and set as prose rather than as a badge wall.
- *
- * Technology is evidence, not the argument — it reads as a short list under a
- * quiet heading, and the roles above carry the actual claim.
- */
 export const skills: SkillGroup[] = [
   {
     category: 'Languages',
@@ -25,7 +19,6 @@ export const skills: SkillGroup[] = [
   },
 ]
 
-/** Consumed by the Person JSON-LD `knowsAbout` field, not rendered directly. */
 export const topSkills: string[] = [
   'TypeScript',
   'React Native',

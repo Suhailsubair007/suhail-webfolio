@@ -6,7 +6,6 @@ const slug = computed(() => String(route.params.slug))
 
 const study = computed(() => findCaseStudy(slug.value))
 
-// A slug outside the derived set is a genuine 404, not an empty page.
 if (!study.value) {
   throw createError({
     statusCode: 404,
@@ -34,10 +33,6 @@ usePageSeo({
       </TextLink>
     </p>
 
-    <!--
-      The complete record for one engagement. The homepage shows the leading
-      three points; everything is here.
-    -->
     <header class="mt-14 border-b border-border pb-14">
       <h1 class="text-3xl text-fg">
         {{ entry.title }}

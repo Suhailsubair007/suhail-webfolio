@@ -1,17 +1,3 @@
-/**
- * Smooth scrolling for in-page anchors.
- *
- * `scroll-behavior: smooth` on the root is declared too, but relying on it
- * alone is fragile: it is silently disabled in a few browser and OS
- * configurations, and it gives no control over the sticky header offset beyond
- * `scroll-margin-top`.
- *
- * Driving it here means one code path for every in-page link — the nav, the
- * hero actions, the skip link — with the header height subtracted and reduced
- * motion honoured explicitly rather than by side effect.
- */
-
-/** Matches the sticky header height so a target never lands underneath it. */
 function headerOffset() {
   const raw = getComputedStyle(document.documentElement).getPropertyValue('--spacing-header')
   const parsed = Number.parseFloat(raw)
@@ -29,9 +15,6 @@ export function scrollToId(id: string) {
 
   const top = Math.max(0, target.getBoundingClientRect().top + window.scrollY - headerOffset())
 
-  // Hand the jump to Lenis when it is running. Calling window.scrollTo while
-  // Lenis owns the scroll position makes the two fight: the jump lands, then
-  // Lenis interpolates back toward where it thought it was.
   const lenis = (useNuxtApp() as { $lenis?: { scrollTo: (t: number, o?: object) => void } }).$lenis
   if (lenis && !prefersReducedMotion()) {
     lenis.scrollTo(top, { duration: 1.05 })
@@ -40,7 +23,6 @@ export function scrollToId(id: string) {
     window.scrollTo({ top, behavior: prefersReducedMotion() ? 'auto' : 'smooth' })
   }
 
-  // Move focus for keyboard and screen-reader users, without a second jump.
   target.setAttribute('tabindex', '-1')
   target.focus({ preventScroll: true })
 
@@ -49,7 +31,6 @@ export function scrollToId(id: string) {
 
 export default defineNuxtPlugin(() => {
   function onClick(event: MouseEvent) {
-    // Let the browser handle modified clicks (new tab, download, etc.).
     if (event.defaultPrevented || event.button !== 0) return
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
 
@@ -61,7 +42,6 @@ export default defineNuxtPlugin(() => {
 
     if (scrollToId(id)) {
       event.preventDefault()
-      // Keep the URL shareable without letting the browser jump to the target.
       history.replaceState(null, '', `#${id}`)
     }
   }

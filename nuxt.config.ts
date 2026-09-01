@@ -1,16 +1,12 @@
 import tailwindcss from '@tailwindcss/vite'
 import { caseStudies } from './shared/content'
 
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
 
   modules: ['@nuxt/eslint', '@nuxt/fonts'],
 
-  // Every byte of this site is known at build time. Full prerender means the
-  // browser gets a complete document from the CDN edge with no server hop.
   ssr: true,
 
-  // Flat component names: <AppButton/> rather than <UiAppButton/>.
   components: [{ path: '~/components', pathPrefix: false }],
   devtools: { enabled: true },
 
@@ -28,11 +24,6 @@ export default defineNuxtConfig({
       ],
       script: [
         {
-          // Resolves the theme before first paint. The page is prerendered, so
-          // the served HTML cannot know the visitor's preference — without this
-          // running ahead of render, a light-theme visitor sees a dark flash.
-          // Deliberately inline, unminified and dependency-free so nothing can
-          // defer it.
           innerHTML:
             '(function(){try{var t=localStorage.getItem("theme");'
             + 'if(t!=="light"&&t!=="dark"){t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"}'
@@ -40,23 +31,18 @@ export default defineNuxtConfig({
             + 'var m=document.querySelector(\'meta[name="theme-color"]\');'
             + 'if(m)m.setAttribute("content",t==="light"?"#f5f6f7":"#0b0d10")'
             + '}catch(e){}'
-            // Headline variant, chosen before first paint. Doing this after
-            // hydration would swap the headline in front of the reader.
-            // Raise the 3 when a variant is added to profile.headlines.
             + 'try{document.documentElement.dataset.headline=Math.floor(Math.random()*3)}catch(e){}'
             + '})()',
           tagPosition: 'head',
         },
       ],
     },
-    // Deliberately no pageTransition: a global fade delays the LCP paint.
   },
 
   css: ['~/assets/css/main.css'],
 
   runtimeConfig: {
     public: {
-      // Override per-environment with NUXT_PUBLIC_SITE_URL.
       siteUrl: 'https://suhailsubair.online',
     },
   },
@@ -65,19 +51,13 @@ export default defineNuxtConfig({
     '/**': { prerender: true },
   },
 
-  // Zero async data on this site, so the extracted payload is a pure extra
-  // round-trip during hydration.
   experimental: { payloadExtraction: false },
   compatibilityDate: '2026-09-01',
 
   nitro: {
-    // No preset pinned on purpose — Vercel selects `vercel-static` itself, and
-    // pinning one breaks the local `nuxt generate`.
     prerender: {
       crawlLinks: true,
       failOnError: true,
-      // Explicit alongside crawlLinks, so a nav regression cannot silently
-      // drop the case studies from the build output.
       routes: [
         '/',
         '/sitemap.xml',
@@ -90,7 +70,6 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
   },
 
-  // Typecheck is an explicit script, not a cost paid on every HMR tick.
   typescript: { strict: true, typeCheck: false },
 
   eslint: {
@@ -98,25 +77,8 @@ export default defineNuxtConfig({
   },
 
   fonts: {
-    // Declared explicitly: @nuxt/fonts finds families by scanning `font-family:`
-    // declarations, and ours exist only as --font-* custom properties inside
-    // Tailwind's @theme block, which its scanner cannot see.
-    //
-    // One family, deliberately. A second face — and especially a monospace —
-    // is what makes a portfolio read as a developer template rather than as
-    // an edited page.
     families: [
-      // Preloaded: this is the hero's face, and without a preload link the
-      // browser only discovers it after parsing CSS, so the headline paints in
-      // a fallback and then swaps. Fraunces is deliberately not preloaded — it
-      // sits below the fold on one element.
-      // styles is pinned to normal: without it the module also pulls the
-      // italic faces, which nothing uses — and it was preloading one of them,
-      // putting an unused font on the critical path while the weight the
-      // headline actually needs went unpreloaded.
       { name: 'Plus Jakarta Sans', provider: 'google', weights: [400, 500, 600], styles: ['normal'], preload: true },
-      // A display serif, loaded for one element: the email address in the
-      // contact section. Worth ~15KB for the one flourish on the page.
       { name: 'Fraunces', provider: 'google', weights: [400], styles: ['italic'] },
     ],
     defaults: { subsets: ['latin'] },

@@ -6,10 +6,6 @@ import { achievements, education, skills } from '#shared/content'
   <section id="skills" class="page py-section">
     <SectionLabel v-reveal text="Skills" />
 
-    <!--
-      Set as prose, not as a badge wall. Technology is evidence for the claims
-      above it, so it reads as a short list rather than forty pills.
-    -->
     <dl class="mt-12">
       <div
         v-for="(group, i) in skills"
@@ -27,7 +23,6 @@ import { achievements, education, skills } from '#shared/content'
     </dl>
 
     <div class="mt-16 grid gap-12 lg:grid-cols-2 lg:gap-20">
-      <!-- Education. -->
       <div v-reveal>
         <h3 class="text-sm font-medium text-accent">
           Education
@@ -46,11 +41,6 @@ import { achievements, education, skills } from '#shared/content'
         </div>
       </div>
 
-      <!--
-        Rows with their years rather than one middot-separated run. The run
-        wrapped mid-title and gave three separate things the appearance of one
-        sentence.
-      -->
       <div v-reveal="{ delay: 80 }">
         <h3 class="text-sm font-medium text-accent">
           Certifications & achievements

@@ -32,12 +32,6 @@ onScopeDispose(() => window.removeEventListener('scroll', onScroll))
 
 <template>
   <header class="sticky top-0 z-50">
-    <!--
-      The backdrop is a separate layer, taller than the header and masked to
-      fade out at its lower edge, so the blur and the background dissolve into
-      the content instead of stopping at a hard rule. Masking the header
-      itself would take the navigation with it.
-    -->
     <div
       aria-hidden="true"
       class="header-veil pointer-events-none absolute inset-x-0 top-0 backdrop-blur-md transition-opacity duration-[var(--duration-base)]"
@@ -47,11 +41,9 @@ onScopeDispose(() => window.removeEventListener('scroll', onScroll))
     <div class="page relative flex h-header items-center justify-between gap-6">
       <a
         href="#top"
-        class="group inline-flex items-center gap-2.5 font-medium text-fg"
+        class="group inline-flex items-center gap-2.5 font-semibold uppercase text-fg"
         @click="onNavigate('#top')"
       >
-        <!-- A mark, not a logo: the dot is the accent's smallest possible
-             appearance, and it gives the name something to sit against. -->
         <span
           aria-hidden="true"
           class="size-1.5 rounded-full bg-accent transition-transform duration-[var(--duration-base)] group-hover:scale-150"
@@ -62,10 +54,6 @@ onScopeDispose(() => window.removeEventListener('scroll', onScroll))
       <nav aria-label="Sections" class="hidden sm:block">
         <ul class="flex items-center gap-7">
           <li v-for="item in navigation" :key="item.href">
-            <!--
-              The active section is marked by a rule that grows from the centre,
-              not by a filled pill. aria-current carries it for assistive tech.
-            -->
             <a
               :href="item.href"
               :aria-current="activeId === item.href.slice(1) ? 'true' : undefined"

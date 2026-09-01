@@ -3,11 +3,6 @@ import { education, profile, site, socials, topSkills } from '#shared/content'
 
 const { public: { siteUrl } } = useRuntimeConfig()
 
-/**
- * Structured data. Every field is populated from the resume content — there
- * are deliberately no `award`, `Rating` or aggregate nodes, because nothing in
- * the source data supports them.
- */
 const personLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',

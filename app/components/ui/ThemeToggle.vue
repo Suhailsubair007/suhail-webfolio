@@ -1,11 +1,4 @@
 <script setup lang="ts">
-/**
- * Switches between the light and dark themes.
- *
- * Labelled by the action it performs rather than the state it is in, which is
- * the less ambiguous of the two for a screen reader. The icon shows the theme
- * being switched *to*, matching the label.
- */
 const { theme, toggle } = useTheme()
 
 const label = computed(() =>

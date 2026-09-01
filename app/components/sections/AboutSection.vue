@@ -6,11 +6,6 @@ import { about, profile } from '#shared/content'
   <section id="about" class="page py-section">
     <SectionLabel v-reveal text="About" />
 
-    <!--
-      A wider left column than the metadata rail elsewhere: the portrait is the
-      only photograph on the site, and at rail width it read as an afterthought
-      rather than as the person the page is about.
-    -->
     <div class="mt-12 grid gap-12 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.6fr)] lg:gap-20">
       <div v-reveal>
         <img
@@ -31,8 +26,6 @@ import { about, profile } from '#shared/content'
       </div>
 
       <div>
-        <!-- The lead carries the argument; the paragraphs support it. Setting
-             all three at body size made none of them the point. -->
         <p v-reveal="{ delay: 60 }" class="max-w-[26ch] text-2xl text-fg">
           {{ about.lead }}
         </p>
@@ -43,7 +36,6 @@ import { about, profile } from '#shared/content'
           </p>
         </div>
 
-        <!-- The same claims, for the reader who does not read paragraphs. -->
         <dl v-reveal="{ delay: 160 }" class="mt-12 border-t border-border">
           <div
             v-for="item in about.focus"

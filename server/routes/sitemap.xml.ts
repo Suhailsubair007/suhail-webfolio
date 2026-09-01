@@ -1,12 +1,6 @@
 import { caseStudies } from '#shared/content'
 import { site } from '#shared/content/site'
 
-/**
- * Prerendered to a static sitemap.xml at build time.
- *
- * Routes are derived from the same `caseStudies` array the pages use, so the
- * sitemap cannot drift out of sync with what actually exists.
- */
 export default defineEventHandler((event) => {
   const { public: { siteUrl } } = useRuntimeConfig(event)
 

@@ -1,10 +1,4 @@
 <script setup lang="ts">
-/**
- * Inline icon set.
- *
- * Hand-authored paths rather than an icon dependency: this site needs ten
- * glyphs, and `currentColor` means they inherit accent colours for free.
- */
 type IconName
   = | 'github'
     | 'linkedin'
@@ -22,13 +16,11 @@ type IconName
 const props = withDefaults(
   defineProps<{
     name: IconName
-    /** Renders as a square of this many pixels. */
     size?: number
   }>(),
   { size: 20 },
 )
 
-/** `stroke` icons use the 1.5px outline style; `fill` icons are brand marks. */
 const ICONS: Record<IconName, { d: string, mode: 'stroke' | 'fill' }> = {
   'github': {
     mode: 'fill',

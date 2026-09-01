@@ -1,16 +1,4 @@
 <script setup lang="ts">
-/**
- * Polymorphic action: a <NuxtLink> for internal routes, an <a> for external or
- * protocol URLs, a <button> when there is no destination.
- *
- * The primary action carries the accent — it is the page's focal point, and
- * the one place a filled colour earns its keep.
- *
- * It fills with `accent-solid`, not `accent`. The two differ per theme: the
- * amber that reads as text on paper is a dark bronze, and filling a button
- * with it put dark text on a dark ground. `on-accent` is the colour that
- * belongs on top of the fill, whichever theme is active.
- */
 const props = withDefaults(
   defineProps<{
     to?: string

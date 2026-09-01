@@ -10,11 +10,6 @@ export { skills, topSkills } from './skills'
 export { education, achievements } from './credentials'
 export { selectedWork, type WorkItem } from './work'
 
-/**
- * Deep-dive routes, derived from `experience` and `projects` rather than
- * authored separately — the page, the sitemap and every cross-link read this
- * one array, so they cannot drift apart.
- */
 export const caseStudies: CaseStudy[] = [
   ...experience.map<CaseStudy>(role => ({
     slug: role.id,
@@ -36,8 +31,6 @@ export const caseStudies: CaseStudy[] = [
     period: project.period,
     summary: project.description,
     stack: project.stack,
-    // Project features carry no separate prose, so the feature itself is the
-    // title and the description stays empty rather than being invented.
     sections: project.features.map(feature => ({ title: feature, description: '' })),
     links: project.links,
   })),

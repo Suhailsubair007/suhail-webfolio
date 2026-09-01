@@ -3,19 +3,11 @@ import { site } from '#shared/content/site'
 interface PageSeoOptions {
   title: string
   description: string
-  /** Route path, e.g. `/work/deelo`. Used for the canonical and og:url. */
   path: string
   ogType?: 'website' | 'profile' | 'article'
-  /** Extra JSON-LD nodes to emit alongside the page metadata. */
   jsonLd?: Record<string, unknown>[]
 }
 
-/**
- * Sets the complete metadata set for a route.
- *
- * Wrapped rather than called ad hoc so that no page can ship a partial set —
- * a canonical without an og:url, or a title without a Twitter card.
- */
 export function usePageSeo(options: PageSeoOptions) {
   const { public: { siteUrl } } = useRuntimeConfig()
   const url = `${siteUrl}${options.path === '/' ? '' : options.path}`
