@@ -13,7 +13,7 @@ export const skills: SkillGroup[] = [
   },
   {
     category: 'Product',
-    items: ['React', 'Next.js', 'React Native', 'Expo', 'Flutter', 'Tailwind CSS'],
+    items: ['React', 'Next.js', 'React Native', 'Expo', 'Tailwind CSS'],
   },
   {
     category: 'Systems',
