@@ -8,24 +8,15 @@ const [featured, ...rest] = selectedWork
   <section id="work" class="page py-section">
     <SectionLabel v-reveal text="Selected work" />
 
-    <article v-if="featured" class="border-b border-border py-14">
-      <div class="grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-20">
+    <article v-if="featured" class="border-b border-border py-9">
+      <div class="grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-12">
         <div v-reveal>
-          <h3 class="text-3xl text-fg">
+          <h3 class="text-2xl text-fg">
             {{ featured.name }}
           </h3>
-          <p class="mt-5 max-w-[22ch] text-2xl text-fg-muted">
+          <p class="mt-3 max-w-prose text-lg text-fg-muted">
             {{ featured.thesis }}
           </p>
-
-          <div v-if="featured.outcomeValue" class="mt-12 border-t border-border pt-6">
-            <p class="tabular text-3xl leading-none text-accent">
-              {{ featured.outcomeValue }}
-            </p>
-            <p class="mt-2 text-sm text-fg-subtle">
-              {{ featured.outcomeLabel }}
-            </p>
-          </div>
         </div>
 
         <div v-reveal="{ delay: 90 }" class="lg:pt-3">
@@ -61,21 +52,16 @@ const [featured, ...rest] = selectedWork
     </article>
 
     <ol>
-      <li v-for="item in rest" :key="item.slug" class="border-b border-border py-12">
+      <li v-for="item in rest" :key="item.slug" class="border-b border-border py-8">
         <MetaRail as="article">
           <template #meta>
             <RailMeta :period="item.period" :place="item.context" :stack="item.stack" />
           </template>
 
           <div v-reveal="{ delay: 60 }">
-            <div class="flex flex-wrap items-baseline gap-x-6 gap-y-2">
-              <h3 class="text-xl text-fg">
-                {{ item.name }}
-              </h3>
-              <p v-if="item.outcomeValue" class="tabular text-sm text-accent">
-                {{ item.outcomeValue }} <span class="text-fg-subtle">{{ item.outcomeLabel?.toLowerCase() }}</span>
-              </p>
-            </div>
+            <h3 class="text-xl text-fg">
+              {{ item.name }}
+            </h3>
 
             <p class="mt-3 max-w-prose text-lg text-fg-muted">
               {{ item.thesis }}
@@ -88,6 +74,9 @@ const [featured, ...rest] = selectedWork
             <div class="mt-7 flex flex-wrap items-center gap-x-8 gap-y-3">
               <TextLink :to="`/work/${item.slug}`">
                 Read the case study<span class="sr-only"> for {{ item.name }}</span>
+              </TextLink>
+              <TextLink v-if="item.url" :href="item.url" external>
+                Visit {{ item.name }}
               </TextLink>
               <TextLink v-if="item.url" :href="item.url" external>
                 Visit the site

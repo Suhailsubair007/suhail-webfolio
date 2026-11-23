@@ -29,7 +29,7 @@ usePageSeo({
   <article class="page py-section">
     <p>
       <TextLink to="/" :arrow="false">
-        <span aria-hidden="true">&#8592;</span> Back
+        <span aria-hidden="true">&#8592;</span> Back to portfolio
       </TextLink>
     </p>
 
@@ -37,7 +37,7 @@ usePageSeo({
       <h1 class="text-3xl text-fg">
         {{ entry.title }}
       </h1>
-      <p class="mt-4 max-w-[30ch] text-2xl text-fg-muted">
+      <p class="mt-4 max-w-prose text-lg text-fg-muted">
         {{ entry.summary }}
       </p>
     </header>
@@ -58,7 +58,7 @@ usePageSeo({
 
       <div>
         <h2 class="text-sm font-medium text-accent">
-          {{ entry.kind === 'role' ? 'What I owned' : 'Scope' }}
+          {{ entry.kind === 'role' ? 'Key contributions' : 'Project scope' }}
         </h2>
 
         <ul class="mt-8 space-y-9">

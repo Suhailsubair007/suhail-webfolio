@@ -1,38 +1,19 @@
-import type { HeadlineSegment, Highlight, SocialLink } from '../types/portfolio'
+import type { SocialLink } from '../types/portfolio'
 
 export const profile = {
   name: 'Suhail Subair',
   role: 'Full Stack Developer',
-  eyebrow: 'Software Engineer',
-  headlines: [
-    [
-      [{ text: 'The whole stack.' }],
-      [{ text: 'Schema', accent: true }, { text: ' to' }],
-      [{ text: 'store release', accent: true }, { text: '.' }],
-    ],
-    [
-      [{ text: 'Production systems,' }],
-      [{ text: 'built ' }, { text: 'end to end', accent: true }],
-      [{ text: 'and kept running.' }],
-    ],
-    [
-      [{ text: 'From ' }, { text: 'data model', accent: true }],
-      [{ text: 'to ' }, { text: 'shipped release', accent: true }, { text: '.' }],
-      [{ text: 'The whole product.' }],
-    ],
-  ] satisfies HeadlineSegment[][][],
-
   tagline:
-    'Full stack engineer in Kochi, India. At Deelo that means the customer site, the React Native app, the GraphQL backend and the AWS infrastructure under them — for a services marketplace with 10,000+ registered users.',
+    'I build marketplace features at Deelo across Next.js, React Native, and a TypeScript backend. Based in Kochi, India.',
   location: 'Kochi, India',
-  availability: 'Open to engineering roles — remote, hybrid or on-site',
+  availability: 'Open to remote, hybrid, and on-site roles',
   email: 'suhailsubair04@gmail.com',
   phone: '+91-7736417357',
   resumeUrl: '/resume.pdf',
   avatar: '/img/portrait.webp',
   currentCompany: {
-    name: 'Deelo',
-    url: 'https://deelo.in',
+    name: 'Deelo Business Services Private Limited',
+    url: 'https://deelo.in/',
     role: 'Full Stack Developer',
   },
 } as const
@@ -59,27 +40,20 @@ export const socials: SocialLink[] = [
 ]
 
 export const about = {
-  lead: 'I work across the whole stack because products need someone who can follow a problem wherever it goes.',
+  lead: 'I build web and mobile features, from the data model through to release.',
   paragraphs: [
-    'At Deelo that means a Next.js customer site, a freelancer onboarding portal, an admin panel, a React Native app, and the AWS infrastructure underneath all of it.',
-    'The work I care about is the kind that decides whether a product survives: moving a legacy backend to a new architecture without losing data, matching customers to nearby providers in real time, getting a release through the Play Store reliably enough that nobody thinks about it.',
+    'My work at Deelo spans the customer website, provider onboarding, admin tools, and Android releases. I also maintain the services and AWS infrastructure behind those workflows.',
+    'At Ecloto Designs, I built APIs and real-time messaging for Orgface and helped ship features across web, Android, and iOS.',
   ],
   focus: [
-    { label: 'Product', value: 'Customer sites, onboarding portals and admin panels' },
-    { label: 'Backend', value: 'Service architecture, GraphQL, zero-loss data migrations' },
-    { label: 'Mobile', value: 'React Native and Expo, through to Play Store release' },
-    { label: 'Infrastructure', value: 'AWS and DigitalOcean, deployment and production upkeep' },
+    { label: 'Web', value: 'Customer sites, onboarding flows, and admin tools' },
+    { label: 'Backend', value: 'API design, data modeling, and service migrations' },
+    { label: 'Mobile', value: 'React Native, Expo, and Android releases' },
+    { label: 'Infrastructure', value: 'AWS and DigitalOcean deployments' },
   ],
 } as const
 
-export const highlights: Highlight[] = [
-  { value: '10,000+', label: 'Users in production' },
-  { value: '2+', label: 'Years shipping' },
-  { value: '10+', label: 'Modules built' },
-  { value: '2', label: 'Engineers mentored' },
-]
-
 export const contactCta = {
-  heading: ['Have something', 'worth building?'],
-  body: 'I’m looking for engineering roles where I can own features end to end and ship them to real users.',
+  heading: 'Open to full stack and mobile roles',
+  body: 'I’m interested in teams where I can build features across the stack and help take them from design through release.',
 } as const

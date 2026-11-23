@@ -9,7 +9,7 @@ const LEAD_STACK = 5
   <section id="experience" class="page py-section">
     <SectionLabel v-reveal text="Experience" />
 
-    <ol class="mt-12">
+    <ol class="mt-7">
       <li
         v-for="role in experience"
         :key="role.id"
@@ -62,7 +62,7 @@ const LEAD_STACK = 5
 
             <p class="mt-8">
               <TextLink :to="`/work/${role.id}`">
-                Full record<span class="sr-only"> for {{ role.company }}</span>
+                Read the case study<span class="sr-only"> for {{ role.company }}</span>
               </TextLink>
             </p>
           </div>

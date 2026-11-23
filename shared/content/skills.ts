@@ -6,12 +6,16 @@ export const skills: SkillGroup[] = [
     items: ['TypeScript', 'JavaScript'],
   },
   {
-    category: 'Product',
+    category: 'Web and mobile',
     items: ['React', 'Next.js', 'React Native', 'Expo', 'Tailwind CSS'],
   },
   {
-    category: 'Systems',
-    items: ['Node.js', 'Bun.js', 'GraphQL', 'REST', 'WebSockets', 'MongoDB', 'PostgreSQL', 'Redis'],
+    category: 'Backend',
+    items: ['Node.js', 'Bun.js', 'GraphQL', 'REST APIs', 'WebSockets'],
+  },
+  {
+    category: 'Databases',
+    items: ['MongoDB', 'PostgreSQL', 'Redis'],
   },
   {
     category: 'Infrastructure',

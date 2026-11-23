@@ -6,7 +6,7 @@ import { achievements, education, skills } from '#shared/content'
   <section id="skills" class="page py-section">
     <SectionLabel v-reveal text="Skills" />
 
-    <dl class="mt-12">
+    <dl class="mt-7">
       <div
         v-for="(group, i) in skills"
         :key="group.category"
@@ -22,7 +22,7 @@ import { achievements, education, skills } from '#shared/content'
       </div>
     </dl>
 
-    <div class="mt-16 grid gap-12 lg:grid-cols-2 lg:gap-20">
+    <div class="mt-9 grid gap-8 lg:grid-cols-2 lg:gap-12">
       <div v-reveal>
         <h3 class="text-sm font-medium text-accent">
           Education
@@ -43,7 +43,7 @@ import { achievements, education, skills } from '#shared/content'
 
       <div v-reveal="{ delay: 80 }">
         <h3 class="text-sm font-medium text-accent">
-          Certifications & achievements
+          Courses
         </h3>
         <ul class="mt-5 border-t border-border">
           <li

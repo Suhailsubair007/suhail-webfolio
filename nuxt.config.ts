@@ -31,7 +31,6 @@ export default defineNuxtConfig({
             + 'var m=document.querySelector(\'meta[name="theme-color"]\');'
             + 'if(m)m.setAttribute("content",t==="light"?"#f5f6f7":"#0b0d10")'
             + '}catch(e){}'
-            + 'try{document.documentElement.dataset.headline=Math.floor(Math.random()*3)}catch(e){}'
             + '})()',
           tagPosition: 'head',
         },
@@ -78,7 +77,7 @@ export default defineNuxtConfig({
 
   fonts: {
     families: [
-      { name: 'Plus Jakarta Sans', provider: 'google', weights: [400, 500, 600], styles: ['normal'], preload: true },
+      { name: 'Instrument Sans', provider: 'google', weights: [400, 500, 600], styles: ['normal'], preload: true },
       { name: 'Fraunces', provider: 'google', weights: [400], styles: ['italic'] },
     ],
     defaults: { subsets: ['latin'] },

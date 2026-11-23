@@ -3,41 +3,41 @@ import type { ExperienceItem } from '../types/portfolio'
 export const experience: ExperienceItem[] = [
   {
     id: 'deelo',
-    company: 'Deelo',
-    companyUrl: 'https://deelo.in',
+    company: 'Deelo Business Services Private Limited',
+    companyUrl: 'https://deelo.in/',
     role: 'Full Stack Developer',
     location: 'Kottayam',
-    period: '2026 — Present',
+    period: 'Jan 2026 — Present',
     startDate: '2026-01',
     endDate: null,
     current: true,
     summary:
-      'Own the product surface of a services marketplace serving 10,000+ registered users — customer site, onboarding portal, admin panel, Android app and the backend beneath them.',
+      'Build and maintain the customer website, provider onboarding portal, admin tools, and Android app for a services marketplace.',
     bullets: [
       {
-        title: 'Moved a legacy backend to service architecture',
+        title: 'Backend migration',
         description:
-          'Migrated Deelo’s Node.js monolith to service-based TypeScript, GraphQL and MongoDB — redesigning the data models and moving every production record with zero data loss.',
+          'Migrated a legacy Node.js backend to TypeScript services with GraphQL and MongoDB. Redesigned data models and migrated existing records.',
       },
       {
-        title: 'Built location matching from the ground up',
+        title: 'Location-based matching',
         description:
-          'Implemented geo-based service matching across regions, micro-zones and geographic boundaries, connecting customers to nearby providers in real time.',
+          'Built matching logic that uses service boundaries to find nearby providers who cover the customer’s location.',
       },
       {
-        title: 'Shipped the Android app end to end',
+        title: 'Android release',
         description:
-          'Took the React Native app from first commit to Play Store, owning the release pipeline and performance work, and started the migration to native Kotlin.',
+          'Built the Android app in React Native and Expo, managed its Google Play release, and began work on a native Kotlin migration.',
       },
       {
-        title: 'Run the cloud infrastructure',
+        title: 'AWS deployments',
         description:
-          'Manage AWS across EC2, S3 and SES, designed the file-upload architecture, and handle production deployment and maintenance.',
+          'Maintain deployments on EC2, designed the file upload flow using S3, and manage email delivery through SES.',
       },
       {
-        title: 'Mentor two engineers',
+        title: 'Code reviews and planning',
         description:
-          'Lead code review, sprint planning and coding standards for two junior developers, and work directly with the CTO on product and architecture decisions.',
+          'Review code, mentor junior developers, and work with the CTO on sprint priorities and architecture decisions.',
       },
     ],
     stack: [
@@ -54,7 +54,8 @@ export const experience: ExperienceItem[] = [
   },
   {
     id: 'ecloto',
-    company: 'Ecloto Designs',
+    company: 'Ecloto Designs Private Limited',
+    companyUrl: 'https://eclotodesigns.com/',
     role: 'Full Stack Developer',
     location: 'Kochi',
     period: 'Apr — Dec 2025',
@@ -62,27 +63,27 @@ export const experience: ExperienceItem[] = [
     endDate: '2025-12',
     current: false,
     summary:
-      'Built the entire backend for Orgface, a professional networking and messaging platform, and shipped its cross-platform features from a single React Native codebase.',
+      'Built backend services for Orgface, a professional networking app, and contributed to its shared React Native codebase.',
     bullets: [
       {
-        title: 'Wrote the backend from scratch',
+        title: 'REST APIs and data models',
         description:
-          'Designed the schemas and REST APIs for 10+ business modules in TypeScript and Bun.js, inside a monorepo.',
+          'Designed database schemas and implemented REST APIs in TypeScript and Bun.js within a monorepo.',
       },
       {
-        title: 'Engineered real-time messaging',
+        title: 'Real-time messaging',
         description:
-          'Built one-to-one and group chat over WebSockets, with a push notification pipeline delivering across Web, Android and iOS.',
+          'Implemented direct and group chat over WebSockets and added push notifications for web, Android, and iOS.',
       },
       {
-        title: 'Owned production infrastructure',
+        title: 'Deployment and infrastructure',
         description:
-          'Ran deployment on DigitalOcean — Nginx and Caddy, PM2, Cloudflare DNS with R2 storage, and Postmark for transactional email.',
+          'Managed deployments on DigitalOcean using Nginx, Caddy, and PM2. Configured Cloudflare DNS and R2 storage, and integrated Postmark for transactional email.',
       },
       {
-        title: 'Shipped to three platforms from one codebase',
+        title: 'Cross-platform features',
         description:
-          'Delivered features and a redesign of core screens from a single React Native codebase serving Web, Android and iOS.',
+          'Integrated APIs and redesigned core screens, including profile management, in the shared React Native codebase.',
       },
     ],
     stack: [

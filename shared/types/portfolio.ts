@@ -7,11 +7,6 @@ export interface SocialLink {
   icon: SocialIcon
 }
 
-export interface Highlight {
-  value: string
-  label: string
-}
-
 export interface ExperienceBullet {
   title: string
   description: string
@@ -90,9 +85,4 @@ export interface CaseStudy {
   sections: ExperienceBullet[]
   links: ProjectLink[]
   location?: string
-}
-
-export interface HeadlineSegment {
-  text: string
-  accent?: boolean
 }

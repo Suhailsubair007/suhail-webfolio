@@ -59,7 +59,7 @@
   /* One family. A second face — and especially a monospace — is what  */
   /* makes a portfolio read as a developer template.                   */
   /* ---------------------------------------------------------------- */
-  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system,
+  --font-sans: "Instrument Sans", ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", sans-serif;
   /* Used once, on the email address. A single deliberate flourish reads as a
      choice; a second face used everywhere would read as indecision. */
@@ -76,30 +76,23 @@
   --text-sm: clamp(0.875rem, 0.857rem + 0.089vw, 0.9375rem);
   --text-base: clamp(1rem, 0.982rem + 0.089vw, 1.0625rem);
   --text-lg: clamp(1.0625rem, 1.009rem + 0.268vw, 1.25rem);
-  --text-xl: clamp(1.25rem, 1.116rem + 0.67vw, 1.75rem);
-  --text-2xl: clamp(1.5rem, 1.232rem + 1.339vw, 2.4375rem);
-  --text-3xl: clamp(1.875rem, 1.339rem + 2.679vw, 3.75rem);
-  /* The cap is set by the hero's longest authored line against the 1209px
-     measure, measured rather than guessed. "product, not just" needs 1043px
-     at 8.5rem, leaving ~165px of margin. Re-measure if the headline changes:
-     the previous line needed 1263px at 8rem and broke to four lines. */
-  --text-display: clamp(2.5rem, 1.027rem + 7.366vw, 8.5rem);
+  --text-xl: clamp(1.25rem, 1.18rem + 0.35vw, 1.5rem);
+  --text-2xl: clamp(1.5rem, 1.36rem + 0.7vw, 2rem);
+  --text-3xl: clamp(1.875rem, 1.6rem + 1.38vw, 2.875rem);
 
   --text-base--line-height: 1.65;
   --text-lg--line-height: 1.6;
   --text-xl--line-height: 1.4;
   --text-2xl--line-height: 1.18;
   --text-2xl--letter-spacing: -0.018em;
-  --text-3xl--line-height: 1.06;
+  --text-3xl--line-height: 1.15;
   --text-3xl--letter-spacing: -0.022em;
-  --text-display--line-height: 0.94;
-  --text-display--letter-spacing: -0.03em;
 
   /* ---------------------------------------------------------------- */
   /* Rhythm                                                            */
   /* ---------------------------------------------------------------- */
   --spacing-gutter: clamp(1.25rem, 0.688rem + 2.813vw, 4rem); /* 20 → 64 */
-  --spacing-section: clamp(3.25rem, 2.679rem + 2.857vw, 5.25rem); /* 52 → 84 */
+  --spacing-section: clamp(2.75rem, 2.35rem + 2vw, 4.125rem); /* 44 → 66 */
   --spacing-header: 4.5rem;
   /* Width of the metadata rail — the page's structural signature. */
   --spacing-rail: 11rem;
@@ -310,143 +303,4 @@
       content: none;
     }
   }
-}
-
-/*
- * The header's backdrop.
- *
- * Extends below the header row and fades out, so the blur and the tint
- * dissolve into the page rather than ending at a rule. The mask is applied to
- * the layer itself — masking the <header> would fade the navigation out with
- * it.
- *
- * The fade lives entirely in the mask, not in a background gradient. A
- * gradient stop built with color-mix() is resolved at build time against
- * whichever theme happens to be active in the stylesheet, which baked the dark
- * surface into the middle stop and left it dark under the light theme. Driving
- * the fade from mask alpha keeps the single background colour themed.
- *
- * Masking also fades the backdrop-filter, so the blur tapers off with the
- * tint instead of stopping dead at the mask's edge.
- */
-@utility header-veil {
-  height: calc(var(--spacing-header) + 2.5rem);
-  background: var(--color-surface);
-  /* The blur comes from Tailwind's backdrop-blur utility on the element, not
-     from a hand-written declaration here: writing both the standard and
-     -webkit- forms confused the minifier into emitting only the prefixed one,
-     which left Firefox with no blur at all. */
-  mask-image: linear-gradient(
-    to bottom,
-    rgb(0 0 0 / 0.94) 0%,
-    rgb(0 0 0 / 0.9) 45%,
-    rgb(0 0 0 / 0.5) 72%,
-    transparent 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    rgb(0 0 0 / 0.94) 0%,
-    rgb(0 0 0 / 0.9) 45%,
-    rgb(0 0 0 / 0.5) 72%,
-    transparent 100%
-  );
-}
-
-/*
- * Hero headline variants.
- *
- * All variants ship in the markup; the inline head script writes a random
- * index to data-headline before first paint and this shows one. `display:
- * none` keeps the others out of the accessibility tree rather than merely
- * hiding them visually.
- *
- * The first variant is the default, so with JavaScript disabled — or before
- * the script runs — exactly one headline is visible and nothing shifts.
- *
- * Adding a variant means adding a pair of rules here and raising the count in
- * the head script.
- */
-.headline-set > .headline-variant {
-  display: none;
-}
-
-.headline-set > .headline-variant:first-child {
-  display: block;
-}
-
-:root[data-headline="1"] .headline-set > .headline-variant:first-child,
-:root[data-headline="2"] .headline-set > .headline-variant:first-child {
-  display: none;
-}
-
-:root[data-headline="1"] .headline-set > .headline-variant:nth-child(2),
-:root[data-headline="2"] .headline-set > .headline-variant:nth-child(3) {
-  display: block;
-}
-
-/*
- * The hero's grid.
- *
- * Confined to the hero — repeated down the page it stops being a texture and
- * becomes a pattern.
- *
- * The line colour is the only thing that changes between themes: warm ink at
- * 5% on paper, warm bone at 4.5% on ink. The alphas are not the same number
- * because they are not doing the same work — a dark line on a light ground
- * carries further than a light line on a dark one, so the dark theme's rule
- * would disappear at the light theme's alpha. Both land fainter than
- * --color-border, which is the point: this sits under the hairlines, not
- * beside them.
- *
- * One ellipse mask does the entire fade. The corners are the farthest points
- * from its centre, so they clear first and all four edges taper on the way
- * out — no second layer, no mask-composite, no hard stop anywhere.
- *
- * Two repeating gradients rather than an SVG or an image: nothing to fetch,
- * nothing to decode, and the whole layer is painted once and never animated.
- *
- * The dark values sit on the bare class rather than behind a [data-theme]
- * selector, so the grid is there with JavaScript disabled too — that state
- * resolves to the dark theme, and gating it on the attribute would have left
- * exactly that reader with a blank hero.
- */
-.hero-grid {
-  --hero-grid-step: 40px;
-  --hero-grid-line: rgb(237 234 227 / 0.045);
-
-  background-image:
-    repeating-linear-gradient(
-      to right,
-      var(--hero-grid-line) 0 1px,
-      transparent 1px var(--hero-grid-step)
-    ),
-    repeating-linear-gradient(
-      to bottom,
-      var(--hero-grid-line) 0 1px,
-      transparent 1px var(--hero-grid-step)
-    );
-  mask-image: radial-gradient(
-    ellipse 68% 60% at 50% 44%,
-    rgb(0 0 0 / 1) 0%,
-    rgb(0 0 0 / 0.62) 42%,
-    rgb(0 0 0 / 0.2) 68%,
-    transparent 86%
-  );
-  -webkit-mask-image: radial-gradient(
-    ellipse 68% 60% at 50% 44%,
-    rgb(0 0 0 / 1) 0%,
-    rgb(0 0 0 / 0.62) 42%,
-    rgb(0 0 0 / 0.2) 68%,
-    transparent 86%
-  );
-
-  /* The cell scales with the measure so the grid keeps the same visual
-     density from a phone to a wide desktop. */
-  @media (width >= 48rem) {
-    --hero-grid-step: 64px;
-  }
-}
-
-:root[data-theme="light"] .hero-grid {
-  --hero-grid-line: rgb(27 25 23 / 0.05);
 }

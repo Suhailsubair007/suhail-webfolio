@@ -1,10 +1,10 @@
 import type { NavItem } from '../types/portfolio'
 
 export const site = {
-  title: 'Suhail Subair — Full Stack & Mobile Engineer',
+  title: 'Suhail Subair — Full Stack Developer',
   shortTitle: 'Suhail Subair',
   description:
-    'Full stack engineer shipping production web, mobile and backend systems. TypeScript, Next.js, React Native, Node.js, GraphQL, MongoDB and AWS.',
+    'Suhail Subair is a full stack developer in Kochi, India. Explore his work on TypeScript APIs, Next.js websites, and React Native apps.',
   locale: 'en_IN',
   themeColor: '#0a0908',
   ogImage: '/og.png',
@@ -23,7 +23,7 @@ export const site = {
     'Kerala',
     'India',
   ],
-  contentUpdatedAt: '2026-09-01',
+  contentUpdatedAt: '2026-11-23',
 } as const
 
 export const navigation: NavItem[] = [

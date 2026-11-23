@@ -16,11 +16,6 @@ export const education: EducationItem[] = [
 
 export const achievements: Achievement[] = [
   {
-    title: '100 LeetCode problems solved',
-    description: 'Sharpened problem-solving across data structures and algorithms.',
-    year: '2024',
-  },
-  {
     title: 'Introduction to Front-End Development — Meta',
     description:
       'Certified course covering HTML, CSS, Bootstrap, version control and React basics.',

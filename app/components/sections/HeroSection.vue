@@ -1,59 +1,48 @@
 <script setup lang="ts">
-import { highlights, profile } from '#shared/content'
+import { profile } from '#shared/content'
 </script>
 
 <template>
-  <section id="top" class="page hero-enter relative pt-8 pb-section sm:pt-12">
-    <div aria-hidden="true" class="hero-grid pointer-events-none absolute inset-0 -z-10" />
+  <section id="top" class="page hero-enter pt-6 pb-6 sm:pt-10 sm:pb-8">
+    <div class="rounded-3xl border border-border bg-surface-raised p-4 sm:p-8 lg:p-10">
+      <div class="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 gap-y-5 sm:grid-cols-[minmax(0,1fr)_minmax(0,32%)] sm:gap-x-8">
+        <div class="sm:self-end">
+          <h1 class="text-3xl font-semibold text-fg">
+            {{ profile.name }}
+          </h1>
+          <p class="mt-2 text-sm font-medium text-accent sm:text-base">
+            {{ profile.role }}
+          </p>
+        </div>
 
-    <p class="label-accent">
-      {{ profile.eyebrow }}
-    </p>
+        <img
+          :src="profile.avatar"
+          :alt="profile.name"
+          width="768"
+          height="768"
+          fetchpriority="high"
+          class="size-20 justify-self-end rounded-full object-cover ring-1 ring-accent/40 ring-offset-4 ring-offset-surface-raised sm:row-span-2 sm:size-auto sm:w-full sm:max-w-56"
+        >
 
-    <h1 class="headline-set mt-6 text-display text-balance text-fg sm:mt-8 sm:text-wrap">
-      <span v-for="(variant, v) in profile.headlines" :key="v" class="headline-variant">
-        <span
-          v-for="(line, i) in variant"
-          :key="i"
-          class="inline sm:block"
-        ><span
-          v-for="(segment, j) in line"
-          :key="j"
-          :class="segment.accent && 'text-accent'"
-        >{{ segment.text }}</span>{{ ' ' }}</span>
-      </span>
-    </h1>
+        <div class="col-span-2 min-w-0 sm:col-span-1 sm:self-start">
+          <p class="max-w-prose text-fg-muted">
+            {{ profile.tagline }}
+          </p>
 
-    <div class="mt-16 sm:mt-24">
-      <p class="max-w-prose text-lg text-fg-muted">
-        {{ profile.tagline }}
-      </p>
-
-      <div class="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
-        <AppButton href="#work">
-          View the work
-          <span aria-hidden="true" class="arrow">&#8594;</span>
-        </AppButton>
-        <TextLink :href="`mailto:${profile.email}`" :arrow="false">
-          Get in touch
-        </TextLink>
-        <TextLink :href="profile.resumeUrl" external :arrow="false">
-          Resume
-        </TextLink>
+          <div class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3">
+            <AppButton href="#work" class="rounded-lg">
+              View my work
+              <span aria-hidden="true" class="arrow">&#8594;</span>
+            </AppButton>
+            <TextLink :href="`mailto:${profile.email}`" :arrow="false">
+              Get in touch
+            </TextLink>
+            <TextLink :href="profile.resumeUrl" external :arrow="false">
+              Resume
+            </TextLink>
+          </div>
+        </div>
       </div>
     </div>
-
-    <dl
-      class="mt-12 grid grid-cols-2 gap-x-8 gap-y-10 border-t border-border pt-8 sm:mt-14 lg:grid-cols-4"
-    >
-      <div v-for="item in highlights" :key="item.label">
-        <dd class="tabular text-2xl leading-none text-accent">
-          {{ item.value }}
-        </dd>
-        <dt class="mt-3 text-sm text-fg-subtle">
-          {{ item.label }}
-        </dt>
-      </div>
-    </dl>
   </section>
 </template>

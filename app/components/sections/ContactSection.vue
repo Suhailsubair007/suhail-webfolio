@@ -23,22 +23,22 @@ const channels = computed(() => [
   <section id="contact" class="page py-section">
     <SectionLabel v-reveal text="Contact" />
 
-    <div class="mt-12 grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)] lg:gap-24">
+    <div class="mt-7 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)] lg:gap-14">
       <div v-reveal>
-        <p class="text-3xl text-fg">
-          <span v-for="line in contactCta.heading" :key="line" class="block">{{ line }}</span>
-        </p>
+        <h3 class="text-2xl text-fg">
+          {{ contactCta.heading }}
+        </h3>
 
         <p class="mt-6 max-w-prose text-lg text-fg-muted">
           {{ contactCta.body }}
         </p>
 
-        <p class="mt-10">
+        <p class="mt-6">
           <a
             :href="`mailto:${profile.email}`"
             class="group inline-flex items-baseline gap-3 text-fg"
           >
-            <span class="underline-sweep font-display text-xl italic sm:text-2xl">{{ profile.email }}</span>
+            <span class="underline-sweep font-display text-xl italic">{{ profile.email }}</span>
             <span aria-hidden="true" class="arrow text-accent">&#8594;</span>
           </a>
         </p>
